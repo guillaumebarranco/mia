@@ -4,6 +4,7 @@
 	<head>
 		<title>Mia</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
 	</head>
 
 	<body>
@@ -218,6 +219,7 @@
 				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
 			} else {
 				echo 'Just say something';
+				echo '<a href="http://webarranco.fr/lab/mia">Retour</a>';
 			}
 
 			//exec('mpg321 '.urlencode($text));
