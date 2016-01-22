@@ -207,3 +207,25 @@
 	//exec('mpg321 '.urlencode($text));
 	
 ?>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+
+<script>
+	
+	var startListeningAudio = (function () {
+
+		alert('ok');
+
+		if (annyang && autorisedMic) {
+			var commands = {
+				'o': function home() {
+					alert('ok');
+				}
+			};
+
+			annyang.addCommands(commands);
+			annyang.start();
+		}
+	})();
+
+</script>
