@@ -212,57 +212,62 @@
 
 			}
 
-			var_dump($text);
+			// var_dump($text);
 
-			echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+			if(isset($_GET) && !empty($_GET)) {
+				var_dump($_GET);
+				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+			} else {
+				echo 'Just say something';
+			}
 
 			//exec('mpg321 '.urlencode($text));
 			
 		?>
 
-	</body>
-</html>
+		<!--<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>-->
 
+		<script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+			// window.location.href = window.location.href+'/?text=date';
 
-<script>
-	
-	// window.location.href = window.location.href+'/?text=date';
+			function getSearchParameters() {
+			      var prmstr = window.location.search.substr(1);
+			      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+			}
 
-	function getSearchParameters() {
-	      var prmstr = window.location.search.substr(1);
-	      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
-	}
+			function transformToAssocArray( prmstr ) {
+			    var params = {};
+			    var prmarr = prmstr.split("&");
+			    for ( var i = 0; i < prmarr.length; i++) {
+			        var tmparr = prmarr[i].split("=");
+			        params[tmparr[0]] = tmparr[1];
+			    }
+			    return params;
+			}
 
-	function transformToAssocArray( prmstr ) {
-	    var params = {};
-	    var prmarr = prmstr.split("&");
-	    for ( var i = 0; i < prmarr.length; i++) {
-	        var tmparr = prmarr[i].split("=");
-	        params[tmparr[0]] = tmparr[1];
-	    }
-	    return params;
-	}
+			var params = getSearchParameters();
 
-	var params = getSearchParameters();
+			var startListeningAudio = function () {
 
-	var startListeningAudio = function () {
+				if (annyang) {
+					var commands = {
+						'test': function home() {
+							window.location.href = window.location.href+'/?text=bronze';
+						}
+					};
 
-		if (annyang) {
-			var commands = {
-				'test': function home() {
-					window.location.href = window.location.href+'/?text=bronze';
+					annyang.addCommands(commands);
+					annyang.start();
 				}
 			};
 
-			annyang.addCommands(commands);
-			annyang.start();
-		}
-	});
+			if(typeof params.text === 'undefined') {
+				alert('ok');
+				startListeningAudio();
+			}
 
-	if(typeof params.text === 'undefined') {
-		startListeningAudio();
-	}
+		</script>
 
-</script>
+	</body>
+</html>
