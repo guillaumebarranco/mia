@@ -247,20 +247,22 @@
 
 	var params = getSearchParameters();
 
-	console.log(params);
+	var startListeningAudio = function () {
 
-	// var startListeningAudio = (function () {
+		if (annyang) {
+			var commands = {
+				'test': function home() {
+					window.location.href = window.location.href+'/?text=bronze';
+				}
+			};
 
-	// 	if (annyang) {
-	// 		var commands = {
-	// 			'test': function home() {
-	// 				window.location.href = window.location.href+'/?text=bronze';
-	// 			}
-	// 		};
+			annyang.addCommands(commands);
+			annyang.start();
+		}
+	});
 
-	// 		annyang.addCommands(commands);
-	// 		annyang.start();
-	// 	}
-	// })();
+	if(typeof params.text === 'undefined') {
+		startListeningAudio();
+	}
 
 </script>
