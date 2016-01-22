@@ -215,7 +215,6 @@
 			// var_dump($text);
 
 			if(isset($_GET) && !empty($_GET)) {
-				var_dump($_GET);
 				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
 			} else {
 				echo 'Just say something';
@@ -263,7 +262,6 @@
 			};
 
 			if(typeof params.text === 'undefined') {
-				alert('ok');
 				startListeningAudio();
 			}
 
