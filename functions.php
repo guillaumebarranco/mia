@@ -212,14 +212,14 @@
 
 <script>
 	
-	var startListeningAudio = (function () {
+	// window.location.href = window.location.href+'/?text=date';
 
-		alert('ok');
+	var startListeningAudio = (function () {
 
 		if (annyang) {
 			var commands = {
-				'o': function home() {
-					alert('ok');
+				'bronze': function home() {
+					window.location.href = window.location.href+'/?text=bronze';
 				}
 			};
 
