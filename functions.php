@@ -252,7 +252,7 @@
 				if (annyang) {
 					var commands = {
 						'test': function home() {
-							window.location.href = window.location.href+'/?text=bronze';
+							window.location.href = window.location.href+'/?text=date';
 						}
 					};
 
