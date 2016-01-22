@@ -1,0 +1,14 @@
+1) Installer raspbian
+
+Emettre du son :
+
+1) sudo apt-get install 
+
+2) Créer un fichier php avec par exemple :
+	<?php exec('mpg321 "http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q=Bonjour"'); ?>
+
+3) sudo adduser www-data audio
+
+4) Aller sur http://IP_RASP/speak.php et entendre "Bonjour"
+
+5) Refaire le tout avec du $_GET
