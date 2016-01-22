@@ -218,7 +218,7 @@
 
 		if (annyang) {
 			var commands = {
-				'bronze': function home() {
+				'test': function home() {
 					window.location.href = window.location.href+'/?text=bronze';
 				}
 			};
