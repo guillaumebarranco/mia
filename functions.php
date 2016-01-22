@@ -216,7 +216,7 @@
 
 		alert('ok');
 
-		if (annyang && autorisedMic) {
+		if (annyang) {
 			var commands = {
 				'o': function home() {
 					alert('ok');
