@@ -217,9 +217,9 @@
 
 			if(isset($_GET) && !empty($_GET)) {
 				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+				echo '<a href="http://webarranco.fr/lab/mia">Retour</a>';
 			} else {
 				echo 'Just say something';
-				echo '<a href="http://webarranco.fr/lab/mia">Retour</a>';
 			}
 
 			//exec('mpg321 '.urlencode($text));
