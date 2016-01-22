@@ -217,7 +217,7 @@
 
 			if(isset($_GET) && !empty($_GET)) {
 				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
-				echo '<a href="http://webarranco.fr/lab/mia">Retour</a>';
+				echo '<a href="http://webarranco.fr/lab/mia/functions.php">Retour</a>';
 			} else {
 				echo 'Just say something';
 			}
@@ -253,8 +253,26 @@
 
 				if (annyang) {
 					var commands = {
-						'test': function home() {
+						'date': function home() {
 							window.location.href = window.location.href+'/?text=date';
+						},
+						'hour': function home() {
+							window.location.href = window.location.href+'/?text=hour';
+						},
+						'temperature': function home() {
+							window.location.href = window.location.href+'/?text=temperature';
+						},
+						'platine': function home() {
+							window.location.href = window.location.href+'/?text=platine';
+						},
+						'or': function home() {
+							window.location.href = window.location.href+'/?text=or';
+						},
+						'argent': function home() {
+							window.location.href = window.location.href+'/?text=argent';
+						},
+						'bronze': function home() {
+							window.location.href = window.location.href+'/?text=bronze';
 						}
 					};
 
