@@ -190,7 +190,6 @@
 
 		switch($_POST['text']) {
 
-
 			case "timmy":
 				$text = 'http://son.com/timmy.mp3';
 			break;
@@ -203,16 +202,7 @@
 
 	var_dump($text);
 
-	$m = new SWFMovie();
-	$m->setRate(12.0);
-	$m->streamMp3(file_get_contents($text));
-	// use your own MP3
-
-	// The file is 11.85 seconds at 12.0 fps = 142 frames
-	$m->setFrames(142);
-
-	header('Content-type: application/x-shockwave-flash');
-	$m->output();
+	echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
 
 	//exec('mpg321 '.urlencode($text));
 	
