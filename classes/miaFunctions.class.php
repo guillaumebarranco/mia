@@ -146,4 +146,15 @@ class MiaFunctions extends Mia {
 		return $this->echoGoogle('Il fait '.$celsius.' degrés à Paris');
 	}
 
+	public function isOpOut() {
+		// if page has element with class .episode-table, return true
+		
+		$cl = curl_init("http://www.mangapanda.com/one-piece/814");
+
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$response = json_encode(curl_exec($cl));
+
+		return stripos($response, "episode-table");
+	}
+
 }

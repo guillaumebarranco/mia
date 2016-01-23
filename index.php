@@ -112,9 +112,20 @@
 						'good night': function home() {
 							makeAction('goodNight');
 						},
-
 						'i am going to sleep': function home() {
 							makeAction('goToSleep');
+						},
+						'is one piece out': function home() {
+							makeAction('isOpOut');
+						},
+						'are you alive': function home() {
+							makeAction('areYouAlive');
+						},
+						'am i funny': function home() {
+							makeAction('amIFunny');
+						},
+						'what are you doing': function home() {
+							makeAction('whatAreYouDoing');
 						},
 
 					};

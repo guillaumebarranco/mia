@@ -112,6 +112,33 @@
 				$text = $mia->sayGoodNight();
 			break;
 
+			case "isOpOut":
+				$op_status = $miaFunctions->isOpOut();
+
+				if($op_status) {
+					$text = $mia->sayYes();
+				} else {
+					$text = $mia->sayNo();
+				}
+
+			break;
+
+			case "areYouAlive":
+				$text = $miaHumour->areYouAlive();
+			break;
+
+			case "amIFunny":
+				$text = $mia->sayOfCourse();
+			break;
+
+			case "whatAreYouDoing":
+				$text = $miaHumour->sayWhatYouDo();
+			break;
+
+
+
+
+
 			default:
 				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
 			break;

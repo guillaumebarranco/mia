@@ -48,6 +48,10 @@ class Mia {
 		return $this->echoGoogle('Bonne nuit à vous aussi !');
 	}
 
+	public function sayOfCourse() {
+		return $this->echoGoogle('Evidemment !');
+	}
+
 
 
 }
