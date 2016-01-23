@@ -1,291 +1,148 @@
-<!DOCTYPE>
-
-<html lang="fr">
-	<head>
-		<title>Mia</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, user-scalable=no">
-	</head>
+<?php
+	
+	$text = '';
 
-	<body>
+	if(isset($_GET['text']) && $_GET['text'] !== '') {
+
+		require_once('classes/mia.class.php');
+		require_once('classes/miaHumour.class.php');
+		require_once('classes/miaKnowledge.class.php');
+		require_once('classes/miaFunctions.class.php');
 
-		<p></p>
-		
-		<?php
-			
-			$text = '';
+		$mia = new Mia();
+		$miaHumour = new MiaHumour();
+		$miaKnowledge = new MiaKnowledge();
+		$miaFunctions = new MiaFunctions();
 
-			define('GOOGLE', "http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q=");
+		switch($_GET['text']) {
+
+			case "hour":
+				$text = $miaFunctions->getHour();
+			break;
 
-			$get_texts = [
-				'hour',
-				'date',
-				'temperature',
-				'fete',
-				'platine',
-				'or',
-				'argent',
-				'bronze'
-			];
+			case "date":
+				$text = $miaFunctions->getTodayDate();
+			break;
 
-			function echoGoogle($content) {
-				return GOOGLE.urlencode($content);
-			}
+			case "temperature":
+				$text = $miaFunctions->getTemperature();
+			break;
 
-			function getTrophies() {
-				$cl = curl_init("http://webarranco.fr:3000/PSN/guillaumanga");
+			case "fete":
+				$text = $miaFunctions->getFete();
+			break;
 
-				curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-				$response = json_decode(curl_exec($cl));
+			case "platine":
+				$text = $miaFunctions->getPlatine();
+			break;
 
-				$responseTrophies = $response->trophySummary->earnedTrophies;
+			case "or":
+				$text = $miaFunctions->getOr();
+			break;
 
-				return $responseTrophies;
-			}
+			case "argent":
+				$text = $miaFunctions->getArgent();
+			break;
 
-			function getPlatine() {
-				return echoGoogle('Vous avez '.getTrophies()->platinum.' trophées platines');
-			}
+			case "bronze":
+				$text = $miaFunctions->getBronze();
+			break;
 
-			function getOr() {
-				return echoGoogle("Vous avez ".getTrophies()->gold." trophées d'or");
-			}
+			case "trophies":
+				$text = $miaFunctions->getAllTrophies();
+			break;
 
-			function getArgent() {
-				return echoGoogle("Vous avez ".getTrophies()->silver." trophées d'or");
-			}
+			case "name":
+				$text = $mia->sayName();
+			break;
 
-			function getBronze() {
-				return echoGoogle("Vous avez ".getTrophies()->bronze." trophées d'or");
-			}
+			case "robot":
+				$text = $mia->sayFunction();
+			break;
 
-			function getHour() {
+			case "rule":
+				$text = $miaFunctions->getRule();
+			break;
 
-				$time = date('H:i');
+			case "first_law":
+				$text = $miaKnowledge->getFirstLaw();
+			break;
 
-				$time = explode(':', $time); 
+			case "second_law":
+				$text = $miaKnowledge->getSecondLaw();
+			break;
 
-				$hour = $time[0].' heures';
-				$minutes = $time[1].' minutes';
+			case "third_law":
+				$text = $miaKnowledge->getThirdLaw();
+			break;
 
-				return echoGoogle($hour.' et '.$minutes);
-			}
+			case "laws":
+				$text = $miaKnowledge->getThreeLaws();
+			break;
 
-			function getTodayDate() {
+			case "age":
+				$text = $miaHumour->getAge();
+			break;
 
-				$months = array(
-					'01' => "Janvier",
-					'02' => "Février",
-					'03' => "Mars",
-					'04' => "Avril",
-					'05' => "Mai",
-					'06' => "Juin",
-					'07' => "Juillet",
-					'08' => "Aout",
-					'09' => "Septembre",
-					'10' => "Octobre",
-					'11' => "Novembre",
-					'12' => "Décembre"
-				);
+			case "wantAJoke":
+				$text = $mia->sayNoThanks();
+			break;
 
-				$date = date('Y-m-d');
-				$date = explode('-', $date);
+			case "areYouFine":
+				$text = $mia->sayYes();
+			break;
 
-				$year = $date[0];
-				$month = $months[$date[1]];
-				$day = $date[2];
+			case "hello":
+				$text = $mia->sayHello();
+			break;
 
-				return echoGoogle('Le '.$day.' '.$month.' '.$year);
-			}
+			case "wellFine":
+				$text = $mia->sayAlright();
+			break;
 
-			function getTemperature() {
+			case "bemol":
+				$text = $mia->sayAlright();
+			break;
 
-				// 615702 is Paris
-				$cl = curl_init("http://weather.yahooapis.com/forecastrss?w=615702&u=f");
+			case "goodNight":
+				$text = $mia->sayGoodNightToo();
+			break;
 
-				curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-				$sxe = simplexml_load_string(curl_exec($cl));
+			case "goToSleep":
+				$text = $mia->sayGoodNight();
+			break;
 
-				$ns = $sxe->getDocNamespaces();
-				$sxe->registerXPathNamespace('yweather',$ns['yweather']);
-				$fareinheit = $sxe->xpath("/rss/channel/item/yweather:condition/@temp");
+			default:
+				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
+			break;
+		}
 
-				$celsius = ceil(($fareinheit[0]->temp - 32) / 1.8);
+	}
 
-				return echoGoogle('Il fait '.$celsius.' degrés à Paris');
-			}
+	if(isset($_POST['text']) && $_POST['text'] !== '') {
 
-			function getFete() {
+		switch($_POST['text']) {
 
-				$jour=date("d");
-				$mois=date("m");
+			case "timmy":
+				$text = 'http://son.com/timmy.mp3';
+			break;
 
-				$fp=fopen("fete.txt","r");
+			default:
+			break;
+		}
 
-				while (!feof($fp)) {
+	}
 
-					$ligne=fgets($fp,255);
+	// var_dump($text);
 
-					$pos=strpos($ligne,';');
+	if(isset($_GET) && !empty($_GET)) {
 
-					$prenom=substr($ligne,0,$pos);
+		echo $text;
 
-					$ligne=substr($ligne,$pos+1,strlen($ligne)-$pos);
+		// echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+		// echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
+	} else {
+		echo 'Just say something';
+	}
 
-					$pos=strpos($ligne,';');
-
-					$jourtrouve=substr($ligne,0,$pos);
-
-					$moistrouve=substr($ligne,$pos+1,strlen($ligne)-$pos-2);
-
-					if (($jour==$jourtrouve) && ($mois==$moistrouve)) {
-
-						fclose($fp);
-						return echoGoogle("C'est la Saint ".$prenom);
-					}
-				}
-
-				fclose($fp);
-				return '';
-			}
-
-			if(isset($_GET['text']) && $_GET['text'] !== '') {
-
-				if(in_array($_GET['text'], $get_texts)) {
-
-					switch($_GET['text']) {
-
-						case "hour":
-							$text = getHour();
-						break;
-
-						case "date":
-							$text = getTodayDate();
-						break;
-
-						case "temperature":
-							$text = getTemperature();
-						break;
-
-						case "fete":
-							$text = getFete();
-						break;
-
-						case "platine":
-							$text = getPlatine();
-						break;
-
-						case "or":
-							$text = getOr();
-						break;
-
-						case "argent":
-							$text = getArgent();
-						break;
-
-						case "bronze":
-							$text = getBronze();
-						break;
-
-						default:
-						break;
-					}
-
-				} else {
-
-					$text = $_GET['text'];
-					$text = 'http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='.$text;
-				}
-
-			}
-
-			if(isset($_POST['text']) && $_POST['text'] !== '') {
-
-				switch($_POST['text']) {
-
-					case "timmy":
-						$text = 'http://son.com/timmy.mp3';
-					break;
-
-					default:
-					break;
-				}
-
-			}
-
-			// var_dump($text);
-
-			if(isset($_GET) && !empty($_GET)) {
-				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
-				echo '<a href="http://webarranco.fr/lab/mia/functions.php">Retour</a>';
-			} else {
-				echo 'Just say something';
-			}
-
-			//exec('mpg321 '.urlencode($text));
-			
-		?>
-
-		<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
-
-		<script>
-
-			// window.location.href = window.location.href+'/?text=date';
-
-			function getSearchParameters() {
-			      var prmstr = window.location.search.substr(1);
-			      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
-			}
-
-			function transformToAssocArray( prmstr ) {
-			    var params = {};
-			    var prmarr = prmstr.split("&");
-			    for ( var i = 0; i < prmarr.length; i++) {
-			        var tmparr = prmarr[i].split("=");
-			        params[tmparr[0]] = tmparr[1];
-			    }
-			    return params;
-			}
-
-			var params = getSearchParameters();
-
-			var startListeningAudio = function () {
-
-				if (annyang) {
-					var commands = {
-						'date': function home() {
-							window.location.href = window.location.href+'/?text=date';
-						},
-						'hour': function home() {
-							window.location.href = window.location.href+'/?text=hour';
-						},
-						'temperature': function home() {
-							window.location.href = window.location.href+'/?text=temperature';
-						},
-						'platine': function home() {
-							window.location.href = window.location.href+'/?text=platine';
-						},
-						'or': function home() {
-							window.location.href = window.location.href+'/?text=or';
-						},
-						'argent': function home() {
-							window.location.href = window.location.href+'/?text=argent';
-						},
-						'bronze': function home() {
-							window.location.href = window.location.href+'/?text=bronze';
-						}
-					};
-
-					annyang.addCommands(commands);
-					annyang.start();
-				}
-			};
-
-			if(typeof params.text === 'undefined') {
-				startListeningAudio();
-			}
-
-		</script>
-
-	</body>
-</html>
+	//exec('mpg321 '.urlencode($text));
