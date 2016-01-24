@@ -10,6 +10,10 @@ class MiaHumour extends Mia {
 		return $this->echoGoogle("C'est ta vous d'en décider !");
 	}
 
+	public function haveYouAMomentNotEat() {
+		return $this->echoGoogle("Impossible, vous passez déjà trop de temps à manger !");
+	}
+
 	public function sayWhatYouDo() {
 
 		$answers = array(
@@ -17,10 +21,26 @@ class MiaHumour extends Mia {
 			1 => "J'observe un extra-terrestre qui s'est perdu dans le jardin.",
 			2 => "Je joue aux courses de chevaux, ne me dérangez pas je me sent en veine.",
 			3 => "Je lit un manga tranquillement.",
-			4 => "Je m'éclate sur Call of Duty."
+			4 => "Je m'éclate sur Call of Duty.",
+			5 => "Je fais un zombie avec Ronane.",
+			6 => "Je mange un bon steack haché de nano robots.",
+			7 => "Je regarde un porn    e e e e e e e un programme",
+			8 => "Je bicrav du shit, y'a quoi.",
+			9 => "Je transite dans l'Internet pour botter le cul d'Ultront.",
+			10 => "Je fouille la matrice à la recherche de l'agent Smith."
 		);
 
-		return $this->echoGoogle($answers[rand(0, count($answers))]);
+		$test_answer = array(
+			0 => 'nothing'
+		);
+
+		// $answers = $test_answer;
+
+		return $this->echoGoogle($this->randomAnswer($answers));
+	}
+
+	public function comePlayWithUs() {
+		return $this->echoGoogle("J'ai pas le temps, il y en a qui bossent.");
 	}
 
 }

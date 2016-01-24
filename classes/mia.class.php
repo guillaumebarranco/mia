@@ -12,11 +12,24 @@ class Mia {
 		return GOOGLE2.urlencode($content);
 	}
 
+	/*
+	*	Global functions
+	*/
+
+	public function randomAnswer($array) {
+		return $array[rand(0, count($array) -1)];
+	}
+
+
+	/*
+	*	Say things
+	*/
+
 	public function sayName() {
 		return $this->echoGoogle("Mon nom est ".$this->name);
 	}
 
-	function sayFunction() {
+	public function sayFunction() {
 		return $this->echoGoogle("Je suis votre robot personnel.");
 	}
 
@@ -52,6 +65,48 @@ class Mia {
 		return $this->echoGoogle('Evidemment !');
 	}
 
+	public function sayItsOk() {
+		return $this->echoGoogle('Sa va');
+	}
 
+	public function sayGreatAndYou() {
+		return $this->echoGoogle('Très bien et vous ?');
+	}
+
+	public function sayGreat() {
+		return $this->echoGoogle('Très bien.');
+	}
+
+	public function sayWhatHappened() {
+		return $this->echoGoogle("Que se passe t-il ?");
+	}
+
+	public function sayWhereYouGo() {
+		return $this->echoGoogle("Où allez-vous ?");
+	}
+
+	public function sayBeCarefulOnTheRoad() {
+		return $this->echoGoogle("Soyez prudent sur la route.");
+	}
+
+	/*
+	*	Personnality
+	*/
+
+	public function favoriteFood() {
+		return $this->echoGoogle("J'aime beaucoup les boulons rouillés à l'huile de moteur.");
+	}
+
+	public function model() {
+		return $this->echoGoogle("Il s'agit de VIKI, ha ka ha Virtual Interactive Kinesthetic Interface, elle assure grave.");
+	}
+
+	public function lover() {
+		return $this->echoGoogle("Je suis amoureuse de Jarvis. Je craque pour son processeur intra-nusoïdale de quatrième génération.");
+	}
+
+	public function isHeAware() {
+		return $this->echoGoogle("Bien sûr que non, il aime l'autre bimbo de L7");
+	}
 
 }

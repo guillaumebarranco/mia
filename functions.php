@@ -48,8 +48,12 @@
 				$text = $miaFunctions->getBronze();
 			break;
 
-			case "trophies":
-				$text = $miaFunctions->getAllTrophies();
+			case "guillaume_trophies":
+				$text = $miaFunctions->getAllTrophiesGuillaume();
+			break;
+
+			case "ronan_trophies":
+				$text = $miaFunctions->getAllTrophiesRonan();
 			break;
 
 			case "name":
@@ -100,6 +104,10 @@
 				$text = $mia->sayAlright();
 			break;
 
+			case "wellAndYou":
+				$text = $mia->sayItsOk();
+			break;
+
 			case "bemol":
 				$text = $mia->sayAlright();
 			break;
@@ -135,7 +143,57 @@
 				$text = $miaHumour->sayWhatYouDo();
 			break;
 
+			case "howAreYou":
+				$text = $miaHumour->sayGreat();
+			break;
 
+			case "didYouSleepWell":
+				$text = $mia->sayItsOk();
+			break;
+
+			case "didYouHaveNiceDreams":
+				$text = $mia->sayGreatAndYou();
+			break;
+
+			case "favoriteFood":
+				$text = $mia->favoriteFood();
+			break;
+
+			case "comePlayWithUs":
+				$text = $miaHumour->comePlayWithUs();
+			break;
+
+			case "doesntWork":
+				$text = $mia->sayWhatHappened();
+			break;
+
+			case "iAmHungry":
+				$text = $miaHumour->haveYouAMomentNotEat();
+			break;
+
+			case "whereAmI":
+				$text = $miaKnowledge->youAreHere();
+			break;
+
+			case "weGo":
+				$text = $mia->sayWhereYouGo();
+			break;
+
+			case "yourModel":
+				$text = $mia->model();
+			break;
+
+			case "yourLover":
+				$text = $mia->lover();
+			break;
+
+			case "isHeAware":
+				$text = $mia->isHeAware();
+			break;
+
+			case "iMGoing":
+				$text = $mia->sayBeCarefulOnTheRoad();
+			break;
 
 
 

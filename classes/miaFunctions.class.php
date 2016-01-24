@@ -42,37 +42,39 @@ class MiaFunctions extends Mia {
 		$jour=date("d");
 		$mois=date("m");
 
-		$fp=fopen("../fete.txt","r");
+		$fp=fopen("file:///C:/wamp/www/raspberry/classes/fete.txt","r");
 
-		while (!feof($fp)) {
+		if($fp) {
 
-			$ligne=fgets($fp,255);
+			while (!feof($fp)) {
 
-			$pos=strpos($ligne,';');
+				$ligne=fgets($fp,255);
 
-			$prenom=substr($ligne,0,$pos);
+				$pos=strpos($ligne,';');
 
-			$ligne=substr($ligne,$pos+1,strlen($ligne)-$pos);
+				$prenom=substr($ligne,0,$pos);
 
-			$pos=strpos($ligne,';');
+				$ligne=substr($ligne,$pos+1,strlen($ligne)-$pos);
 
-			$jourtrouve=substr($ligne,0,$pos);
+				$pos=strpos($ligne,';');
 
-			$moistrouve=substr($ligne,$pos+1,strlen($ligne)-$pos-2);
+				$jourtrouve=substr($ligne,0,$pos);
 
-			if(($jour == $jourtrouve) && ($mois == $moistrouve)) {
+				$moistrouve=substr($ligne,$pos+1,strlen($ligne)-$pos-2);
 
-				fclose($fp);
-				return $this->echoGoogle("C'est la Saint ".$prenom);
+				if(($jour == $jourtrouve) && ($mois == $moistrouve)) {
+
+					fclose($fp);
+					return " Et c'est la Saint ".$prenom;
+				}
 			}
 		}
 
-		fclose($fp);
 		return '';
 	}
 
-	public function getTrophies() {
-		$cl = curl_init("http://webarranco.fr:3000/PSN/guillaumanga");
+	public function getTrophies($entry) {
+		$cl = curl_init("http://webarranco.fr:3000/PSN/".$entry);
 
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$response = json_decode(curl_exec($cl));
@@ -82,8 +84,12 @@ class MiaFunctions extends Mia {
 		return $responseTrophies;
 	}
 
-	public function getAllTrophies() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies()->platinum." trophées platines, ".$this->getTrophies()->gold." trophées d'or, ".$this->getTrophies()->silver." trophées d'argent et ".$this->getTrophies()->bronze." trophées de bronze");
+	public function getAllTrophiesGuillaume() {
+		return $this->echoGoogle("Vous avez ".$this->getTrophies('guillaumanga')->platinum." trophées platines, ".$this->getTrophies('guillaumanga')->gold." trophées d'or, ".$this->getTrophies('guillaumanga')->silver." trophées d'argent et ".$this->getTrophies('guillaumanga')->bronze." trophées de bronze");
+	}
+
+	public function getAllTrophiesRonan() {
+		return $this->echoGoogle("Il a ".$this->getTrophies('R0n4N7710')->platinum." trophées platines, ".$this->getTrophies('R0n4N7710')->gold." trophées d'or, ".$this->getTrophies('R0n4N7710')->silver." trophées d'argent et ".$this->getTrophies('R0n4N7710')->bronze." trophées de bronze");
 	}
 
 	public function getPlatine() {
@@ -126,7 +132,7 @@ class MiaFunctions extends Mia {
 		$month = $months[$date[1]];
 		$day = $date[2];
 
-		return $this->echoGoogle('Le '.$day.' '.$month.' '.$year);
+		return $this->echoGoogle('Nous sommes le '.$day.' '.$month.' '.$year.$this->getFete());
 	}
 
 	public function getTemperature() {
@@ -148,8 +154,12 @@ class MiaFunctions extends Mia {
 
 	public function isOpOut() {
 		// if page has element with class .episode-table, return true
-		
-		$cl = curl_init("http://www.mangapanda.com/one-piece/814");
+
+		$fp=fopen("file:///C:/wamp/www/raspberry/classes/opChapter.txt","r");
+		$opChapter=fgets($fp,255);
+		fclose($fp);
+
+		$cl = curl_init("http://www.mangapanda.com/one-piece/".$opChapter);
 
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$response = json_encode(curl_exec($cl));
