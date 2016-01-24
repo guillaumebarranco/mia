@@ -195,6 +195,10 @@
 				$text = $mia->sayBeCarefulOnTheRoad();
 			break;
 
+			case "hikenFavoriteManga":
+				$text = $miaKnowledge->HikenFavoriteManga();
+			break;
+
 
 
 			default:

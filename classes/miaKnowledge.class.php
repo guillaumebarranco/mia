@@ -19,10 +19,20 @@ class MiaKnowledge extends Mia {
 	}
 
 	public function youAreHere() {
-		$_SERVER['REMOTE_ADDR'] = "88.167.3.153";
-		$city = unserialize((file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_city'];
 
-		$text = '';
+		$ip = getHostByName(getHostName());
+		// $ip = '86.198.120.154';
+
+		$city = unserialize((file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip)));
+
+		var_dump($ip);
+
+		var_dump($city);
+		die;
+
+		$city = $city['geoplugin_city'];
+
+		$text = ''; 
 
 		if($city === 'Coulommiers') {
 			$text = 'Vous êtes chez Ronane';
@@ -31,5 +41,13 @@ class MiaKnowledge extends Mia {
 		}
 
 		return $this->echoGoogle($text);
+	}
+
+	public function RikuFavoriteManga() {
+		return $this->echoGoogle("Le manga favori de Kevin est Gintama.");
+	}
+
+	public function HikenFavoriteManga() {
+		return $this->echoGoogle("Le manga favori de Médrick est Jojo's bizarre adventure.");
 	}
 }

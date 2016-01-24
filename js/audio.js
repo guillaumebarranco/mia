@@ -2,159 +2,102 @@ var startListeningAudio = function() {
 
 	if (annyang) {
 
-
-		var basicCommands = {
-			'quel est ton nom': function() {
-				makeAction('name');
-			},
-			'quelle est ta function': function() {
-				makeAction('robot');
-			},
-			'quel est ton plat préféré': function() {
-				makeAction('favoriteFood');
-			},
-		};
-
-		var customCommands = {
-			'tu as bien dormi': function() {
-				makeAction('didYouSleepWell');
-			},
-			'tu as fait de beaux rêves': function() {
-				makeAction('didYouHaveNiceDreams');
-			},
-			'qui est ton modèle': function() {
-				makeAction('yourModel');
-			},
-			'qui est ton model': function() {
-				makeAction('yourModel');
-			},
-			'as-tu un amoureux': function() {
-				makeAction('yourLover');
-			},
-			'as-tu en amoureux': function() {
-				makeAction('yourLover');
-			},
-			'il est au courant': function() {
-				makeAction('isHeAware');
-			},
-			'je vais y aller': function() {
-				makeAction('iMGoing');
-			},
-
-		};
-
-		var commands = {
-			'quel jour on est': function() {
-				makeAction('date');
-			},
-			'quelle heure il est': function() {
-				makeAction('hour');
-			},
-			'il fait combien': function() {
-				makeAction('temperature');
-			},
-			'combien j\'ai de trophées': function() {
-				makeAction('guillaume_trophies');
-			},
-			'combien il a de trophées': function() {
-				makeAction('ronan_trophies');
-			},
-			'quelle fête': function() {
-				makeAction('fete');
-			},			
-			'quel âge as-tu': function() {
-				makeAction('age');
-			},
-			'what commands you': function() {
-				makeAction('rule');
-			},
-			'quelle est la première loi': function() {
-				makeAction('first_law');
-			},
-			'quelle est la seconde loi': function() {
-				makeAction('second_law');
-			},
-			'quel est la troisième loi': function() {
-				makeAction('third_law');
-			},
-			'quelles sont les trois lois': function() {
-				makeAction('laws');
-			},
-			'veux tu une blague': function() {
-				makeAction('wantAJoke');
-			},
-			'que veux tu': function() {
-				makeAction('whatYouWant');
-			},
-			'comment vas-tu': function() {
-				makeAction('howAreYou');
-			},
-			'bonjour mia': function() {
-				makeAction('hello');
-			},
-			'bien merci': function() {
-				makeAction('wellFine');
-			},
-			'bien et toi': function() {
-				makeAction('wellAndYou');
-			},
-			'bemol': function() {
-				makeAction('bemol');
-			},
-			'bonne nuit': function() {
-				makeAction('goodNight');
-			},
-			'je vais dormir': function() {
-				makeAction('goToSleep');
-			},
-			'le chapitre est-il sorti': function() {
-				makeAction('isOpOut');
-			},
-			'es tu vivante': function() {
-				makeAction('areYouAlive');
-			},
-			'je suis drôle': function() {
-				makeAction('amIFunny');
-			},
-			'tu fais quoi': function() {
-				makeAction('whatAreYouDoing');
-			},
-			'ça marche pas': function() {
-				makeAction('doesntWork');
-			},
-
-			'j\'ai faim': function() {
-				makeAction('iAmHungry');
-			},
-
-			'où suis-je': function() {
-				makeAction('whereAmI');
-			},
-
-			'on y va': function() {
-				makeAction('weGo');
-			},
-			'viens jouer avec nous': function() {
-				makeAction('comePlayWithUs');
-			},
-			'stop': function() {
-				annyang.abort();
-			},
-
-		};
-
-		annyang.addCommands(basicCommands);
-		annyang.addCommands(customCommands);
-		annyang.addCommands(commands);
-
 		annyang.setLanguage('fr-FR');
 
-		annyang.start({ autoRestart: true });
+		annyang.start({
+			autoRestart: true
+		});
 
 		annyang.addCallback('result', function (userSaid, commandText, phrases) {
-		  console.log(userSaid); // sample output: 'hello'
-		  console.log(commandText); // sample output: 'hello (there)'
-		  console.log(phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
+
+			console.log(userSaid); // sample output: 'hello'
+
+			function said(needle) {
+				return in_array(needle, userSaid);
+			}
+
+			if(said('stop')) annyang.abort();
+
+			/*
+			*	Functions
+			*/
+
+			var basic = function() {
+
+				if(said('bonjour mia')) 				makeAction('hello');
+				if(said('quel est ton nom'))			makeAction('name');
+				if(said('quelle est ta function'))		makeAction('robot');
+				if(said('quel est ton plat préféré'))	makeAction('favoriteFood');
+
+			}();
+
+			var friends = function() {
+
+				if(said('quel est le manga favori de M')) makeAction('hikenFavoriteManga');
+
+			}();
+
+			var custom = function() {
+				if(said('tu as bien dormi'))			makeAction('didYouSleepWell');
+				if(said('tu as fait de beaux rêves'))	makeAction('didYouHaveNiceDreams');
+				if(said('qui est ton modèle'))			makeAction('yourModel');
+				if(said('qui est ton model'))			makeAction('yourModel');
+				if(said('as-tu un amoureux'))			makeAction('yourLover');
+				if(said('as-tu en amoureux'))			makeAction('yourLover');
+				if(said('il est au courant'))			makeAction('isHeAware');
+				if(said('je vais y aller'))				makeAction('iMGoing');
+			}();
+
+			var commands = function() {
+
+				if(said('quel jour on est'))				makeAction('date');
+				if(said('quelle heure il est'))				makeAction('hour');
+				if(said('il fait combien'))					makeAction('temperature');
+				if(said('combien j\'ai de trophées'))		makeAction('guillaume_trophies');
+				if(said('combien il a de trophées'))		makeAction('ronan_trophies');
+				if(said('quelle fête'))						makeAction('fete');
+				if(said('quel âge as-tu'))					makeAction('age');
+				if(said('what commands you'))				makeAction('rule');
+				if(said('quelle est la première loi'))		makeAction('first_law');
+
+
+
+				if(said('quelle est la seconde loi'))		makeAction('second_law');
+				if(said('quel est la troisième loi'))		makeAction('third_law');
+				if(said('quelles sont les trois lois'))		makeAction('laws');
+				if(said('veux tu une blague'))				makeAction('wantAJoke');
+				if(said('que veux tu'))						makeAction('whatYouWant');
+				if(said('comment vas-tu'))					makeAction('howAreYou');
+				if(said('bien merci'))						makeAction('wellFine');
+				if(said('bien et toi'))						makeAction('wellAndYou');
+				if(said('bemol'))							makeAction('bemol');
+				if(said('bonne nuit'))						makeAction('goodNight');
+				if(said('je vais dormir'))					makeAction('goToSleep');
+				if(said('le chapitre est-il sorti'))		makeAction('isOpOut');
+
+
+				if(said('es tu vivante'))					makeAction('areYouAlive');
+				if(said('je suis drôle'))					makeAction('amIFunny');
+				if(said('tu fais quoi'))					makeAction('whatAreYouDoing');
+				if(said('ça marche pas'))					makeAction('doesntWork');
+				if(said('j\'ai faim'))						makeAction('iAmHungry');
+				if(said('où suis-je'))						makeAction('whereAmI');
+				if(said('on y va'))							makeAction('weGo');
+				if(said('viens jouer avec nous'))			makeAction('comePlayWithUs');
+
+			}();
+
 		});
+	}
+
+	function in_array(needle, haystack) {
+
+		var newArray = [];
+
+		for (var i = 0; i < haystack.length; i++) newArray.push(haystack[i].toLowerCase());
+
+		if(haystack.indexOf(needle.toLowerCase()) != -1) return true;
+
+		return false;
 	}
 };
