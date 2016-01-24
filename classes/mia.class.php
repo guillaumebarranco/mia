@@ -77,6 +77,10 @@ class Mia {
 		return $this->echoGoogle('Très bien.');
 	}
 
+	public function sayHelloCass() {
+		return $this->echoGoogle("Bonjour Cassandre. Oui je me suis approprié ton mec 5 minutes, y'a quoi");
+	}
+
 	public function sayWhatHappened() {
 		return $this->echoGoogle("Que se passe t-il ?");
 	}

@@ -155,6 +155,10 @@
 				$text = $mia->sayGreatAndYou();
 			break;
 
+			case "helloCass":
+				$text = $mia->sayHelloCass();
+			break;
+
 			case "favoriteFood":
 				$text = $mia->favoriteFood();
 			break;
