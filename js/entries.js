@@ -22,7 +22,7 @@ var entries = {
 
 	//	Creator
 
-	"quel est mon manga préféré"		: 'hikenFavoriteManga',
+	"quel est mon manga préféré"		: 'myFavoriteManga',
 
 	//	Custom
 
