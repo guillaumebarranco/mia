@@ -50,4 +50,13 @@ class MiaKnowledge extends Mia {
 	public function HikenFavoriteManga() {
 		return $this->echoGoogle("Le manga favori de Médrick est Jojo's bizarre adventure.");
 	}
+
+	/*
+	/
+	*/
+
+	public function ownerFavoriteManga() {
+		
+	}
+
 }
