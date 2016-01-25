@@ -21,12 +21,14 @@ var entries = {
 	'tu as bien dormi'					: 'didYouSleepWell',
 	'tu as fait de beaux rêves'			: 'didYouHaveNiceDreams',
 	'je vais y aller'					: 'iMGoing',
+	'je sais pas quoi faire'			: 'whatDoIDo',
+	"ça m'énerve"						: 'itAngersMe',
 
 	//	Informations
 
 	'quel jour on est'					: 'date',
 	'quelle heure il est'				: 'hour',
-	'il fait combien'					: 'temperature',
+	'quelle est la température'			: 'temperature',
 	"combien j'ai de trophées"			: 'guillaume_trophies',
 	'combien il a de trophées'			: 'ronan_trophies',
 	'quelle est la seconde loi'			: 'second_law',

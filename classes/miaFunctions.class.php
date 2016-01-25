@@ -110,26 +110,13 @@ class MiaFunctions extends Mia {
 
 	public function getTodayDate() {
 
-		$months = array(
-			'01' => "Janvier",
-			'02' => "Février",
-			'03' => "Mars",
-			'04' => "Avril",
-			'05' => "Mai",
-			'06' => "Juin",
-			'07' => "Juillet",
-			'08' => "Aout",
-			'09' => "Septembre",
-			'10' => "Octobre",
-			'11' => "Novembre",
-			'12' => "Décembre"
-		);
+		
 
 		$date = date('Y-m-d');
 		$date = explode('-', $date);
 
 		$year = $date[0];
-		$month = $months[$date[1]];
+		$month = $this->transformMonthToString($date[1]);
 		$day = $date[2];
 
 		return $this->echoGoogle('Nous sommes le '.$day.' '.$month.' '.$year.$this->getFete());
@@ -165,6 +152,34 @@ class MiaFunctions extends Mia {
 		$response = json_encode(curl_exec($cl));
 
 		return stripos($response, "episode-table");
+	}
+
+	public function updateOP() {
+		$fp=fopen("file:///C:/wamp/www/raspberry/classes/opChapter.txt","r");
+		$opChapter=fgets($fp,255);
+		fclose($fp);
+
+		$newChapter = intval($opChapter)+1;
+
+		file_put_contents("file:///C:/wamp/www/raspberry/classes/opChapter.txt",$newChapter);
+	}
+
+	public function whatDoIDo() {
+
+		$answers = array(
+			0 => "Cela fait longtemps que vous n'avez pas lu Kenshin."
+		);
+
+		return $this->echoGoogle($this->randomAnswer($answers));
+	}
+
+	public function itAngersMe() {
+
+		$answers = array(
+			0 => "Que se passe t-il ?"
+		);
+
+		return $this->echoGoogle($this->randomAnswer($answers));
 	}
 
 }

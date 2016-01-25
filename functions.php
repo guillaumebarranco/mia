@@ -45,12 +45,22 @@
 
 			//	Custom
 			
+				case 'whatDoIDo': $text = $miaFunctions->whatDoIDo(); break;
+				case 'itAngersMe': $text = $miaFunctions->itAngersMe(); break;
+				
 
 			//	Informations
 
 				case "isOpOut":
 					$op_status = $miaFunctions->isOpOut();
-					$text = ($op_status) ? $mia->sayYes() : $mia->sayNo();
+
+					if($op_status) {
+						$miaFunctions->updateOP();
+						$text = $mia->sayYes();
+					} else {
+						$text = $mia->sayNo();
+					}
+
 				break;
 
 				case "hour": $text = $miaFunctions->getHour(); break;
@@ -75,6 +85,15 @@
 
 				case "myFavoriteManga": $text = $miaPrivate->myFavoriteManga(); break;
 				case "hikenFavoriteManga": $text = $miaPrivate->HikenFavoriteManga(); break;
+				case "whatCWant": $text = $miaPrivate->whatCWant(); break;
+				case "codeMoney": $text = $miaPrivate->codeMoney(); break;
+
+				case "annivNathan": $text = $miaPrivate->annivNathan(); break;
+
+				case "annivAelys": $text = $miaPrivate->annivAelys(); break;
+				case "annivSoon": $text = $miaPrivate->annivSoon(); break;
+
+				case "beLikeC": $text = $miaPrivate->beLikeC(); break;
 
 			//	All commands
 

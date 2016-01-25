@@ -16,6 +16,7 @@ var startListeningAudio = function() {
 			console.log(newArray);
 
 			if(in_array('stop', newArray)) canReact = false;
+			if(in_array('recharge', newArray)) location.reload();
 
 			if(canReact) {
 

@@ -4,7 +4,7 @@ function checkArray(newArray, entries, privateEntries) {
 	for (var i = 0; i < newArray.length; i++) {
 		if(!entryFound) {
 
-			if(typeof entries[newArray[i]] != 'undefined') {
+			if(typeof entries[newArray[i].toLowerCase()] != 'undefined') {
 				entryFound = true;
 				makeAction(entries[newArray[i]]);
 			}
@@ -15,7 +15,7 @@ function checkArray(newArray, entries, privateEntries) {
 		for (var i = 0; i < newArray.length; i++) {
 			if(!entryFound) {
 
-				if(typeof privateEntries[newArray[i]] != 'undefined') {
+				if(typeof privateEntries[newArray[i].toLowerCase()] != 'undefined') {
 					entryFound = true;
 					makeAction(privateEntries[newArray[i]]);
 				}
@@ -38,6 +38,8 @@ function makeAction(text) {
 	// window.location.href = window.location.href+'/?text=temperature';
 
 	$('iframe').remove();
+
+	console.log(text);
 
 	$.ajax({
 		url: 'functions.php?text='+text,
