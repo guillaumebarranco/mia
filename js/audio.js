@@ -1,3 +1,5 @@
+var canReact = true;
+
 var startListeningAudio = function() {
 
 	if (annyang) {
@@ -13,13 +15,20 @@ var startListeningAudio = function() {
 			newArray = sanitizeUserSaid(userSaid);
 			console.log(newArray);
 
-			if(in_array('stop', newArray)) annyang.abort();
+			if(in_array('stop', newArray)) canReact = false;
 
-			if(in_array('combien de commandes possèdes-tu', newArray)) {
-				speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+			if(canReact) {
+
+				if(in_array('combien de commandes possèdes-tu', newArray)) {
+					speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+				}
+
+				checkArray(newArray, entries, privateEntries);
+
+			} else {
+				if(in_array('démarre', newArray)) canReact = true;
 			}
 
-			checkArray(newArray, entries, privateEntries);
 		});
 	}
 
