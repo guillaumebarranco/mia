@@ -17,6 +17,7 @@
 		<script src="js/annyang.js"></script>
 		<script src="js/functions.js"></script>
 		<script src="js/entries.js"></script>
+		<script src="js/privateEntries.js"></script>
 		<script src="js/audio.js"></script>
 		<script src="js/main.js"></script>
 

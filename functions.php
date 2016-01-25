@@ -8,6 +8,7 @@
 		require_once('classes/miaHumour.class.php');
 		require_once('classes/miaKnowledge.class.php');
 		require_once('classes/miaFunctions.class.php');
+		require_once('classes/miaPrivate.class.php');
 
 		$mia = new Mia();
 		$miaHumour = new MiaHumour();
@@ -19,91 +20,85 @@
 
 			//	Basics
 
-			case "hello": $text = $mia->sayHello(); break;
+				case "hello": $text = $mia->sayHello(); break;
 			
 			//	About Mia
 
-			case "name": $text = $mia->sayName(); break;
-			case "robot": $text = $mia->sayFunction(); break;
-			case "rule": $text = $miaFunctions->getRule(); break;
-			case "age": $text = $miaHumour->getAge(); break;
+				case "name": $text = $mia->sayName(); break;
+				case "robot": $text = $mia->sayFunction(); break;
+				case "rule": $text = $miaFunctions->getRule(); break;
+				case "age": $text = $miaHumour->getAge(); break;
 
-			case "areYouAlive": $text = $miaHumour->areYouAlive(); break;
-			case "whatAreYouDoing": $text = $miaHumour->sayWhatYouDo(); break;
+				case "areYouAlive": $text = $miaHumour->areYouAlive(); break;
+				case "whatAreYouDoing": $text = $miaHumour->sayWhatYouDo(); break;
 
-			case "howAreYou": $text = $miaHumour->sayGreat(); break;
-			case "didYouSleepWell": $text = $mia->sayItsOk(); break;
+				case "howAreYou": $text = $miaHumour->sayGreat(); break;
+				case "didYouSleepWell": $text = $mia->sayItsOk(); break;
 
-			case "didYouHaveNiceDreams": $text = $mia->sayGreatAndYou(); break;
-			case "favoriteFood": $text = $mia->favoriteFood(); break;
-			case "yourModel": $text = $mia->model(); break;
+				case "didYouHaveNiceDreams": $text = $mia->sayGreatAndYou(); break;
+				case "favoriteFood": $text = $mia->favoriteFood(); break;
+				case "yourModel": $text = $mia->model(); break;
 
-			case "yourLover": $text = $mia->lover(); break;
+				case "yourLover": $text = $mia->lover(); break;
 
-			case "isHeAware": $text = $mia->isHeAware(); break;
-
-			//	Friends
-			
-
-			//	Creator
-			
+				case "isHeAware": $text = $mia->isHeAware(); break;
 
 			//	Custom
 			
 
 			//	Informations
 
-			case "isOpOut":
-				$op_status = $miaFunctions->isOpOut();
-				$text = ($op_status) ? $mia->sayYes() : $mia->sayNo();
-			break;
+				case "isOpOut":
+					$op_status = $miaFunctions->isOpOut();
+					$text = ($op_status) ? $mia->sayYes() : $mia->sayNo();
+				break;
 
-			case "hour": $text = $miaFunctions->getHour(); break;
-			case "date": $text = $miaFunctions->getTodayDate(); break;
-			case "temperature": $text = $miaFunctions->getTemperature(); break;
-			case "fete": $text = $miaFunctions->getFete(); break;
+				case "hour": $text = $miaFunctions->getHour(); break;
+				case "date": $text = $miaFunctions->getTodayDate(); break;
+				case "temperature": $text = $miaFunctions->getTemperature(); break;
+				case "fete": $text = $miaFunctions->getFete(); break;
 
-			case "platine": $text = $miaFunctions->getPlatine(); break;
-			case "or": $text = $miaFunctions->getOr(); break;
-			case "argent": $text = $miaFunctions->getArgent(); break;
-			case "bronze": $text = $miaFunctions->getBronze(); break;
+				case "platine": $text = $miaFunctions->getPlatine(); break;
+				case "or": $text = $miaFunctions->getOr(); break;
+				case "argent": $text = $miaFunctions->getArgent(); break;
+				case "bronze": $text = $miaFunctions->getBronze(); break;
 
-			case "guillaume_trophies": $text = $miaFunctions->getAllTrophiesGuillaume(); break;
-			case "ronan_trophies": $text = $miaFunctions->getAllTrophiesRonan(); break;
+				case "guillaume_trophies": $text = $miaFunctions->getAllTrophiesGuillaume(); break;
+				case "ronan_trophies": $text = $miaFunctions->getAllTrophiesRonan(); break;
 
-			case "first_law": $text = $miaKnowledge->getFirstLaw(); break;
-			case "second_law": $text = $miaKnowledge->getSecondLaw(); break;
-			case "third_law": $text = $miaKnowledge->getThirdLaw(); break;
-			case "laws": $text = $miaKnowledge->getThreeLaws(); break;
+				case "first_law": $text = $miaKnowledge->getFirstLaw(); break;
+				case "second_law": $text = $miaKnowledge->getSecondLaw(); break;
+				case "third_law": $text = $miaKnowledge->getThirdLaw(); break;
+				case "laws": $text = $miaKnowledge->getThreeLaws(); break;
 
 			// Private
 
-			case "myFavoriteManga": $text = $miaPrivate->myFavoriteManga(); break;
-			case "hikenFavoriteManga": $text = $miaPrivate->HikenFavoriteManga(); break;
+				case "myFavoriteManga": $text = $miaPrivate->myFavoriteManga(); break;
+				case "hikenFavoriteManga": $text = $miaPrivate->HikenFavoriteManga(); break;
 
 			//	All commands
 
-			case "wantAJoke": $text = $mia->sayNoThanks(); break;
-			case "areYouFine": $text = $mia->sayYes(); break;
+				case "wantAJoke": $text = $mia->sayNoThanks(); break;
+				case "areYouFine": $text = $mia->sayYes(); break;
 
-			case "wellFine": $text = $mia->sayAlright(); break;
+				case "wellFine": $text = $mia->sayAlright(); break;
 
-			case "wellAndYou": $text = $mia->sayItsOk(); break;
+				case "wellAndYou": $text = $mia->sayItsOk(); break;
 
-			case "bemol": $text = $mia->sayAlright(); break;
+				case "bemol": $text = $mia->sayAlright(); break;
 
-			case "goodNight": $text = $mia->sayGoodNightToo(); break;
+				case "goodNight": $text = $mia->sayGoodNightToo(); break;
 
-			case "goToSleep": $text = $mia->sayGoodNight(); break;
+				case "goToSleep": $text = $mia->sayGoodNight(); break;
 
-			case "amIFunny": $text = $mia->sayOfCourse(); break;
-			case "helloCass": $text = $mia->sayHelloCass(); break;
-			case "comePlayWithUs": $text = $miaHumour->comePlayWithUs(); break;
-			case "doesntWork": $text = $mia->sayWhatHappened(); break;
-			case "iAmHungry": $text = $miaHumour->haveYouAMomentNotEat(); break;
-			case "whereAmI": $text = $miaKnowledge->youAreHere(); break;
-			case "weGo": $text = $mia->sayWhereYouGo(); break;
-			case "iMGoing": $text = $mia->sayBeCarefulOnTheRoad(); break;
+				case "amIFunny": $text = $mia->sayOfCourse(); break;
+				case "helloCass": $text = $mia->sayHelloCass(); break;
+				case "comePlayWithUs": $text = $miaHumour->comePlayWithUs(); break;
+				case "doesntWork": $text = $mia->sayWhatHappened(); break;
+				case "iAmHungry": $text = $miaHumour->haveYouAMomentNotEat(); break;
+				case "whereAmI": $text = $miaKnowledge->youAreHere(); break;
+				case "weGo": $text = $mia->sayWhereYouGo(); break;
+				case "iMGoing": $text = $mia->sayBeCarefulOnTheRoad(); break;
 
 			default:
 				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");

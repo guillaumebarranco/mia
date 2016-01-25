@@ -1,3 +1,39 @@
+function checkArray(newArray, entries, privateEntries) {
+	var entryFound = false;
+
+	for (var i = 0; i < newArray.length; i++) {
+		if(!entryFound) {
+
+			if(typeof entries[newArray[i]] != 'undefined') {
+				entryFound = true;
+				makeAction(entries[newArray[i]]);
+			}
+		}
+	}
+
+	if(!entryFound) {
+		for (var i = 0; i < newArray.length; i++) {
+			if(!entryFound) {
+
+				if(typeof privateEntries[newArray[i]] != 'undefined') {
+					entryFound = true;
+					makeAction(privateEntries[newArray[i]]);
+				}
+			}
+		}
+	}
+}
+
+function sanitizeUserSaid(userSaid) {
+	var newArray = [];
+
+	for (var i = 0; i < userSaid.length; i++) {
+		newArray.push(userSaid[i].toLowerCase().trim());
+	}
+
+	return newArray;
+}
+
 function makeAction(text) {
 	// window.location.href = window.location.href+'/?text=temperature';
 

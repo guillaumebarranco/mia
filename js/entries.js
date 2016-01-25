@@ -16,14 +16,6 @@ var entries = {
 	'as-tu en amoureux'					: 'yourLover',
 	'il est au courant'					: 'isHeAware',
 
-	//	Friends
-
-	"quel est le manga favori de M" 	: 'hikenFavoriteManga',
-
-	//	Creator
-
-	"quel est mon manga préféré"		: 'myFavoriteManga',
-
 	//	Custom
 
 	'tu as bien dormi'					: 'didYouSleepWell',
