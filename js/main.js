@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var params = getSearchParameters();
 
 	if(typeof params.text === 'undefined') {
-		//startListeningAudio();
+		startListeningAudio();
 	}
 
 	$('form').on('submit', function(e) {
