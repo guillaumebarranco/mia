@@ -59,7 +59,7 @@ function makeAction(text, source) {
 	console.log(text);
 
 	$.ajax({
-		url: 'functions.php?text='+text,
+		url: 'functions.php?text='+text+'&source=js',
 		type: 'GET',
 
 		success: function(response) {

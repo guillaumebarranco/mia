@@ -144,10 +144,13 @@
 
 	if(isset($_GET) && !empty($_GET)) {
 
-		echo $text;
+		if(isset($_GET['source']) && $_GET['source'] === 'js') {
+			echo $text;
+		} else {
+			echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+			echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
+		}
 
-		// echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
-		// echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
 	} else {
 		echo 'Just say something';
 	}
