@@ -47,7 +47,6 @@
 			
 				case 'whatDoIDo': $text = $miaFunctions->whatDoIDo(); break;
 				case 'itAngersMe': $text = $miaFunctions->itAngersMe(); break;
-				
 
 			//	Informations
 
@@ -81,7 +80,9 @@
 				case "third_law": $text = $miaKnowledge->getThirdLaw(); break;
 				case "laws": $text = $miaKnowledge->getThreeLaws(); break;
 
-			// Private
+				case "myServerState": $text = $miaFunctions->pingServer(); break;
+
+			//	Private
 
 				case "myFavoriteManga": $text = $miaPrivate->myFavoriteManga(); break;
 				case "hikenFavoriteManga": $text = $miaPrivate->HikenFavoriteManga(); break;
@@ -115,7 +116,7 @@
 				case "comePlayWithUs": $text = $miaHumour->comePlayWithUs(); break;
 				case "doesntWork": $text = $mia->sayWhatHappened(); break;
 				case "iAmHungry": $text = $miaHumour->haveYouAMomentNotEat(); break;
-				case "whereAmI": $text = $miaKnowledge->youAreHere(); break;
+				case "whereAmI": $text = $miaFunctions->youAreHere(); break;
 				case "weGo": $text = $mia->sayWhereYouGo(); break;
 				case "iMGoing": $text = $mia->sayBeCarefulOnTheRoad(); break;
 
@@ -155,4 +156,4 @@
 		echo 'Just say something';
 	}
 
-	//exec('mpg321 '.urlencode($text));
+	if(isset($_GET['source']) && $_GET['source'] === 'raspberry') exec('mpg321 '.$text);

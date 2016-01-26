@@ -10,10 +10,6 @@ var startListeningAudio = function() {
 			autoRestart: true
 		});
 
-		setTimeout(function() {
-			self.close();
-		}, 2000);
-
 		annyang.addCallback('result', function (userSaid) {
 
 			newArray = sanitizeUserSaid(userSaid);

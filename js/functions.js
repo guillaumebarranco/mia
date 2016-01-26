@@ -1,3 +1,4 @@
+// Search for entries in userSaid
 function checkArray(newArray, entries, privateEntries, source) {
 	var entryFound = false;
 
@@ -43,6 +44,7 @@ function searchCommand(newArray, source) {
 	}
 }
 
+// Trim and all userSaid array
 function sanitizeUserSaid(userSaid) {
 	var newArray = [];
 
@@ -53,10 +55,13 @@ function sanitizeUserSaid(userSaid) {
 	return newArray;
 }
 
+// Action sending params to mia core
 function makeAction(text, source) {
 
 	$('#main').empty();
 	console.log(text);
+
+	var google_translate_length = 63;
 
 	$.ajax({
 		url: 'functions.php?text='+text+'&source=js',
@@ -68,13 +73,14 @@ function makeAction(text, source) {
 			if(source === 'audio') {
 				$('#main').append('<iframe style="opacity:0;" src="'+response+'"></iframe>');
 			} else if(source === "writing") {
-				$('#main').append('<h3>'+urldecode(response.substr(63))+'</h3>');
+				$('#main').append('<h3>'+urldecode(response.substr(google_translate_length))+'</h3>');
 			}
 			
 		}
 	});
 }
 
+// If action is made purely in Javascript
 function speakFromJavascript(text) {
 	$('iframe').remove();
 	$('#main').append(
@@ -82,12 +88,13 @@ function speakFromJavascript(text) {
 	);
 }
 
+// Return all GET parameters of the URL
 function getSearchParameters() {
       var prmstr = window.location.search.substr(1);
       return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
 }
 
-function transformToAssocArray( prmstr ) {
+function transformToAssocArray(prmstr) {
     var params = {};
     var prmarr = prmstr.split("&");
     for ( var i = 0; i < prmarr.length; i++) {
@@ -97,6 +104,7 @@ function transformToAssocArray( prmstr ) {
     return params;
 }
 
+// Return length of an object
 Object.size = function (obj) {
     var size = 0;
     for (var key in obj) {
@@ -105,6 +113,7 @@ Object.size = function (obj) {
     return size;
 };
 
+// Search for a variable in an array
 function in_array(needle, haystack) {
 
 	var newArray = [];
@@ -116,6 +125,7 @@ function in_array(needle, haystack) {
 	return false;
 }
 
+// Copy of urldecode native function of PHP
 function urldecode(str) {
 
   return decodeURIComponent((str + '')

@@ -164,22 +164,51 @@ class MiaFunctions extends Mia {
 		file_put_contents("file:///C:/wamp/www/mia/files/opChapter.txt",$newChapter);
 	}
 
-	public function whatDoIDo() {
+	public function youAreHere() {
 
-		$answers = array(
-			0 => "Cela fait longtemps que vous n'avez pas lu Kenshin."
-		);
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, "http://ip-api.com/php");
+		curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
+		$content = curl_exec ($curl);
+		curl_close ($curl); 
 
-		return $this->echoGoogle($this->randomAnswer($answers));
+		$ip = (unserialize($content));
+		$ip = $ip['query'];
+
+		$city = unserialize((file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip)));
+
+		// var_dump($city);
+		// die;
+
+		$city = $city['geoplugin_city'];
+
+		$text = ''; 
+
+		if($city === 'Coulommiers') {
+			$text = 'Vous êtes chez Ronane';
+		} else {
+			$text = "Vous êtes dans la ville de ".$city;
+		}
+
+		var_dump($text);
+		die;
+
+		return $this->echoGoogle($text);
 	}
 
-	public function itAngersMe() {
+	public function pingServer() {
 
-		$answers = array(
-			0 => "Que se passe t-il ?"
-		);
+		$ip = "92.222.34.194";
 
-		return $this->echoGoogle($this->randomAnswer($answers));
+	    $pingresult = exec("ping $ip", $outcome, $status);
+
+	    if (0 == $status) {
+	        $status = "vivant";
+	    } else {
+	        $status = "mort";
+	    }
+
+	    return $this->echoGoogle('Votre serveur est '.$status);
 	}
 
 }
