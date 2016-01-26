@@ -11,6 +11,11 @@
 
 		<p>Just say something</p>
 
+		<input type="text" name="command" />
+
+		<button class="sendCommand">Send Command</button>
+
+
 		<div id="main"></div>
 
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>

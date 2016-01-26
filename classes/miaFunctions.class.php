@@ -42,7 +42,7 @@ class MiaFunctions extends Mia {
 		$jour=date("d");
 		$mois=date("m");
 
-		$fp=fopen("file:///C:/wamp/www/raspberry/classes/fete.txt","r");
+		$fp=fopen("file:///C:/wamp/www/mia/files/fete.txt","r");
 
 		if($fp) {
 
@@ -142,7 +142,7 @@ class MiaFunctions extends Mia {
 	public function isOpOut() {
 		// if page has element with class .episode-table, return true
 
-		$fp=fopen("file:///C:/wamp/www/raspberry/classes/opChapter.txt","r");
+		$fp=fopen("file:///C:/wamp/www/mia/files/opChapter.txt","r");
 		$opChapter=fgets($fp,255);
 		fclose($fp);
 
@@ -155,13 +155,13 @@ class MiaFunctions extends Mia {
 	}
 
 	public function updateOP() {
-		$fp=fopen("file:///C:/wamp/www/raspberry/classes/opChapter.txt","r");
+		$fp=fopen("file:///C:/wamp/www/mia/files/opChapter.txt","r");
 		$opChapter=fgets($fp,255);
 		fclose($fp);
 
 		$newChapter = intval($opChapter)+1;
 
-		file_put_contents("file:///C:/wamp/www/raspberry/classes/opChapter.txt",$newChapter);
+		file_put_contents("file:///C:/wamp/www/mia/files/opChapter.txt",$newChapter);
 	}
 
 	public function whatDoIDo() {

@@ -1,4 +1,4 @@
-function checkArray(newArray, entries, privateEntries) {
+function checkArray(newArray, entries, privateEntries, source) {
 	var entryFound = false;
 
 	for (var i = 0; i < newArray.length; i++) {
@@ -6,7 +6,7 @@ function checkArray(newArray, entries, privateEntries) {
 
 			if(typeof entries[newArray[i].toLowerCase()] != 'undefined') {
 				entryFound = true;
-				makeAction(entries[newArray[i]]);
+				makeAction(entries[newArray[i]], source);
 			}
 		}
 	}
@@ -17,10 +17,29 @@ function checkArray(newArray, entries, privateEntries) {
 
 				if(typeof privateEntries[newArray[i].toLowerCase()] != 'undefined') {
 					entryFound = true;
-					makeAction(privateEntries[newArray[i]]);
+					makeAction(privateEntries[newArray[i]], source);
 				}
 			}
 		}
+	}
+}
+
+// Main function
+function searchCommand(newArray, source) {
+
+	if(in_array('stop', newArray)) canReact = false;
+	if(in_array('recharge', newArray)) location.reload();
+
+	if(canReact) {
+
+		if(in_array('combien de commandes possèdes-tu', newArray)) {
+			speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+		}
+
+		checkArray(newArray, entries, privateEntries, source);
+
+	} else {
+		if(in_array('démarre', newArray)) canReact = true;
 	}
 }
 
@@ -34,10 +53,10 @@ function sanitizeUserSaid(userSaid) {
 	return newArray;
 }
 
-function makeAction(text) {
+function makeAction(text, source) {
 	// window.location.href = window.location.href+'/?text=temperature';
 
-	$('iframe').remove();
+	$('#main').empty();
 
 	console.log(text);
 
@@ -47,7 +66,13 @@ function makeAction(text) {
 
 		success: function(response) {
 			console.log(response);
-			$('#main').append('<iframe style="opacity:0;" src="'+response+'"></iframe>');
+
+			if(source === 'audio') {
+				$('#main').append('<iframe style="opacity:0;" src="'+response+'"></iframe>');
+			} else if(source === "writing") {
+				$('#main').append(urldecode(response.substr(63)));
+			}
+			
 		}
 	});
 }
@@ -91,4 +116,14 @@ function in_array(needle, haystack) {
 	if(haystack.indexOf(needle.toLowerCase().trim()) != -1) return true;
 
 	return false;
+}
+
+function urldecode(str) {
+
+  return decodeURIComponent((str + '')
+    .replace(/%(?![\da-f]{2})/gi, function() {
+      // PHP tolerates poorly formed escape sequences
+      return '%25';
+    })
+    .replace(/\+/g, '%20'));
 }
