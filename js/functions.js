@@ -54,10 +54,8 @@ function sanitizeUserSaid(userSaid) {
 }
 
 function makeAction(text, source) {
-	// window.location.href = window.location.href+'/?text=temperature';
 
 	$('#main').empty();
-
 	console.log(text);
 
 	$.ajax({
@@ -70,7 +68,7 @@ function makeAction(text, source) {
 			if(source === 'audio') {
 				$('#main').append('<iframe style="opacity:0;" src="'+response+'"></iframe>');
 			} else if(source === "writing") {
-				$('#main').append(urldecode(response.substr(63)));
+				$('#main').append('<h3>'+urldecode(response.substr(63))+'</h3>');
 			}
 			
 		}

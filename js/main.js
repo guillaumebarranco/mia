@@ -6,8 +6,10 @@ $(document).ready(function() {
 		//startListeningAudio();
 	}
 
-	$('.sendCommand').on('click', function() {
-		var command = $('input').val();
+	$('form').on('submit', function(e) {
+		e.preventDefault();
+
+		var command = $('input').val().toLowerCase();
 		$('input').val('');
 
 		var newArray = [];
@@ -15,4 +17,15 @@ $(document).ready(function() {
 
 		searchCommand(newArray, 'writing');
 	});
+
+	// $('input').on('focusin', function() {
+	// 	$(this).parent().find('label').addClass('active');
+	// });
+
+	// $('input').on('focusout', function() {
+	// 	if (!this.value) {
+	// 		$(this).parent().find('label').removeClass('active');
+	// 	}
+	// });
+
 });

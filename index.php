@@ -5,18 +5,34 @@
 		<title>Mia</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, user-scalable=no">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/styles.css" />
 	</head>
 
 	<body>
 
-		<p>Just say something</p>
-
-		<input type="text" name="command" />
-
-		<button class="sendCommand">Send Command</button>
 
 
-		<div id="main"></div>
+		<div class="wrap">
+
+			<p>Just say something</p>
+
+			<form action="" autocomplete="off">
+
+				<div>
+					<label class="active" for="fname">Type your command</label>
+					<input id="fname" type="text" class="cool"/>
+				</div>
+
+				<button style="opacity:0;" class="sendCommand">Send Command</button>
+				
+			</form>
+
+
+			<section id="main"></section>
+
+		</div>
 
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script src="js/annyang.js"></script>
