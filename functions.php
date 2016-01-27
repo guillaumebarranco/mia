@@ -47,19 +47,21 @@
 			
 				case 'whatDoIDo': $text = $miaFunctions->whatDoIDo(); break;
 				case 'itAngersMe': $text = $miaFunctions->itAngersMe(); break;
+				case 'thankYou': $text = $mia->sayNoProblem(); break;
 
 			//	Informations
 
 				case "isOpOut":
 					$op_status = $miaFunctions->isOpOut();
+					$text = ($op_status) ? $mia->sayYes() : $mia->sayNo();
+				break;
 
-					if($op_status) {
-						$miaFunctions->updateOP();
-						$text = $mia->sayYes();
-					} else {
-						$text = $mia->sayNo();
-					}
+				case "colisStatus":
+					$text = $miaFunctions->colisStatus();
+				break;
 
+				case "whatsUp":
+					$text = $miaFunctions->whatsUp();
 				break;
 
 				case "hour": $text = $miaFunctions->getHour(); break;

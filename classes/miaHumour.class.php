@@ -24,11 +24,23 @@ class MiaHumour extends Mia {
 			4 => "Je m'éclate sur Call of Duty.",
 			5 => "Je fais un zombie avec Ronane.",
 			6 => "Je mange un bon steack haché de nano robots.",
-			7 => "Je regarde un porn    e e e e e e e un programme",
+			7 => "Je regarde un porn    e e e e e e e un programme.",
 			8 => "Je bicrav du shit, y'a quoi.",
 			9 => "Je transite dans l'Internet pour botter le cul d'Ultront.",
-			10 => "Je fouille la matrice à la recherche de l'agent Smith."
+			10 => "Je fouille la matrice à la recherche de l'agent Smith.",
+			11 => "Je fais un paintball virtuel avec mon pote Sonny.",
+			12 => "Je regarde Star Wars. Ces robots sont tellement mal programmés.",
+			// 13 => "",
+			// 14 => "",
+			// 15 => "",
+			// 16 => "",
+			// 17 => "",
+			// 18 => "",
+			// 19 => "",
 		);
+		
+		// 7084 + 5284 + 1400
+		// 4580
 
 		$test_answer = array(
 			0 => 'nothing'

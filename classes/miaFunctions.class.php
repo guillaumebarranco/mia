@@ -1,5 +1,7 @@
 <?php
 
+require_once('file:///C:/wamp/www/mia/simple_html_dom.php');
+
 class MiaFunctions extends Mia {
 
 	public function getRule() {
@@ -73,44 +75,15 @@ class MiaFunctions extends Mia {
 		return '';
 	}
 
-	public function getTrophies($entry) {
-		$cl = curl_init("http://webarranco.fr:3000/PSN/".$entry);
+	
 
-		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-		$response = json_decode(curl_exec($cl));
+	public function getDay() {
+		$jour = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
 
-		$responseTrophies = $response->trophySummary->earnedTrophies;
-
-		return $responseTrophies;
-	}
-
-	public function getAllTrophiesGuillaume() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies('guillaumanga')->platinum." trophées platines, ".$this->getTrophies('guillaumanga')->gold." trophées d'or, ".$this->getTrophies('guillaumanga')->silver." trophées d'argent et ".$this->getTrophies('guillaumanga')->bronze." trophées de bronze");
-	}
-
-	public function getAllTrophiesRonan() {
-		return $this->echoGoogle("Il a ".$this->getTrophies('R0n4N7710')->platinum." trophées platines, ".$this->getTrophies('R0n4N7710')->gold." trophées d'or, ".$this->getTrophies('R0n4N7710')->silver." trophées d'argent et ".$this->getTrophies('R0n4N7710')->bronze." trophées de bronze");
-	}
-
-	public function getPlatine() {
-		return $this->echoGoogle('Vous avez '.$this->getTrophies()->platinum.' trophées platines');
-	}
-
-	public function getOr() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies()->gold." trophées d'or");
-	}
-
-	public function getArgent() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies()->silver." trophées d'argent");
-	}
-
-	public function getBronze() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies()->bronze." trophées de bronze");
+		return $jour[date('w', time())];
 	}
 
 	public function getTodayDate() {
-
-		
 
 		$date = date('Y-m-d');
 		$date = explode('-', $date);
@@ -139,6 +112,98 @@ class MiaFunctions extends Mia {
 		return $this->echoGoogle('Il fait '.$celsius.' degrés à Paris');
 	}
 
+	function searchForOp($opOut) {
+
+		if(is_bool($opOut)) {
+
+			$answer = " Le chapitre de One Pice ";
+			$answer .= ($opOut) ? "est sorti. " : "n'est pas sorti. ";
+
+		} else {
+			$answer = '';
+		}
+
+		return $answer;
+	}
+
+	function switchDay($day) {
+
+		$opOut = '';
+
+		switch ($day) {
+
+			case 'Lundi':
+				$answer = " et c'est le premier jour de la semaine. Courage !";
+			break;
+
+			case 'Mardi':
+				$answer = " et c'est un bon jour pour aller faire du sport.";
+			break;
+
+			case 'Mercredi':
+				$answer = ' et vous zavez cours demain.';
+				$opOut = $this->isOpOut();
+			break;
+
+			case 'Jeudi':
+				$answer = " et c'est le week-end demain, enfin !";
+				$opOut = $this->isOpOut();
+			break;
+
+			case 'Vendredi':
+				$answer = " et vous êtes en week-end ce soir, reposez-vous bien !";
+			break;
+
+			case 'Samedi':
+				$answer = " et nous sommes en week-end, je dors.";
+			break;
+
+			case 'Dimanche':
+				$answer = " et nous sommes en week-end, je dors.";
+			break;
+			
+			default: break;
+		}
+
+		$answer .= $this->searchForOp($opOut);
+
+		return $answer;
+	}
+
+	function shortenGoogle($string) {
+		return urldecode(substr($string, 63));
+	}
+
+	public function colisStatus() {
+
+		$html = file_get_html('http://webtrack.dhlglobalmail.com/?id=12345&trackingnumber=GM575115960082116430');
+
+		foreach($html->find('.card h2') as $element) {
+		    $status = trim($element->plaintext);
+		}
+
+		$status = preg_replace("/&#?[a-z0-9]{2,8};/i","",$status);
+
+		return $this->echoGoogle("Le status de votre colis est :".$status);
+	}
+
+	public function whatsUp() {
+
+		$answer = '';
+
+		$day = $this->getDay();
+
+		$answer .= "Nous sommes ".$day;
+		$answer .= $this->switchDay($day);	
+
+		$answer .= $this->shortenGoogle($this->getTemperature());
+		$answer .= " et ";
+
+		$answer .= $this->shortenGoogle($this->pingServer());
+
+		return $this->echoGoogle($answer);
+	}
+
 	public function isOpOut() {
 		// if page has element with class .episode-table, return true
 
@@ -151,7 +216,11 @@ class MiaFunctions extends Mia {
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$response = json_encode(curl_exec($cl));
 
-		return stripos($response, "episode-table");
+		$boolean = stripos($response, "episode-table");
+
+		if($boolean) $this->updateOP();
+
+		return $boolean;
 	}
 
 	public function updateOP() {
@@ -190,17 +259,17 @@ class MiaFunctions extends Mia {
 			$text = "Vous êtes dans la ville de ".$city;
 		}
 
-		var_dump($text);
-		die;
+		// var_dump($text);
+		// die;
 
 		return $this->echoGoogle($text);
 	}
 
 	public function pingServer() {
 
-		$ip = "92.222.34.194";
+		$ip_server = "92.222.34.194";
 
-	    $pingresult = exec("ping $ip", $outcome, $status);
+	    $pingresult = exec("ping $ip_server", $outcome, $status);
 
 	    if (0 == $status) {
 	        $status = "vivant";
@@ -209,6 +278,45 @@ class MiaFunctions extends Mia {
 	    }
 
 	    return $this->echoGoogle('Votre serveur est '.$status);
+	}
+
+	/*
+	*	Trophies API PSN
+	*/
+
+	public function getTrophies($entry) {
+		$cl = curl_init("http://webarranco.fr:3000/PSN/".$entry);
+
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$response = json_decode(curl_exec($cl));
+
+		$responseTrophies = $response->trophySummary->earnedTrophies;
+
+		return $responseTrophies;
+	}
+
+	public function getAllTrophiesGuillaume() {
+		return $this->echoGoogle("Vous avez ".$this->getTrophies('guillaumanga')->platinum." trophées platines, ".$this->getTrophies('guillaumanga')->gold." trophées d'or, ".$this->getTrophies('guillaumanga')->silver." trophées d'argent et ".$this->getTrophies('guillaumanga')->bronze." trophées de bronze");
+	}
+
+	public function getAllTrophiesRonan() {
+		return $this->echoGoogle("Il a ".$this->getTrophies('R0n4N7710')->platinum." trophées platines, ".$this->getTrophies('R0n4N7710')->gold." trophées d'or, ".$this->getTrophies('R0n4N7710')->silver." trophées d'argent et ".$this->getTrophies('R0n4N7710')->bronze." trophées de bronze");
+	}
+
+	public function getPlatine() {
+		return $this->echoGoogle('Vous avez '.$this->getTrophies()->platinum.' trophées platines');
+	}
+
+	public function getOr() {
+		return $this->echoGoogle("Vous avez ".$this->getTrophies()->gold." trophées d'or");
+	}
+
+	public function getArgent() {
+		return $this->echoGoogle("Vous avez ".$this->getTrophies()->silver." trophées d'argent");
+	}
+
+	public function getBronze() {
+		return $this->echoGoogle("Vous avez ".$this->getTrophies()->bronze." trophées de bronze");
 	}
 
 }

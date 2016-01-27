@@ -4,6 +4,7 @@ var entries = {
 
 	"bonjour mia"						: 'hello',
 	"tu fais quoi"						: 'whatAreYouDoing',
+	'merci mia'							: 'thankYou',
 
 	//	About Mia
 
@@ -36,6 +37,10 @@ var entries = {
 	'quelles sont les trois lois'		: 'laws',
 	'le chapitre est-il sorti'			: 'isOpOut',
 	'où suis-je'						: 'whereAmI',
+
+	'quoi de neuf'						: 'whatsUp',
+
+	'où est mon colis'					: 'colisStatus',
 
 	//	All commands
 

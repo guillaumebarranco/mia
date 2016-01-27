@@ -52,6 +52,10 @@ class Mia {
 		return $this->echoGoogle("Je suis votre robot personnel.");
 	}
 
+	public function sayNoProblem() {
+		return $this->echoGoogle("Je vous en prie.");
+	}
+
 	public function sayYes() {
 		return $this->echoGoogle('Oui');
 	}
