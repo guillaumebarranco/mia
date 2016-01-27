@@ -74,6 +74,8 @@
 				case "argent": $text = $miaFunctions->getArgent(); break;
 				case "bronze": $text = $miaFunctions->getBronze(); break;
 
+				case "commits": $text = $miaFunctions->getCommits(); break;
+
 				case "guillaume_trophies": $text = $miaFunctions->getAllTrophiesGuillaume(); break;
 				case "ronan_trophies": $text = $miaFunctions->getAllTrophiesRonan(); break;
 

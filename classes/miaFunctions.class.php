@@ -2,6 +2,8 @@
 
 require_once('file:///C:/wamp/www/mia/simple_html_dom.php');
 
+require_once 'file:///C:/wamp/www/mia/vendor/autoload.php';
+
 class MiaFunctions extends Mia {
 
 	public function getRule() {
@@ -202,6 +204,38 @@ class MiaFunctions extends Mia {
 		$answer .= $this->shortenGoogle($this->pingServer());
 
 		return $this->echoGoogle($answer);
+	}
+
+
+	function getGithubAccount($wanted = 'repositories') {
+
+		if($wanted === 'repositories') {
+
+			$html = file_get_html('https://github.com/guillaumebarranco?tab=repositories');
+
+			$i = 0;
+			foreach($html->find('.repo-list-name') as $element) {
+			    $i++;
+			}
+
+			$response = $i;
+
+		} elseif($wanted === 'commits') {
+
+			$html = file_get_html('https://github.com/guillaumebarranco');
+
+			$response = $html->find('.contrib-column-first .contrib-number')[0]->plaintext;
+			$response = intval(substr($response, 0, -7));
+		}
+
+		return $response;
+	}
+
+	public function getCommits() {
+		$repositories = $this->getGithubAccount('repositories');
+		$commits = $this->getGithubAccount('commits');
+
+		return $this->echoGoogle("Vous avez à votre actif ".$repositories." repositories et $commits commits");
 	}
 
 	public function isOpOut() {
