@@ -17,6 +17,9 @@ var entries = {
 	'as-tu en amoureux'					: 'yourLover',
 	'il est au courant'					: 'isHeAware',
 
+	"qu'est-ce que tu déteste"			: 'whatYouHate',
+	"qu'est-ce que tu aime"				: 'whatYouLike',
+
 	//	Custom
 
 	'tu as bien dormi'					: 'didYouSleepWell',
@@ -41,6 +44,7 @@ var entries = {
 	'quoi de neuf'						: 'whatsUp',
 
 	'où est mon colis'					: 'colisStatus',
+	'activité développement'			: 'commits',
 
 	//	All commands
 

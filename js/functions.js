@@ -1,24 +1,24 @@
 // Search for entries in userSaid
-function checkArray(newArray, entries, privateEntries, source) {
+function checkArray(userSaid, entries, privateEntries, source) {
 	var entryFound = false;
 
-	for (var i = 0; i < newArray.length; i++) {
+	for (var i = 0; i < userSaid.length; i++) {
 		if(!entryFound) {
 
-			if(typeof entries[newArray[i].toLowerCase()] != 'undefined') {
+			if(typeof entries[sanitize(userSaid[i])] != 'undefined') {
 				entryFound = true;
-				makeAction(entries[newArray[i]], source);
+				makeAction(entries[userSaid[i]], source);
 			}
 		}
 	}
 
 	if(!entryFound) {
-		for (var i = 0; i < newArray.length; i++) {
+		for (var i = 0; i < userSaid.length; i++) {
 			if(!entryFound) {
 
-				if(typeof privateEntries[newArray[i].toLowerCase()] != 'undefined') {
+				if(typeof privateEntries[sanitize(userSaid[i])] != 'undefined') {
 					entryFound = true;
-					makeAction(privateEntries[newArray[i]], source);
+					makeAction(privateEntries[userSaid[i]], source);
 				}
 			}
 		}
@@ -44,12 +44,34 @@ function searchCommand(newArray, source) {
 	}
 }
 
+function preg_replace (array_pattern, array_pattern_replace, my_string)  {
+	var new_string = String (my_string);
+		for (i=0; i<array_pattern.length; i++) {
+			var reg_exp= RegExp(array_pattern[i], "gi");
+			var val_to_replace = array_pattern_replace[i];
+			new_string = new_string.replace (reg_exp, val_to_replace);
+		}
+	return new_string;
+}
+
+function sanitize(entry) {
+
+	var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
+	var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
+
+	entry = entry.toLowerCase().trim();
+
+	return entry;
+
+	//return preg_replace(pattern_accent, pattern_replace_accent, entry);
+}
+
 // Trim and all userSaid array
 function sanitizeUserSaid(userSaid) {
 	var newArray = [];
 
 	for (var i = 0; i < userSaid.length; i++) {
-		newArray.push(userSaid[i].toLowerCase().trim());
+		newArray.push(sanitize(userSaid[i]));
 	}
 
 	return newArray;

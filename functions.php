@@ -4,11 +4,7 @@
 
 	if(isset($_GET['text']) && $_GET['text'] !== '') {
 
-		require_once('classes/mia.class.php');
-		require_once('classes/miaHumour.class.php');
-		require_once('classes/miaKnowledge.class.php');
-		require_once('classes/miaFunctions.class.php');
-		require_once('classes/miaPrivate.class.php');
+		require_once('classes/autoloader.class.php');
 
 		$mia = new Mia();
 		$miaHumour = new MiaHumour();
@@ -42,6 +38,9 @@
 				case "yourLover": $text = $mia->lover(); break;
 
 				case "isHeAware": $text = $mia->isHeAware(); break;
+
+				case "whatYouHate": $text = $mia->whatYouHate(); break;
+				case "whatYouLike": $text = $mia->whatYouLike(); break;
 
 			//	Custom
 			

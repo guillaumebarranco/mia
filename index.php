@@ -29,12 +29,11 @@
 				
 			</form>
 
-
 			<section id="main"></section>
 
 		</div>
 
-		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script src="js/jquery.js"></script>
 		<script src="js/annyang.js"></script>
 		<script src="js/functions.js"></script>
 		<script src="js/entries.js"></script>

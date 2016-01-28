@@ -2,8 +2,6 @@
 
 require_once('file:///C:/wamp/www/mia/simple_html_dom.php');
 
-require_once 'file:///C:/wamp/www/mia/vendor/autoload.php';
-
 class MiaFunctions extends Mia {
 
 	public function getRule() {
@@ -205,7 +203,6 @@ class MiaFunctions extends Mia {
 
 		return $this->echoGoogle($answer);
 	}
-
 
 	function getGithubAccount($wanted = 'repositories') {
 

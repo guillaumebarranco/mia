@@ -136,4 +136,22 @@ class Mia {
 		return $this->echoGoogle("Bien sûr que non, il aime l'autre bimbo de L7");
 	}
 
+	public function whatYouHate() {
+
+		$answers = array(
+			0 => "Je déteste les robots mal conçus."
+		);
+
+		return $this->echoGoogle($this->randomAnswer($answers));
+	}
+
+	public function whatYouLike() {
+
+		$answers = array(
+			0 => "J'adore voir mes fonctions augmenter"
+		);
+
+		return $this->echoGoogle($this->randomAnswer($answers));
+	}
+
 }
