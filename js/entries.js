@@ -45,6 +45,9 @@ var entries = {
 
 	'où est mon colis'					: 'colisStatus',
 	'activité développement'			: 'commits',
+	'état serveur'						: 'myServerState',
+
+	'programme de ce soir'				: 'getTV',
 
 	//	All commands
 

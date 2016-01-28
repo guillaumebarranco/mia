@@ -1,10 +1,10 @@
 <?php
+
+	require_once('classes/autoloader.class.php');
 	
 	$text = '';
 
 	if(isset($_GET['text']) && $_GET['text'] !== '') {
-
-		require_once('classes/autoloader.class.php');
 
 		$mia = new Mia();
 		$miaHumour = new MiaHumour();
@@ -84,6 +84,7 @@
 				case "laws": $text = $miaKnowledge->getThreeLaws(); break;
 
 				case "myServerState": $text = $miaFunctions->pingServer(); break;
+				case "getTV": $text = $miaFunctions->getTV(); break;
 
 			//	Private
 

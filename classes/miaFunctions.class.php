@@ -235,6 +235,30 @@ class MiaFunctions extends Mia {
 		return $this->echoGoogle("Vous avez à votre actif ".$repositories." repositories et $commits commits");
 	}
 
+	public function getTV() {
+
+		$html = file_get_html('http://www.programme-tv.net/programme/programme-tnt.html');
+
+		$response = $html->find('.channel');
+
+		$answer = '';
+
+		foreach ($response as $channel) {
+			
+			$title = $channel->children[0]->children[0]->attr['title'];
+
+			$array_chaines = array('TF1', 'M6', 'W9', 'Canal+', 'TMC', 'NT1');
+
+			if(in_array(substr($title, 13), $array_chaines)) {
+				$movie = $channel->children[1]->children[1]->children[2]->attr['title'];
+				$answer .= $title.' : '.$movie.'. ';
+			}
+		}
+
+		return $this->echoGoogle($answer);
+		
+	}
+
 	public function isOpOut() {
 		// if page has element with class .episode-table, return true
 

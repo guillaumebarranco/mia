@@ -1,4 +1,7 @@
+var previouslySaid = '';
+
 // Search for entries in userSaid
+
 function checkArray(userSaid, entries, privateEntries, source) {
 	var entryFound = false;
 
@@ -7,6 +10,7 @@ function checkArray(userSaid, entries, privateEntries, source) {
 
 			if(typeof entries[sanitize(userSaid[i])] != 'undefined') {
 				entryFound = true;
+				previouslySaid = userSaid[i];
 				makeAction(entries[userSaid[i]], source);
 			}
 		}
@@ -18,6 +22,7 @@ function checkArray(userSaid, entries, privateEntries, source) {
 
 				if(typeof privateEntries[sanitize(userSaid[i])] != 'undefined') {
 					entryFound = true;
+					previouslySaid = userSaid[i];
 					makeAction(privateEntries[userSaid[i]], source);
 				}
 			}
@@ -30,6 +35,12 @@ function searchCommand(newArray, source) {
 
 	if(in_array('stop', newArray)) canReact = false;
 	if(in_array('recharge', newArray)) location.reload();
+	if(in_array('répète', newArray)) {
+
+		if(previouslySaid !== '') {
+			checkArray([previouslySaid], entries, privateEntries, source);
+		}
+	}
 
 	if(canReact) {
 
@@ -101,6 +112,12 @@ function makeAction(text, source) {
 		}
 	});
 }
+
+$('input').on('keydown', function(e) {
+	if(e.which === 38) {
+		$('input').val(previouslySaid);
+	}
+});
 
 // If action is made purely in Javascript
 function speakFromJavascript(text) {
