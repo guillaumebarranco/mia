@@ -87,10 +87,10 @@ function makeAction(text, source) {
 				$('#main').append('<h3>'+urldecode(response.substr(google_translate_length))+'</h3>');
 			}
 
-			$('.sprite').addClass('anim');
+			$('#mouth').addClass('anim');
 
 			setTimeout(function() {
-				$('.sprite').removeClass('anim');
+				$('#mouth').removeClass('anim');
 			}, 2000);
 			
 		}
