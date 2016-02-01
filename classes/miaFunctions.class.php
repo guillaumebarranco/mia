@@ -75,8 +75,6 @@ class MiaFunctions extends Mia {
 		return '';
 	}
 
-	
-
 	public function getDay() {
 		$jour = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
 
@@ -184,7 +182,7 @@ class MiaFunctions extends Mia {
 
 		$status = preg_replace("/&#?[a-z0-9]{2,8};/i","",$status);
 
-		return $this->echoGoogle("Le status de votre colis est :".$status);
+		return $this->echoGoogle("Le status de votre colis est : ".$status);
 	}
 
 	public function whatsUp() {
@@ -256,7 +254,6 @@ class MiaFunctions extends Mia {
 		}
 
 		return $this->echoGoogle($answer);
-		
 	}
 
 	public function isOpOut() {
@@ -310,6 +307,8 @@ class MiaFunctions extends Mia {
 
 		if($city === 'Coulommiers') {
 			$text = 'Vous êtes chez Ronane';
+		} elseif($city === 'Paris') {
+			$text = "Vous êtes à Paris, probablement à Weblib ou bien à votre école.";
 		} else {
 			$text = "Vous êtes dans la ville de ".$city;
 		}

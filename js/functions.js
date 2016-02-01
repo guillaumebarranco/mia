@@ -55,28 +55,6 @@ function searchCommand(newArray, source) {
 	}
 }
 
-function preg_replace (array_pattern, array_pattern_replace, my_string)  {
-	var new_string = String (my_string);
-		for (i=0; i<array_pattern.length; i++) {
-			var reg_exp= RegExp(array_pattern[i], "gi");
-			var val_to_replace = array_pattern_replace[i];
-			new_string = new_string.replace (reg_exp, val_to_replace);
-		}
-	return new_string;
-}
-
-function sanitize(entry) {
-
-	var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
-	var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
-
-	entry = entry.toLowerCase().trim();
-
-	return entry;
-
-	//return preg_replace(pattern_accent, pattern_replace_accent, entry);
-}
-
 // Trim and all userSaid array
 function sanitizeUserSaid(userSaid) {
 	var newArray = [];
@@ -108,6 +86,12 @@ function makeAction(text, source) {
 			} else if(source === "writing") {
 				$('#main').append('<h3>'+urldecode(response.substr(google_translate_length))+'</h3>');
 			}
+
+			$('.sprite').addClass('anim');
+
+			setTimeout(function() {
+				$('.sprite').removeClass('anim');
+			}, 2000);
 			
 		}
 	});
@@ -142,6 +126,32 @@ function transformToAssocArray(prmstr) {
     }
     return params;
 }
+
+// Function for sanitize all entries (accents, trim, toLowerCase)
+function sanitize(entry) {
+
+	var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
+	var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
+
+	entry = entry.toLowerCase().trim();
+
+	return entry;
+
+	//return preg_replace(pattern_accent, pattern_replace_accent, entry);
+}
+
+function preg_replace (array_pattern, array_pattern_replace, my_string)  {
+	var new_string = String (my_string);
+		for (i=0; i<array_pattern.length; i++) {
+			var reg_exp= RegExp(array_pattern[i], "gi");
+			var val_to_replace = array_pattern_replace[i];
+			new_string = new_string.replace (reg_exp, val_to_replace);
+		}
+	return new_string;
+}
+
+
+
 
 // Return length of an object
 Object.size = function (obj) {

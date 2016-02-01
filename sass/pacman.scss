@@ -1,0 +1,177 @@
+$_: black;
+$a: rgba(89,66,0,1);
+$b: rgba(153,92,0,1);
+$c: rgba(189,93,0,1);
+$d: rgba(219,130,0,1);
+$e: rgba(154,67,0,1);
+$f: rgba(90,22,0,1);
+$g: rgba(254,157,0,1);
+$h: rgba(254,130,0,1);
+$i: rgba(126,66,0,1);
+$j: rgba(65,21,0,1);
+$k: rgba(253,193,2,1);
+$l: rgba(188,129,20,1);
+$m: rgba(218,156,20,1);
+$n: rgba(253,192,21,1);
+$o: rgba(218,157,1,1);
+$p: rgba(188,129,0,1);
+$q: rgba(252,222,66,1);
+$r: rgba(252,222,91,1);
+$s: rgba(218,156,65,1);
+$t: rgba(20,0,0,1);
+$u: rgba(219,94,0,1);
+$v: rgba(187,156,66,1);
+$w: rgba(127,23,0,1);
+$x: rgba(153,92,19,1);
+$y: rgba(253,192,66,1);
+$z: rgba(219,129,19,1);
+$a_: rgba(217,192,90,1);
+$aa: rgba(251,255,128,1);
+$ab: rgba(252,255,154,1);
+$ac: rgba(252,222,127,1);
+$ad: rgba(253,192,90,1);
+$ae: rgba(217,192,66,1);
+$af: rgba(189,68,0,1);
+$ag: rgba(19,20,0,1);
+$ah: rgba(90,21,19,1);
+$ai: rgba(254,157,19,1);
+$aj: rgba(89,66,19,1);
+$ak: rgba(126,91,20,1);
+$al: rgba(127,66,19,1);
+$am: rgba(254,157,65,1);
+$an: rgba(255,130,17,1);
+$ao: rgba(189,93,18,1);
+
+$sprite01: (0	0	0	0	0	0	0	0	$a 3 $b 4 $c 3 $c 4 $d 3 $c 4 $e 2 $f,
+            0	0	0	0	0	0	$e  $d 4 $g $c	0	0	0	$d	$g 3 $h	$c	,
+            0	0	0	0	$a	$d	$g	$g 1 $g	$e	0	0	0	$f	$g	$k	$c	1	0	0	0	0	0,
+            0	0	0	$i	$h	$g	$k	$k 1 $k $k	$k	$l	0	0	$m	$n	$o	0	0	$f	1	0	0,
+            0	0	$j	$h	$g	$k	$k	$k 2 $q	$r	$e	0	0	$f	$s	$q	$n	$i	0	$c	$d	0	0,
+            0	0	$d	$g	$k	$k	$k	$r	$r	$r	$v	$w	0	$x	$r	$r	$r	$l	0	0	$d	$c	0,
+            0	$b	$g	$k	$k	$k	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$y	$x	$i	$d	$g	0,
+            0	$d	$g	$k	$k	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$q	$n	$k	$g	$c,
+            $i	$h	$g	$k	$k	$z	$l	$l	$l	$e	$w	$f	$f	$w	$w	$w	$w	$i	$e	$b	$d	$g	$h,
+            $b	$g	$d	$b	$i	14	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$f	$c	$g,
+            $d	$d	$f	$j	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$j	$d,
+            $c	$c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$i	$i,
+            $b	$c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$i	$f	0	0,
+            $b	$u	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$c	0	0	0,
+            $i	$d	$i	$ag	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$e	$i	0,
+            $j	$h	$d	$i	$j	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	$j	$d	0,
+            0	$c	$g	$g	$d	$w	$j	$j	0	0	0	0	0	0	0	0	0	0	0	0	$ah	$ai	0,
+            0	$f	$h	$g	$k	$n	$m	$b	$f	0	0	0	0	0	0	0	0	0	0	$aj	$s	$s	0,
+            0	0	$b	$h	$g	$k	$k	$k	$s	$s	$m	$e	$w	$f	$f	$f	$f	$i	$s	$r	$k	$a	0,
+            0	0	0	$c	$g	$g	$n	$k	$k	$k	$r	$r	$r	$k	$k	$k	$k	$k	$r	$y	$ak	0	0,
+            0	0	0	0	$c	$g	$g	$n	$k	$k	$k	$r	$r	$r	$k	$k	$k	$k	$k	$al	0	0	0,
+            0	0	0	0	0	$i	$d	$g	$ai	$k	$k	$k	$k	$k	$k	$k	$am	$z	$j	0	0	0	0,
+            0	0	0	0	0	0	0	$al	$z	$an	$ai	$am	$am	$am	$ai	$l	$a	11	0	0	0	0	0,
+            0	0	0	0	0	0	0	0	0	$ah 5 $ao 5 $z 5 $ao 5 $x 5 $j 5);
+
+$sprite02: (0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0,
+            0	0	0	0	0	0	0	0	$f	$i	$b	$e	$i	$j	0	0	0	0	0	0	0	0,
+            0	0	0	0	0	$j	$c	$d	$g	$g	$g	$g	$g	$g	$d	$e	0	0	0	0	0	0,
+            0	0	0	0	$e	$h	$g	$g	$k	$g	$p	$o	$k	$k	$g	$g	$d	$f	0	0	0	0,
+            0	0	$t	$c	$g	$k	$k	$k	$q	$i	0	0	$p	$n	$n	$o	$i	$u	$i	0	0	0,
+            0	0	$c	$g	$k	$k	$k	$q	$k	0	0	0	0	$y	$q	$l	0	0	$d	$a	0	0,
+            0	$a	$h	$g	$k	$q	$r	$r	$r	$l	$b	0	0	$s	$r	$l	0	0	$i	$h	0	0,
+            $t	$d	$g	$k	$k	$r	$r	$r	$r	$r	$m	0	0	$s	$r	$y	0	$e	$d	$g	$b	0,
+            $a	$h	$k	$k	$r	$r	$r	$r	$r	$l	0	0	$w	$a_	$aa	$r	0	0	$c	$g	$d	0,
+            $c	$k	$k	$q	$r	$r	$r	$ab	$ab	$ac	$e	0	$l	$r	$ab	$r	$l	0	$w	$k	$g	$i 1,
+            $d	$g	$k	$q	$r	$r	$r	$ab	$ab	$ab	$ab	$ab	$ab	$ab	$ab	$r	$r	$l	$m	$n	$g	$c,
+            $d	$g	$k	$q	$r	$r	$r	$r	$ad	$s	$s	$ae	$y	$y	$y	$y	$y	$y	$y	$n	$g	$c 1,
+            $h	$g	$k	$q	$r	$r	$y	$n	$m	$m	$m	$z	$z	$z	$u	$c	$af	$e	$af	$g	$g	$d,
+            $d	$g	$k	$q	$r	$r	$aa	$r	$ab	$ab	$ab	$ab	$ab	$ab	$r	$r	$r	$k	$k	$k	$g	$c,
+            $u	$g	$k	$k	$r	$r	$r	$r	$ab	$ab	$ab	$ab	$ab	$ab	$ab	$r	$r	$r	$k	$k	$g	$i,
+            $i	$g	$k	$k	$r	$r	$r	$r	$r	$ab	$ab	$ab	$ab	$ab	$r	$r	$r	$r	$k	$k	$g	0,
+            $j	$h	$g	$k	$q	$r	$r	$r	$r	$r	$r	$ab	$ab	$r	$r	$r	$r	$q	$k	$g	$c	0,
+            0	$b	$g	$k	$k	$q	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$r	$k	$g	$h	0	0,
+            0	0	$u	$g	$k	$k	$k	$r	$r	$r	$r	$r	$r	$r	$r	$r	$k	$k	$g	$b	0	0,
+            0	0	$j	$h	$g	$k	$k	$k	$r	$r	$q	$q	$r	$k	$r	$k	$k	$g	$c	0	0	0,
+            0	0	0	$j	$d	$g	$g	$k	$k	$k	$k	$k	$k	$k	$k	$g	$g	$b	0	0	0	0,
+            0	0	0	0	0	$e	$d	$g	$g	$g	$k	$k	$k	$g	$g	$d	$a	0	0	0	0	0,
+            0	0	0	0	0	0	0	$a	$b	$d	$d	$d	$c	$e	$j	0	0	0	0	0	0	0,
+            0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0);
+
+
+$pixel: 15px;
+@function createBoxShadow($sprite, $flip: false) {
+    $boxShadow: '';
+    $currPixel: '';
+    $rowCount: length($sprite);
+    $colCount: length(nth($sprite, 1));
+
+    @for $r from 1 through $rowCount {
+        $row: nth($sprite, $r);
+        $coordY: $pixel*$r;
+        $coordX: if($flip, $pixel*$colCount, 0);
+        
+        @for $c from 1 through length($row) {
+            $cell: nth($row, $c);
+            $skip: false;
+            $dupl: 0;
+
+            @if($cell == 0) {
+                //Empty cell - skip
+                $skip: true;
+            }
+            @elseif(type-of($cell) == 'number') {
+                //$cell = 14 -> Duplicate the previous pixel 14 times (to help synchronizing the animation):
+                $dupl: $cell;
+            }
+            @else {
+                $currPixel: ($coordX  $coordY  $cell);
+            }
+            
+            //Add new (or duplicated) pixel to the box-shadow:
+            @if($skip == false) {
+                @if($boxShadow != '') {
+                    $boxShadow: $boxShadow + ', ';
+                }
+                $boxShadow: $boxShadow + $currPixel;
+                
+                @if($dupl > 1) {
+                    @for $d from 2 through $dupl {
+                        $boxShadow: $boxShadow + ', ' + $currPixel;
+                    }
+                }
+            }
+
+            //Duplication numbers shouldn't shift actual pixels out of place:
+            @if($dupl == 0) {
+                $coordX: if($flip, $coordX - $pixel, $coordX + $pixel);
+            }
+
+        }
+    }
+    @return unquote($boxShadow);
+}
+
+.sprite {
+    width: $pixel;
+    height: $pixel;
+    box-shadow: createBoxShadow($sprite01);
+    //animation: eat 1s cubic-bezier(.2,0,.2,1) infinite alternate;
+    // animation: eat 1s ease-in-out;
+    box-shadow: createBoxShadow($sprite02);
+    
+    &.anim {
+        animation: eat 0.5s ease-in-out infinite;
+    }
+}
+
+@keyframes eat {
+    0% { box-shadow: createBoxShadow($sprite01); }
+    50% { box-shadow: createBoxShadow($sprite02); }
+}
+
+
+/* Layout etc - not important */
+body {
+    background-color: black;
+    text-align: center;
+}
+.sprite {
+    display: inline-block;
+    margin-right: 320px;
+    // margin-top: calc(50vh - 200px);
+}

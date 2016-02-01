@@ -63,6 +63,8 @@
 					$text = $miaFunctions->whatsUp();
 				break;
 
+				case 'test': $text = $mia->sayTest(); break;
+
 				case "hour": $text = $miaFunctions->getHour(); break;
 				case "date": $text = $miaFunctions->getTodayDate(); break;
 				case "temperature": $text = $miaFunctions->getTemperature(); break;
@@ -100,6 +102,14 @@
 
 				case "beLikeC": $text = $miaPrivate->beLikeC(); break;
 
+			// Hehe
+
+				case "whoIsTheHero": $text = $mia->sayWhoIsTheHero(); break;
+				case "whoIsTheKing": $text = $mia->sayWhoIsTheKing(); break;
+				case "whoShotFirst": $text = $mia->sayWhoShotFirst(); break;
+				case "whoIsTheFastestManAlive": $text = $mia->sayWhoIsTheFastest(); break;
+
+				
 			//	All commands
 
 				case "wantAJoke": $text = $mia->sayNoThanks(); break;

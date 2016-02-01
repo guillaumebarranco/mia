@@ -1,0 +1,35 @@
+{
+  "name": "SmartWifi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Weblib/SmartWifi.git"
+  },
+  "author": "Weblib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Weblib/SmartWifi/issues"
+  },
+  "homepage": "https://github.com/Weblib/SmartWifi#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uncss": "^1.0.4",
+    "gulp-watch": "^4.3.5"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-scss-lint": "^0.3.8",
+    "gulp-uglify": "^1.5.1",
+    "yargs": "^3.30.0"
+  }
+}

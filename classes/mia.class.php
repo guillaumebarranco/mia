@@ -104,6 +104,10 @@ class Mia {
 		return $this->echoGoogle("Bonjour Cassandre. Oui je me suis approprié ton mec 5 minutes, y'a quoi");
 	}
 
+	public function sayTest() {
+		return $this->echoGoogle('Votre test a fonctionné.');
+	}
+
 	public function sayWhatHappened() {
 		return $this->echoGoogle("Que se passe t-il ?");
 	}
@@ -115,6 +119,29 @@ class Mia {
 	public function sayBeCarefulOnTheRoad() {
 		return $this->echoGoogle("Soyez prudent sur la route.");
 	}
+
+	/*
+	*	Good Robot
+	*/
+
+	public function sayWhoIsTheKing() {
+		return $this->echoGoogle('Bob Morana est le roi de la teeeeeeeeeeeeeeerre !');
+	}
+
+	public function sayWhoIsTheHero() {
+		return $this->echoGoogle("Le seul et unique héros du temps, détenteur de la triforce du courage, Link bien sûr.");
+	}
+
+	public function sayWhoShotFirst() {
+		return $this->echoGoogle("C'est Han Solo qui tire toujours le premier.");
+	}
+
+	public function whoIsTheFastest() {
+		return $this->echoGoogle("Barry Allen alias The Flash.");
+	}
+
+	
+
 
 	/*
 	*	Personnality
