@@ -1,6 +1,6 @@
 <?php
 
-require_once('file:///C:/wamp/www/mia/libs/simple_html_dom.php');
+//require_once('file:///C:/wamp/www/mia/libs/simple_html_dom.php');
 
 class MiaFunctions extends Mia {
 
