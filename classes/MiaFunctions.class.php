@@ -1,6 +1,6 @@
 <?php
 
-//require_once('file:///C:/wamp/www/mia/libs/simple_html_dom.php');
+require_once(getcwd().'/libs/simple_html_dom.php');
 
 class MiaFunctions extends Mia {
 
@@ -44,7 +44,7 @@ class MiaFunctions extends Mia {
 		$jour=date("d");
 		$mois=date("m");
 
-		$fp=fopen("file:///C:/wamp/www/mia/files/fete.txt","r");
+		$fp=fopen(getcwd().."/files/fete.txt","r");
 
 		if($fp) {
 
@@ -239,6 +239,9 @@ class MiaFunctions extends Mia {
 
 		$response = $html->find('.channel');
 
+		var_dump($response);
+		die;
+
 		$answer = '';
 
 		foreach ($response as $channel) {
@@ -259,7 +262,7 @@ class MiaFunctions extends Mia {
 	public function isOpOut() {
 		// if page has element with class .episode-table, return true
 
-		$fp=fopen("file:///C:/wamp/www/mia/files/opChapter.txt","r");
+		$fp=fopen(getcwd()."/files/opChapter.txt","r");
 		$opChapter=fgets($fp,255);
 		fclose($fp);
 
@@ -276,7 +279,7 @@ class MiaFunctions extends Mia {
 	}
 
 	public function updateOP() {
-		$fp=fopen("file:///C:/wamp/www/mia/files/opChapter.txt","r");
+		$fp=fopen(getcwd()."/files/opChapter.txt","r");
 		$opChapter=fgets($fp,255);
 		fclose($fp);
 

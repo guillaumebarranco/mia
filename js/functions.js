@@ -112,9 +112,7 @@ function makeAction(text, source) {
 }
 
 $('input').on('keydown', function(e) {
-	if(e.which === 38) {
-		$('input').val(previouslySaid);
-	}
+	if(e.which === 38) $('input').val(previouslySaid);
 });
 
 // If action is made purely in Javascript
@@ -163,8 +161,6 @@ function preg_replace (array_pattern, array_pattern_replace, my_string)  {
 		}
 	return new_string;
 }
-
-
 
 
 // Return length of an object
