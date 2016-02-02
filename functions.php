@@ -1,6 +1,7 @@
 <?php
 
 	require_once('classes/autoloader.class.php');
+	require_once('config.php');
 	
 	$text = '';
 
@@ -102,14 +103,13 @@
 
 				case "beLikeC": $text = $miaPrivate->beLikeC(); break;
 
-			// Hehe
+			//	Hehe
 
 				case "whoIsTheHero": $text = $mia->sayWhoIsTheHero(); break;
 				case "whoIsTheKing": $text = $mia->sayWhoIsTheKing(); break;
 				case "whoShotFirst": $text = $mia->sayWhoShotFirst(); break;
 				case "whoIsTheFastestManAlive": $text = $mia->sayWhoIsTheFastest(); break;
 
-				
 			//	All commands
 
 				case "wantAJoke": $text = $mia->sayNoThanks(); break;
@@ -170,4 +170,4 @@
 		echo 'Just say something';
 	}
 
-	if(isset($_GET['source']) && $_GET['source'] === 'raspberry') exec('mpg321 '.$text);
+	if(IS_RASPBERRY === true) exec('mpg321 "'.$text.'"');
