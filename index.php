@@ -32,6 +32,12 @@
 
 		</div>
 
+		<?php require_once('config.php'); ?>
+
+		<script>
+			var JS_URL = "<?=JS_URL?>";
+		</script>
+
 		<?php 
 			$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "audio", "main"];
 

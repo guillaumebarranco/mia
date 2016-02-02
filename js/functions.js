@@ -75,7 +75,7 @@ function makeAction(text, source) {
 	var google_translate_length = 63;
 
 	$.ajax({
-		url: 'functions.php?text='+text+'&source=js',
+		url: JS_URL+'functions.php?text='+text+'&source=js',
 		type: 'GET',
 
 		success: function(response) {
