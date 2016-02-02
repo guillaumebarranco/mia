@@ -4,6 +4,7 @@
 
 	require_once('classes/autoloader.class.php');
 	require_once('config.php');
+	require_once(getcwd().'/libs/simple_html_dom.php');
 	
 	$text = '';
 
@@ -157,7 +158,11 @@
 
 	}
 
+	// $html = file_get_html($text);
 	// var_dump($text);
+
+	// var_dump($html->root->nodes[0]);
+	// die;
 
 	if(IS_RASPBERRY === true) {
 		exec('mpg321 "'.$text.'"');
@@ -166,7 +171,15 @@
 		if(isset($_GET) && !empty($_GET)) {
 
 			if(isset($_GET['source']) && $_GET['source'] === 'js') {
-				echo $text;
+				// echo $text;
+
+				$array = array(
+					"text" => $text,
+					"time" => 2
+				);
+
+				echo json_encode($array);
+
 			} else {
 				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
 				echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';

@@ -95,19 +95,34 @@ function makeAction(text, source) {
 		type: 'GET',
 
 		success: function(response) {
+			response = JSON.parse(response);
 			console.log(response);
 
+			var subtext = response.text.substr(google_translate_length);
+
+			console.log(subtext.length);
+
+			if(subtext.length < 10) {
+				response.time = 1;
+			} else if(subtext.length >= 10 && subtext.length < 35) {
+				response.time = 2;
+			} else if(subtext.length >= 35 && subtext.length < 60) {
+				response.time = 3;
+			} else if(subtext.length >= 60 && subtext.length < 85) {
+				response.time = 4;
+			}
+
 			if(source === 'audio') {
-				$('#main').append('<iframe style="opacity:0;" src="'+response+'"></iframe>');
+				$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
 			} else if(source === "writing") {
-				$('#main').append('<h3>'+urldecode(response.substr(google_translate_length))+'</h3>');
+				$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
 			}
 
 			$('#mouth').addClass('anim');
 
 			setTimeout(function() {
 				$('#mouth').removeClass('anim');
-			}, 2000);
+			}, response.time * 1000);
 			
 		}
 	});
