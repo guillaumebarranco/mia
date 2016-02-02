@@ -72,10 +72,24 @@ function makeAction(text, source) {
 	$('#main').empty();
 	console.log(text);
 
-	var google_translate_length = 63;
+	var google_translate_length = 63,
+		url;
+
+	if(typeof getSearchParameters()['overwrite'] !== 'undefined') {
+
+		url = JS_URL+'functions.php?text='+text+'&source=js';
+
+	} else {
+
+		if(source === 'writing') {
+			url = 'functions.php?text='+text+'&source=js';
+		} else {
+			url = JS_URL+'functions.php?text='+text+'&source=js';
+		}
+	}
 
 	$.ajax({
-		url: JS_URL+'functions.php?text='+text+'&source=js',
+		url: url,
 		type: 'GET',
 
 		success: function(response) {
