@@ -80,9 +80,6 @@
 
 		<div class="wrap" style="margin-top: 150px;">
 
-
-			<p>Just say something</p>
-
 			<form action="" autocomplete="off">
 
 				<div>
@@ -98,13 +95,13 @@
 
 		</div>
 
-		<script src="js/jquery.js"></script>
-		<script src="js/annyang.js"></script>
-		<script src="js/functions.js"></script>
-		<script src="js/entries.js"></script>
-		<script src="js/privateEntries.js"></script>
-		<script src="js/audio.js"></script>
-		<script src="js/main.js"></script>
+		<?php 
+			$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "audio", "main"];
+
+			function loadScript($script) { echo '<script src="js/'.$script.'.js"></script>'; }
+			
+			foreach ($scripts as $script) loadScript($script);
+		?>
 
 	</body>
 </html>
