@@ -44,7 +44,7 @@ class MiaFunctions extends Mia {
 		$jour=date("d");
 		$mois=date("m");
 
-		$fp=fopen(getcwd().."/files/fete.txt","r");
+		$fp=fopen(getcwd()."/files/fete.txt","r");
 
 		if($fp) {
 

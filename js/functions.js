@@ -79,6 +79,8 @@ function makeAction(text, source) {
 
 		url = JS_URL+'functions.php?text='+text+'&source=js';
 
+	} else if(typeof getSearchParameters()['local'] !== 'undefined') {
+		url = 'functions.php?text='+text+'&source=js';
 	} else {
 
 		if(source === 'writing') {
