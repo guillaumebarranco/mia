@@ -157,17 +157,20 @@
 
 	// var_dump($text);
 
-	if(isset($_GET) && !empty($_GET)) {
-
-		if(isset($_GET['source']) && $_GET['source'] === 'js') {
-			echo $text;
-		} else {
-			echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
-			echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
-		}
-
+	if(IS_RASPBERRY === true) {
+		exec('mpg321 "'.$text.'"');
 	} else {
-		echo 'Just say something';
-	}
 
-	if(IS_RASPBERRY === true) exec('mpg321 "'.$text.'"');
+		if(isset($_GET) && !empty($_GET)) {
+
+			if(isset($_GET['source']) && $_GET['source'] === 'js') {
+				echo $text;
+			} else {
+				echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+				echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
+			}
+
+		} else {
+			echo 'Just say something';
+		}
+	}
