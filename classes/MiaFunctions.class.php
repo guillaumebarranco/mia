@@ -239,9 +239,6 @@ class MiaFunctions extends Mia {
 
 		$response = $html->find('.channel');
 
-		var_dump($response);
-		die;
-
 		$answer = '';
 
 		foreach ($response as $channel) {
