@@ -1,7 +1,62 @@
 var previouslySaid = '';
 
-// Search for entries in userSaid
+// Action sending params to mia core
+function makeAction(text, source) {
 
+	$('#main').empty();
+	console.log(text);
+
+	var google_translate_length = 63,
+		url;
+
+	if(typeof getSearchParameters()['overwrite'] !== 'undefined') {
+
+		url = JS_URL+'functions.php?text='+text+'&source=js';
+
+	} else if(typeof getSearchParameters()['local'] !== 'undefined') {
+		url = 'functions.php?text='+text+'&source=js';
+	} else {
+
+		if(source === 'writing') {
+			url = 'functions.php?text='+text+'&source=js';
+		} else {
+			url = JS_URL+'functions.php?text='+text+'&source=js';
+		}
+	}
+
+	if(typeof getSearchParameters()['audio'] !== 'undefined' && getSearchParameters()['audio'] == 'true') {
+		source = "audio";
+	}
+
+	$.ajax({
+		url: url,
+		type: 'GET',
+
+		success: function(response) {
+			response = JSON.parse(response);
+			console.log(response);
+
+			var subtext = response.text.substr(google_translate_length);
+
+			var time = getTimeTalkByText(subtext);
+
+			if(source === 'audio') {
+				$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
+			} else if(source === "writing") {
+				$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
+			}
+
+			$('#mouth').addClass('anim');
+
+			setTimeout(function() {
+				$('#mouth').removeClass('anim');
+			}, time * 1000);
+			
+		}
+	});
+}
+
+// Search for entries in userSaid
 function checkArray(userSaid, entries, privateEntries, source) {
 	var entryFound = false;
 
@@ -66,66 +121,23 @@ function sanitizeUserSaid(userSaid) {
 	return newArray;
 }
 
-// Action sending params to mia core
-function makeAction(text, source) {
+function getTimeTalkByText(text) {
 
-	$('#main').empty();
-	console.log(text);
+	var time;
 
-	var google_translate_length = 63,
-		url;
-
-	if(typeof getSearchParameters()['overwrite'] !== 'undefined') {
-
-		url = JS_URL+'functions.php?text='+text+'&source=js';
-
-	} else if(typeof getSearchParameters()['local'] !== 'undefined') {
-		url = 'functions.php?text='+text+'&source=js';
-	} else {
-
-		if(source === 'writing') {
-			url = 'functions.php?text='+text+'&source=js';
-		} else {
-			url = JS_URL+'functions.php?text='+text+'&source=js';
-		}
+	if(text.length < 5) {
+		time = 0.5;
+	} else if(text.length >= 5 && text.length < 10) {
+		time = 1;
+	} else if(text.length >= 10 && text.length < 35) {
+		time = 2;
+	} else if(text.length >= 35 && text.length < 60) {
+		time = 3;
+	} else if(text.length >= 60 && text.length < 85) {
+		time = 4;
 	}
 
-	$.ajax({
-		url: url,
-		type: 'GET',
-
-		success: function(response) {
-			response = JSON.parse(response);
-			console.log(response);
-
-			var subtext = response.text.substr(google_translate_length);
-
-			console.log(subtext.length);
-
-			if(subtext.length < 10) {
-				response.time = 1;
-			} else if(subtext.length >= 10 && subtext.length < 35) {
-				response.time = 2;
-			} else if(subtext.length >= 35 && subtext.length < 60) {
-				response.time = 3;
-			} else if(subtext.length >= 60 && subtext.length < 85) {
-				response.time = 4;
-			}
-
-			if(source === 'audio') {
-				$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
-			} else if(source === "writing") {
-				$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
-			}
-
-			$('#mouth').addClass('anim');
-
-			setTimeout(function() {
-				$('#mouth').removeClass('anim');
-			}, response.time * 1000);
-			
-		}
-	});
+	return time;
 }
 
 $('input').on('keydown', function(e) {

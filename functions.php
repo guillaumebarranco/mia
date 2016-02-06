@@ -15,6 +15,7 @@
 		$miaKnowledge = new MiaKnowledge();
 		$miaFunctions = new MiaFunctions();
 		$miaPrivate = new MiaPrivate();
+		$miaRealWorld = new MiaRealWorld();
 
 		switch($_GET['text']) {
 
@@ -72,6 +73,7 @@
 				case "hour": $text = $miaFunctions->getHour(); break;
 				case "date": $text = $miaFunctions->getTodayDate(); break;
 				case "temperature": $text = $miaFunctions->getTemperature(); break;
+				case "temperature_tomorrow": $text = $miaFunctions->getTomorrowTemperature(); break;
 				case "fete": $text = $miaFunctions->getFete(); break;
 
 				case "platine": $text = $miaFunctions->getPlatine(); break;
@@ -120,6 +122,8 @@
 
 				case "wellFine": $text = $mia->sayAlright(); break;
 
+				case "sayHelloToNico": $text = $mia->sayHelloToNico(); break;
+
 				case "wellAndYou": $text = $mia->sayItsOk(); break;
 
 				case "bemol": $text = $mia->sayAlright(); break;
@@ -136,6 +140,10 @@
 				case "whereAmI": $text = $miaFunctions->youAreHere(); break;
 				case "weGo": $text = $mia->sayWhereYouGo(); break;
 				case "iMGoing": $text = $mia->sayBeCarefulOnTheRoad(); break;
+
+			//	Real World
+
+				case "brightLight": $text = $miaRealWorld->brightLight(); break;
 
 			default:
 				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
@@ -175,8 +183,11 @@
 
 				$array = array(
 					"text" => $text,
-					"time" => 2
+					// "time" => 2
 				);
+
+				// var_dump($array);
+				// die;
 
 				echo json_encode($array);
 

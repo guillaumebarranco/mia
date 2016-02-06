@@ -93,6 +93,28 @@ class MiaFunctions extends Mia {
 		return $this->echoGoogle('Nous sommes le '.$day.' '.$month.' '.$year.$this->getFete());
 	}
 
+	public function getTomorrowTemperature() {
+
+		$cl = curl_init("http://weather.yahooapis.com/forecastrss?w=615702&u=f");
+
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$sxe = simplexml_load_string(curl_exec($cl));
+
+
+		$ns = $sxe->getDocNamespaces();
+		$sxe->registerXPathNamespace('yweather',$ns['yweather']);
+
+		$tomorrow = $sxe->xpath("/rss/channel/item/yweather:forecast");
+
+		$temp_morning = $tomorrow[1]['low'];
+		$temp_afternoon = $tomorrow[1]['high'];
+
+		$temp_morning = ceil(($temp_morning - 32) / 1.8);
+		$temp_afternoon = ceil(($temp_afternoon - 32) / 1.8);
+
+		return $this->echoGoogle("Il fera en ".$temp_morning." degrés le matin et ".$temp_afternoon." degrés l'après-midi à Paris demain.");
+	}
+
 	public function getTemperature() {
 
 		// 615702 is Paris
@@ -101,9 +123,12 @@ class MiaFunctions extends Mia {
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$sxe = simplexml_load_string(curl_exec($cl));
 
+
 		$ns = $sxe->getDocNamespaces();
 		$sxe->registerXPathNamespace('yweather',$ns['yweather']);
+
 		$fareinheit = $sxe->xpath("/rss/channel/item/yweather:condition/@temp");
+		$forecast = $sxe->xpath("/rss/channel/item/yweather:forecast");
 
 		$celsius = ceil(($fareinheit[0]->temp - 32) / 1.8);
 
@@ -245,7 +270,7 @@ class MiaFunctions extends Mia {
 			
 			$title = $channel->children[0]->children[0]->attr['title'];
 
-			$array_chaines = array('TF1', 'M6', 'W9', 'Canal+', 'TMC', 'NT1');
+			$array_chaines = array('TF1', 'M6', 'W9', 'Canal+');
 
 			if(in_array(substr($title, 13), $array_chaines)) {
 				$movie = $channel->children[1]->children[1]->children[2]->attr['title'];
@@ -298,8 +323,6 @@ class MiaFunctions extends Mia {
 
 		$city = unserialize((file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip)));
 
-		// var_dump($city);
-		// die;
 
 		$city = $city['geoplugin_city'];
 
@@ -312,9 +335,6 @@ class MiaFunctions extends Mia {
 		} else {
 			$text = "Vous êtes dans la ville de ".$city;
 		}
-
-		// var_dump($text);
-		// die;
 
 		return $this->echoGoogle($text);
 	}

@@ -140,6 +140,10 @@ class Mia {
 		return $this->echoGoogle("Barry Allen alias The Flash.");
 	}
 
+	public function sayHelloToNico() {
+		return $this->echoGoogle("Bonjour Nicolas");
+	}
+
 	
 
 
