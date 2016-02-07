@@ -97,5 +97,6 @@ var entries = {
 
 	//	Real World
 
-		'allume la lumière' 				: 'brightLight',
+		'allume la lumière' 				: 'turnOnLight',
+		'éteins la lumière' 				: 'turnOffLight',
 };
