@@ -86,7 +86,7 @@
 				case "guillaume_trophies": $text = $miaFunctions->getAllTrophiesGuillaume(); break;
 				case "ronan_trophies": $text = $miaFunctions->getAllTrophiesRonan(); break;
 
-				case "first_law": $text = $miaKnowledge->getFirstLaw(); break;
+					case "first_law": $text = $miaKnowledge->getFirstLaw(); break;
 				case "second_law": $text = $miaKnowledge->getSecondLaw(); break;
 				case "third_law": $text = $miaKnowledge->getThirdLaw(); break;
 				case "laws": $text = $miaKnowledge->getThreeLaws(); break;
@@ -143,7 +143,8 @@
 
 			//	Real World
 
-				case "brightLight": $text = $miaRealWorld->brightLight(); break;
+				case "turnOnLight": $text = $miaRealWorld->turnOnLight(); break;
+				case "turnOffLight": $text = $miaRealWorld->turnOffLight(); break;
 
 			default:
 				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
@@ -173,7 +174,16 @@
 	// die;
 
 	if(IS_RASPBERRY === true) {
+		// die('ok');
+		// $text = urldecode($text);
+		// var_dump(urlencode($text));
+		// echo '<iframe style="opacity:1;" src="'.$text.'" autoplay></iframe>';
+		// echo '<a href="http://localhost/raspberry/functions.php">Retour</a>';
+
 		exec('mpg321 "'.$text.'"');
+		// $text = "La lumière a été allumée";
+		// exec('mpg321 "http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='.urlencode($text).'"');
+
 	} else {
 
 		if(isset($_GET) && !empty($_GET)) {
