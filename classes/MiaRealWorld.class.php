@@ -6,11 +6,7 @@ class MiaRealWorld extends Mia {
 
 		$koko = exec("cat /sys/class/leds/led1/brightness");
 
-		var_dump($koko);
-		die;
-
-		if("is off") {
-			exec('echo 1 => /devices/led1');
+		if($koko === "255") {
 			return $this->echoGoogle('La lumière est déjà allumée.');
 		}
 
