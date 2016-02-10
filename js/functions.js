@@ -84,11 +84,13 @@ function checkArray(userSaid, entries, privateEntries, source) {
 		}
 	}
 
-	if(!entryFound) {
-		var formatedEntries = [];
-		for (entry in entries) formatedEntries.push(entry);
-		checkForSimilateAnswer(userSaid, formatedEntries, 1, source);
-	}
+	if(!entryFound) checkForSimilateAnswer(userSaid, formateEntries(), 1, source);
+}
+
+function formateEntries() {
+	var formatedEntries = [];
+	for (entry in entries) formatedEntries.push(entry);
+	return formatedEntries;
 }
 
 function checkForSimilateAnswer(userSaid, formatedEntries, step, source) {
@@ -109,8 +111,12 @@ function checkForSimilateAnswer(userSaid, formatedEntries, step, source) {
 	if(matches.length > 1) {
 		step = step + 1;
 		checkForSimilateAnswer(userSaid, matches, step, source);
-	} else {
+
+	} else if(matches.length === 1) {
 		makeAction(entries[matches[0]], source);
+	} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
+		userSaid.shift();
+		checkForSimilateAnswer(userSaid, formateEntries(), 1, source);;
 	}
 }
 
