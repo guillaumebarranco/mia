@@ -83,6 +83,44 @@ function checkArray(userSaid, entries, privateEntries, source) {
 			}
 		}
 	}
+
+	if(!entryFound) {
+		var formatedEntries = [];
+		for (entry in entries) formatedEntries.push(entry);
+		checkForSimilateAnswer(userSaid, formatedEntries, 1, source);
+	}
+}
+
+function checkForSimilateAnswer(userSaid, formatedEntries, step, source) {
+	// console.log('the entry was not found, we try ressemblance');
+
+	var entryFound = false,
+		matches = [];
+
+	for (entry in formatedEntries) {
+
+		if(!entryFound && wordRessemble(formatedEntries[entry], userSaid[0], step)) {
+			matches.push(formatedEntries[entry]);
+		}
+	}
+
+	console.log(matches);
+
+	if(matches.length > 1) {
+		step = step + 1;
+		checkForSimilateAnswer(userSaid, matches, step, source);
+	} else {
+		makeAction(entries[matches[0]], source);
+	}
+}
+
+function wordRessemble(word1, word2, step) {
+	if(word1.substr(0,step) == word2.substr(0,step)) {
+		console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
+		return true;
+	}
+
+	return false;
 }
 
 // Main function
