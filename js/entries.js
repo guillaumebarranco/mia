@@ -12,28 +12,28 @@ var entries = {
 		"quelle est ta fonction"			: 'robot',
 		"qui es tu"							: 'whoAreYou',
 
-		'quel est ton plat préféré'			: 'favoriteFood',
+		'quel est ton plat prefere'			: 'favoriteFood',
 
-		'qui est ton modèle'				: 'yourModel',
+		'qui est ton modele'				: 'yourModel',
 
 		'as tu un amoureux'					: 'yourLover',
 
 		'il est au courant'					: 'isHeAware',
 
-		"qu'est ce que tu déteste"			: 'whatYouHate',
+		"qu'est ce que tu deteste"			: 'whatYouHate',
 		"qu'est ce que tu aime"				: 'whatYouLike',
 
-		"dis bonjour à nicolas"				: "sayHelloToNico",
+		"dis bonjour a nicolas"				: "sayHelloToNico",
 
 		"je suis fier de toi"				: "imProudOfYou",
 
 	//	Custom
 
 		'tu as bien dormi'					: 'didYouSleepWell',
-		'tu as fait de beaux rêves'			: 'didYouHaveNiceDreams',
+		'tu as fait de beaux reves'			: 'didYouHaveNiceDreams',
 		'je vais y aller'					: 'iMGoing',
 		'je sais pas quoi faire'			: 'whatDoIDo',
-		"ça m'énerve"						: 'itAngersMe',
+		"ça m'enerve"						: 'itAngersMe',
 
 	//	Informations
 
@@ -41,10 +41,10 @@ var entries = {
 		'quelle heure il est'				: 'hour',
 		'il fait combien'					: 'temperature',
 		'il fait combien demain'			: 'temperature_tomorrow',
-		"combien j'ai de trophées"			: 'guillaume_trophies',
-		'combien il a de trophées'			: 'ronan_trophies',
+		"combien j'ai de trophees"			: 'guillaume_trophies',
+		'combien il a de trophees'			: 'ronan_trophies',
 		'quelle est la seconde loi'			: 'second_law',
-		'quelle est la troisième loi'		: 'third_law',
+		'quelle est la troisieme loi'		: 'third_law',
 		'quelles sont les trois lois'		: 'laws',
 
 		'le chapitre est il sorti'			: 'isOpOut',
@@ -56,8 +56,8 @@ var entries = {
 		'quoi de neuf'						: 'whatsUp',
 
 		'où est mon colis'					: 'colisStatus',
-		'activité développement'			: 'commits',
-		'état serveur'						: 'myServerState',
+		'activite developpement'			: 'commits',
+		'etat serveur'						: 'myServerState',
 
 		'programme de ce soir'				: 'getTV',
 		'quel est le programme de ce soir'	: 'getTV',
@@ -66,9 +66,9 @@ var entries = {
 
 	//	All commands
 
-		'quel âge as tu'					: 'age',
-		'par quoi es tu commandée'			: 'rule',
-		'quelle est la première loi'		: 'first_law',
+		'quel age as tu'					: 'age',
+		'par quoi es tu commandee'			: 'rule',
+		'quelle est la premiere loi'		: 'first_law',
 		'veux tu une blague'				: 'wantAJoke',
 		'que veux tu'						: 'whatYouWant',
 		'comment vas tu'					: 'howAreYou',
@@ -90,15 +90,15 @@ var entries = {
 
 	//	So Cool
 
-		'qui est le plus grand de tous les héros' 		: 'whoIsTheHero',
-		'qui est le plus grand héros de tous les temps' : 'whoIsTheHero',
+		'qui est le plus grand de tous les heros' 		: 'whoIsTheHero',
+		'qui est le plus grand heros de tous les temps' : 'whoIsTheHero',
 
 		"qui est le roi de la terre" 					: 'whoIsTheKing',
-		'qui a tiré en premier' 						: 'whoShotFirst',
+		'qui a tire en premier' 						: 'whoShotFirst',
 		"qui est l'homme le plus rapide du monde" 		: 'whoIsTheFastestManAlive',
 
 	//	Real World
 
-		'allume la lumière' 				: 'turnOnLight',
-		'éteins la lumière' 				: 'turnOffLight',
+		'allume la lumiere' 				: 'turnOnLight',
+		'eteins la lumiere' 				: 'turnOffLight',
 };

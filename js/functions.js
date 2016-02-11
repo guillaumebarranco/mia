@@ -155,16 +155,11 @@ function functionsForClean() {
 
 	// Function for sanitize all entries (accents, trim, toLowerCase)
 	this.sanitize = function(entry) {
-
-		// var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
-		// var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
-
-		var pattern_accent = new Array("-");
-		var pattern_replace_accent = new Array(" ");
+		
+		var pattern_accent 				= new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö", "-");
+		var pattern_replace_accent 		= new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o", " ");
 
 		entry = entry.toLowerCase().trim();
-
-		// return entry;
 
 		return preg_replace(pattern_accent, pattern_replace_accent, entry);
 	};
