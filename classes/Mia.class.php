@@ -20,7 +20,7 @@ class Mia {
 		return $array[rand(0, count($array) -1)];
 	}
 
-	public function transformMonthToString($entry) {
+	function transformMonthToString($entry) {
 
 		$months = array(
 			'01' => "Janvier",
@@ -146,6 +146,14 @@ class Mia {
 
 	public function sayHelloToNico() {
 		return $this->echoGoogle("Bonjour Nicolas");
+	}
+
+	public function sayThanksALot() {
+		return $this->echoGoogle("Merci beaucoup ! :)");
+	}
+
+	public function sayImProudOfYouToo() {
+		return $this->echoGoogle("Merci beaucoup ! Je suis aussi fière de vous =)");
 	}
 
 	

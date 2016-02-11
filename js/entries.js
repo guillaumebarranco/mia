@@ -5,6 +5,7 @@ var entries = {
 		"bonjour mia"						: 'hello',
 		"tu fais quoi"						: 'whatAreYouDoing',
 		'merci mia'							: 'thankYou',
+		"tu as raison !"					: "youAreRight",
 
 	//	About Mia
 

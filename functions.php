@@ -4,11 +4,11 @@
 
 	require_once('classes/autoloader.class.php');
 	require_once('config.php');
-	require_once(getcwd().'/libs/simple_html_dom.php');
+	// require_once(getcwd().'/libs/simple_html_dom.php');
 	
 	$text = '';
 
-	if(isset($_GET['text']) && $_GET['text'] !== '') {
+	function switchText($textEntry) {
 
 		$mia = new Mia();
 		$miaHumour = new MiaHumour();
@@ -17,11 +17,12 @@
 		$miaPrivate = new MiaPrivate();
 		$miaRealWorld = new MiaRealWorld();
 
-		switch($_GET['text']) {
+		switch($textEntry) {
 
 			//	Basics
 
 				case "hello": $text = $mia->sayHello(); break;
+				case "youAreRight": $text = $mia->sayOfCourse(); break;
 			
 			//	About Mia
 
@@ -50,9 +51,11 @@
 				case "whatYouHate": $text = $mia->whatYouHate(); break;
 				case "whatYouLike": $text = $mia->whatYouLike(); break;
 
+				case "imProudOfYou": $text = $mia->sayImProudOfYouToo(); break;
+
 			//	Custom
 			
-				case 'whatDoIDo': $text = $miaFunctions->whatDoIDo(); break;
+				case 'whatDoIDo': $text = $miaKnowledge->whatDoIDo(); break;
 				case 'itAngersMe': $text = $miaFunctions->itAngersMe(); break;
 				case 'thankYou': $text = $mia->sayNoProblem(); break;
 
@@ -154,7 +157,10 @@
 			break;
 		}
 
+		return $text;
 	}
+
+	if(isset($_GET['text']) && $_GET['text'] !== '') $text = switchText($_GET['text']);
 
 	if(isset($_POST['text']) && $_POST['text'] !== '') {
 
