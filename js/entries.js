@@ -10,18 +10,18 @@ var entries = {
 
 		"quel est ton nom"					: 'name',
 		"quelle est ta fonction"			: 'robot',
+		"qui es tu"							: 'whoAreYou',
+
 		'quel est ton plat préféré'			: 'favoriteFood',
 
 		'qui est ton modèle'				: 'yourModel',
-		'qui est ton model'					: 'yourModel',
 
-		'as-tu un amoureux'					: 'yourLover',
-		'as-tu en amoureux'					: 'yourLover',
+		'as tu un amoureux'					: 'yourLover',
 
 		'il est au courant'					: 'isHeAware',
 
-		"qu'est-ce que tu déteste"			: 'whatYouHate',
-		"qu'est-ce que tu aime"				: 'whatYouLike',
+		"qu'est ce que tu déteste"			: 'whatYouHate',
+		"qu'est ce que tu aime"				: 'whatYouLike',
 
 		"dis bonjour à nicolas"				: "sayHelloToNico",
 
@@ -47,11 +47,11 @@ var entries = {
 		'quelle est la troisième loi'		: 'third_law',
 		'quelles sont les trois lois'		: 'laws',
 
-		'le chapitre est-il sorti'			: 'isOpOut',
+		'le chapitre est il sorti'			: 'isOpOut',
 		'op out'							: 'isOpOut',
 		'chapitre sorti'					: 'isOpOut',
 
-		'où suis-je'						: 'whereAmI',
+		'où suis je'						: 'whereAmI',
 
 		'quoi de neuf'						: 'whatsUp',
 
@@ -66,12 +66,12 @@ var entries = {
 
 	//	All commands
 
-		'quel âge as-tu'					: 'age',
-		'par quoi es-tu commandée'			: 'rule',
+		'quel âge as tu'					: 'age',
+		'par quoi es tu commandée'			: 'rule',
 		'quelle est la première loi'		: 'first_law',
-		'veux-tu une blague'				: 'wantAJoke',
+		'veux tu une blague'				: 'wantAJoke',
 		'que veux tu'						: 'whatYouWant',
-		'comment vas-tu'					: 'howAreYou',
+		'comment vas tu'					: 'howAreYou',
 		'bien merci'						: 'wellFine',
 		'bien et toi'						: 'wellAndYou',
 		'bemol'								: 'bemol',

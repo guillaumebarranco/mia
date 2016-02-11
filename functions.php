@@ -27,6 +27,9 @@
 
 				case "name": $text = $mia->sayName(); break;
 				case "robot": $text = $mia->sayFunction(); break;
+
+				case "whoAreYou": $text = $mia->whoIAm(); break;
+
 				case "rule": $text = $miaFunctions->getRule(); break;
 				case "age": $text = $miaHumour->getAge(); break;
 

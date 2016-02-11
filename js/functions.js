@@ -44,7 +44,7 @@ function echoCommand() {
 				if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
 					entryFound = true;
 					commandsFunctions.pushToPreviouslySaid(userSaid[i]);
-					_this.makeAction(entries[userSaid[i]], source);
+					_this.makeAction(entries[cleanFunctions.sanitize(userSaid[i])], source);
 				}
 			}
 		}
@@ -56,7 +56,7 @@ function echoCommand() {
 					if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
 						entryFound = true;
 						commandsFunctions.pushToPreviouslySaid(userSaid[i]);
-						_this.makeAction(privateEntries[userSaid[j]], source);
+						_this.makeAction(privateEntries[cleanFunctions.sanitize(userSaid[j])], source);
 					}
 				}
 			}
@@ -106,13 +106,7 @@ function echoCommand() {
 				response = JSON.parse(response);
 				console.log(response);
 
-				launchLoader = false;
-
 				myLoader.hide();
-
-				setTimeout(function() {
-					launchLoader = true;
-				}, 300);
 
 				var subtext = response.text.substr(google_translate_length),
 					time = getTimeTalkByText(subtext);
@@ -128,6 +122,9 @@ function echoCommand() {
 				setTimeout(function() {
 					$('#mouth').removeClass('anim');
 				}, time * 1000);
+
+			}, error: function() {
+				myLoader.hide();
 			}
 		});
 	};
@@ -159,14 +156,17 @@ function functionsForClean() {
 	// Function for sanitize all entries (accents, trim, toLowerCase)
 	this.sanitize = function(entry) {
 
-		var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
-		var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
+		// var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
+		// var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
+
+		var pattern_accent = new Array("-");
+		var pattern_replace_accent = new Array(" ");
 
 		entry = entry.toLowerCase().trim();
 
-		return entry;
+		// return entry;
 
-		//return preg_replace(pattern_accent, pattern_replace_accent, entry);
+		return preg_replace(pattern_accent, pattern_replace_accent, entry);
 	};
 
 	// Trim and all userSaid array
@@ -226,7 +226,13 @@ function Loader() {
 	};
 
 	this.hide = function() {
+
+		launchLoader = false;
 		$('.loader').hide();
+
+		setTimeout(function() {
+			launchLoader = true;
+		}, 300);
 	};
 }
 
