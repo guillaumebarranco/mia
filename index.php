@@ -9,6 +9,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/styles.css" />
 		<link rel="stylesheet" href="css/mia.css" />
+		<link rel="stylesheet" href="css/loader.css" />
 	</head>
 
 	<body>
@@ -27,6 +28,16 @@
 				<button style="opacity:0;" class="sendCommand">Send Command</button>
 				
 			</form>
+
+			<article class="loader">
+                <div class="rectangle-bounce selected">
+                  <div class="rect1"></div>
+                  <div class="rect2"></div>
+                  <div class="rect3"></div>
+                  <div class="rect4"></div>
+                  <div class="rect5"></div>
+                </div>
+            </article>
 
 			<section id="main"></section>
 

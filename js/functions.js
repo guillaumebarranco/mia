@@ -2,7 +2,9 @@ var previouslySaid = [],
 	previouslySaidPosition = -1,
 	commandsFunctions = new echoCommand(),
 	cleanFunctions = new functionsForClean(),
-	morphingFunctions = new functionsForMorphing()
+	morphingFunctions = new functionsForMorphing(),
+	myLoader = new Loader(),
+	launchLoader = true
 ;
 
 function echoCommand() {
@@ -91,6 +93,11 @@ function echoCommand() {
 			source = "audio";
 		}
 
+		
+		setTimeout(function() {
+			if(launchLoader) myLoader.show();
+		}, 300);
+
 		$.ajax({
 			url: url,
 			type: 'GET',
@@ -98,6 +105,14 @@ function echoCommand() {
 			success: function(response) {
 				response = JSON.parse(response);
 				console.log(response);
+
+				launchLoader = false;
+
+				myLoader.hide();
+
+				setTimeout(function() {
+					launchLoader = true;
+				}, 300);
 
 				var subtext = response.text.substr(google_translate_length),
 					time = getTimeTalkByText(subtext);
@@ -204,6 +219,17 @@ function functionsForMorphing() {
 	};
 }
 
+function Loader() {
+
+	this.show = function() {
+		$('.loader').show();
+	};
+
+	this.hide = function() {
+		$('.loader').hide();
+	};
+}
+
 /***********************/
 /*   USEFUL FUNCTIONS  */
 /***********************/
@@ -290,15 +316,15 @@ $('input').on('keydown', function(e) {
 	// console.log(e.which);
 
 	if(e.which === 38) {
-		console.log(previouslySaid[previouslySaidPosition]);
-		console.log(previouslySaidPosition);
+		// console.log(previouslySaid[previouslySaidPosition]);
+		// console.log(previouslySaidPosition);
 
 		$('input').val(previouslySaid[previouslySaidPosition]);
 		if(previouslySaidPosition > 0) previouslySaidPosition--;
 
 	} else if(e.which === 40) {
-		console.log(previouslySaid[previouslySaidPosition]);
-		console.log(previouslySaidPosition);
+		// console.log(previouslySaid[previouslySaidPosition]);
+		// console.log(previouslySaidPosition);
 
 		$('input').val(previouslySaid[previouslySaidPosition]);
 		if(previouslySaidPosition <= previouslySaid.length) previouslySaidPosition++;
