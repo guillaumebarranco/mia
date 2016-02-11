@@ -1,4 +1,5 @@
 var previouslySaid = [],
+	previouslySaidPosition = -1,
 	commandsFunctions = new echoCommand(),
 	cleanFunctions = new functionsForClean(),
 	morphingFunctions = new functionsForMorphing()
@@ -40,7 +41,7 @@ function echoCommand() {
 
 				if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
 					entryFound = true;
-					previouslySaid.push(userSaid[i]);
+					commandsFunctions.pushToPreviouslySaid(userSaid[i]);
 					_this.makeAction(entries[userSaid[i]], source);
 				}
 			}
@@ -52,7 +53,7 @@ function echoCommand() {
 
 					if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
 						entryFound = true;
-						previouslySaid.push(userSaid[j]);
+						commandsFunctions.pushToPreviouslySaid(userSaid[i]);
 						_this.makeAction(privateEntries[userSaid[j]], source);
 					}
 				}
@@ -123,6 +124,11 @@ function echoCommand() {
 			'<iframe style="opacity:0;" src="http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='+text+'"></iframe>'
 		);
 	};
+
+	this.pushToPreviouslySaid = function(word) {
+		previouslySaid.push(word);
+		previouslySaidPosition++;
+	};
 }
 
 function functionsForClean() {
@@ -173,14 +179,16 @@ function functionsForMorphing() {
 			}
 		}
 
-		console.log(matches);
+		// console.log(matches);
 
 		if(matches.length > 1) {
 			step = step + 1;
 			_this.checkForSimilateAnswer(userSaid, matches, step, source);
 
 		} else if(matches.length === 1) {
+			commandsFunctions.pushToPreviouslySaid(matches[0]);
 			commandsFunctions.makeAction(entries[matches[0]], source);
+
 		} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
 			userSaid.shift();
 			_this.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
@@ -189,10 +197,9 @@ function functionsForMorphing() {
 
 	this.wordRessemble = function(word1, word2, step) {
 		if(word1.substr(0,step) == word2.substr(0,step)) {
-			console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
+			// console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
 			return true;
 		}
-
 		return false;
 	};
 }
@@ -280,5 +287,20 @@ Object.size = function (obj) {
 
 // Listening top arrow on keyboard to search previous command said
 $('input').on('keydown', function(e) {
-	if(e.which === 38) $('input').val(previouslySaid[0]);
+	// console.log(e.which);
+
+	if(e.which === 38) {
+		console.log(previouslySaid[previouslySaidPosition]);
+		console.log(previouslySaidPosition);
+
+		$('input').val(previouslySaid[previouslySaidPosition]);
+		if(previouslySaidPosition > 0) previouslySaidPosition--;
+
+	} else if(e.which === 40) {
+		console.log(previouslySaid[previouslySaidPosition]);
+		console.log(previouslySaidPosition);
+
+		$('input').val(previouslySaid[previouslySaidPosition]);
+		if(previouslySaidPosition <= previouslySaid.length) previouslySaidPosition++;
+	}
 });
