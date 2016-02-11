@@ -12,12 +12,10 @@ var startListeningAudio = function() {
 
 		annyang.addCallback('result', function (userSaid) {
 
-			newArray = sanitizeUserSaid(userSaid);
+			newArray = cleanFunctions.sanitizeUserSaid(userSaid);
 			console.log(newArray);
 
-			searchCommand(newArray, 'audio');
+			commandsFunctions.searchCommand(newArray, 'audio');
 		});
-
 	}
-
 };

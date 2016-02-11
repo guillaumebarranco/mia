@@ -1,169 +1,205 @@
-var previouslySaid = '';
+var previouslySaid = [],
+	commandsFunctions = new echoCommand(),
+	cleanFunctions = new functionsForClean(),
+	morphingFunctions = new functionsForMorphing()
+;
 
-// Action sending params to mia core
-function makeAction(text, source) {
+function echoCommand() {
 
-	$('#main').empty();
-	console.log(text);
+	var _this = this;
 
-	var google_translate_length = 63,
-		url;
+	// Main function
+	this.searchCommand = function(newArray, source) {
 
-	if(typeof getSearchParameters()['overwrite'] !== 'undefined') {
+		if(in_array('stop', newArray)) canReact = false;
+		if(in_array('recharge', newArray)) location.reload();
 
-		url = JS_URL+'functions.php?text='+text+'&source=js';
+		if(in_array('répète', newArray)) {
+			if(previouslySaid[0] !== '') _this.checkArray(previouslySaid, entries, privateEntries, source);
+		}
 
-	} else if(typeof getSearchParameters()['local'] !== 'undefined') {
-		url = 'functions.php?text='+text+'&source=js';
-	} else {
+		if(canReact) {
 
-		if(source === 'writing') {
-			url = 'functions.php?text='+text+'&source=js';
+			if(in_array('combien de commandes possèdes-tu', newArray)) {
+				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+			}
+
+			_this.checkArray(newArray, entries, privateEntries, source);
+
 		} else {
-			url = JS_URL+'functions.php?text='+text+'&source=js';
+			if(in_array('démarre', newArray)) canReact = true;
 		}
-	}
+	};
 
-	if(typeof getSearchParameters()['audio'] !== 'undefined' && getSearchParameters()['audio'] == 'true') {
-		source = "audio";
-	}
+	// Search for entries in userSaid
+	this.checkArray = function(userSaid, entries, privateEntries, source) {
+		var entryFound = false;
 
-	$.ajax({
-		url: url,
-		type: 'GET',
-
-		success: function(response) {
-			response = JSON.parse(response);
-			console.log(response);
-
-			var subtext = response.text.substr(google_translate_length);
-
-			var time = getTimeTalkByText(subtext);
-
-			if(source === 'audio') {
-				$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
-			} else if(source === "writing") {
-				$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
-			}
-
-			$('#mouth').addClass('anim');
-
-			setTimeout(function() {
-				$('#mouth').removeClass('anim');
-			}, time * 1000);
-			
-		}
-	});
-}
-
-// Search for entries in userSaid
-function checkArray(userSaid, entries, privateEntries, source) {
-	var entryFound = false;
-
-	for (var i = 0; i < userSaid.length; i++) {
-		if(!entryFound) {
-
-			if(typeof entries[sanitize(userSaid[i])] != 'undefined') {
-				entryFound = true;
-				previouslySaid = userSaid[i];
-				makeAction(entries[userSaid[i]], source);
-			}
-		}
-	}
-
-	if(!entryFound) {
 		for (var i = 0; i < userSaid.length; i++) {
 			if(!entryFound) {
 
-				if(typeof privateEntries[sanitize(userSaid[i])] != 'undefined') {
+				if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
 					entryFound = true;
-					previouslySaid = userSaid[i];
-					makeAction(privateEntries[userSaid[i]], source);
+					previouslySaid.push(userSaid[i]);
+					_this.makeAction(entries[userSaid[i]], source);
 				}
 			}
 		}
-	}
 
-	if(!entryFound) checkForSimilateAnswer(userSaid, formateEntries(), 1, source);
-}
+		if(!entryFound) {
+			for (var j = 0; j < userSaid.length; j++) {
+				if(!entryFound) {
 
-function formateEntries() {
-	var formatedEntries = [];
-	for (entry in entries) formatedEntries.push(entry);
-	return formatedEntries;
-}
-
-function checkForSimilateAnswer(userSaid, formatedEntries, step, source) {
-	// console.log('the entry was not found, we try ressemblance');
-
-	var entryFound = false,
-		matches = [];
-
-	for (entry in formatedEntries) {
-
-		if(!entryFound && wordRessemble(formatedEntries[entry], userSaid[0], step)) {
-			matches.push(formatedEntries[entry]);
-		}
-	}
-
-	console.log(matches);
-
-	if(matches.length > 1) {
-		step = step + 1;
-		checkForSimilateAnswer(userSaid, matches, step, source);
-
-	} else if(matches.length === 1) {
-		makeAction(entries[matches[0]], source);
-	} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
-		userSaid.shift();
-		checkForSimilateAnswer(userSaid, formateEntries(), 1, source);;
-	}
-}
-
-function wordRessemble(word1, word2, step) {
-	if(word1.substr(0,step) == word2.substr(0,step)) {
-		console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
-		return true;
-	}
-
-	return false;
-}
-
-// Main function
-function searchCommand(newArray, source) {
-
-	if(in_array('stop', newArray)) canReact = false;
-	if(in_array('recharge', newArray)) location.reload();
-	if(in_array('répète', newArray)) {
-
-		if(previouslySaid !== '') {
-			checkArray([previouslySaid], entries, privateEntries, source);
-		}
-	}
-
-	if(canReact) {
-
-		if(in_array('combien de commandes possèdes-tu', newArray)) {
-			speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+					if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
+						entryFound = true;
+						previouslySaid.push(userSaid[j]);
+						_this.makeAction(privateEntries[userSaid[j]], source);
+					}
+				}
+			}
 		}
 
-		checkArray(newArray, entries, privateEntries, source);
+		if(!entryFound) morphingFunctions.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+	};
 
-	} else {
-		if(in_array('démarre', newArray)) canReact = true;
-	}
+	// Action sending params to mia core
+	this.makeAction = function(text, source) {
+
+		$('#main').empty();
+		console.log(text);
+
+		var google_translate_length = 63,
+			url;
+
+		if(typeof getSearchParameters().overwrite !== 'undefined') {
+
+			url = JS_URL+'functions.php?text='+text+'&source=js';
+
+		} else if(typeof getSearchParameters().local !== 'undefined') {
+			url = 'functions.php?text='+text+'&source=js';
+		} else {
+
+			if(source === 'writing') {
+				url = 'functions.php?text='+text+'&source=js';
+			} else {
+				url = JS_URL+'functions.php?text='+text+'&source=js';
+			}
+		}
+
+		if(typeof getSearchParameters().audio !== 'undefined' && getSearchParameters().audio == 'true') {
+			source = "audio";
+		}
+
+		$.ajax({
+			url: url,
+			type: 'GET',
+
+			success: function(response) {
+				response = JSON.parse(response);
+				console.log(response);
+
+				var subtext = response.text.substr(google_translate_length),
+					time = getTimeTalkByText(subtext);
+
+				if(source === 'audio') {
+					$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
+				} else if(source === "writing") {
+					$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
+				}
+
+				$('#mouth').addClass('anim');
+
+				setTimeout(function() {
+					$('#mouth').removeClass('anim');
+				}, time * 1000);
+			}
+		});
+	};
+
+	// If action is made purely in Javascript
+	this.speakFromJavascript = function(text) {
+		$('iframe').remove();
+		$('#main').append(
+			'<iframe style="opacity:0;" src="http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='+text+'"></iframe>'
+		);
+	};
 }
 
-// Trim and all userSaid array
-function sanitizeUserSaid(userSaid) {
-	var newArray = [];
+function functionsForClean() {
 
-	for (var i = 0; i < userSaid.length; i++) {
-		newArray.push(sanitize(userSaid[i]));
-	}
+	var _this = this;
 
-	return newArray;
+	this.formateEntries = function() {
+		var formatedEntries = [];
+		for (var entry in entries) formatedEntries.push(entry);
+		return formatedEntries;
+	};
+
+	// Function for sanitize all entries (accents, trim, toLowerCase)
+	this.sanitize = function(entry) {
+
+		var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
+		var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
+
+		entry = entry.toLowerCase().trim();
+
+		return entry;
+
+		//return preg_replace(pattern_accent, pattern_replace_accent, entry);
+	};
+
+	// Trim and all userSaid array
+	this.sanitizeUserSaid = function(userSaid) {
+		var newArray = [];
+		for (var i = 0; i < userSaid.length; i++) newArray.push(_this.sanitize(userSaid[i]));
+		return newArray;
+	};
 }
+
+function functionsForMorphing() {
+
+	var _this = this;
+
+	this.checkForSimilateAnswer = function(userSaid, formatedEntries, step, source) {
+		// console.log('the entry was not found, we try ressemblance');
+
+		var entryFound = false,
+			matches = [];
+
+		for (var entry in formatedEntries) {
+
+			if(!entryFound && _this.wordRessemble(formatedEntries[entry], userSaid[0], step)) {
+				matches.push(formatedEntries[entry]);
+			}
+		}
+
+		console.log(matches);
+
+		if(matches.length > 1) {
+			step = step + 1;
+			_this.checkForSimilateAnswer(userSaid, matches, step, source);
+
+		} else if(matches.length === 1) {
+			commandsFunctions.makeAction(entries[matches[0]], source);
+		} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
+			userSaid.shift();
+			_this.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+		}
+	};
+
+	this.wordRessemble = function(word1, word2, step) {
+		if(word1.substr(0,step) == word2.substr(0,step)) {
+			console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
+			return true;
+		}
+
+		return false;
+	};
+}
+
+/***********************/
+/*   USEFUL FUNCTIONS  */
+/***********************/
 
 function getTimeTalkByText(text) {
 
@@ -184,24 +220,11 @@ function getTimeTalkByText(text) {
 	return time;
 }
 
-$('input').on('keydown', function(e) {
-	if(e.which === 38) $('input').val(previouslySaid);
-});
-
-// If action is made purely in Javascript
-function speakFromJavascript(text) {
-	$('iframe').remove();
-	$('#main').append(
-		'<iframe style="opacity:0;" src="http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='+text+'"></iframe>'
-	);
-}
-
 // Return all GET parameters of the URL
 function getSearchParameters() {
-      var prmstr = window.location.search.substr(1);
-      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+	var prmstr = window.location.search.substr(1);
+	return prmstr !== null && prmstr !== "" ? transformToAssocArray(prmstr) : {};
 }
-
 function transformToAssocArray(prmstr) {
     var params = {};
     var prmarr = prmstr.split("&");
@@ -210,19 +233,6 @@ function transformToAssocArray(prmstr) {
         params[tmparr[0]] = tmparr[1];
     }
     return params;
-}
-
-// Function for sanitize all entries (accents, trim, toLowerCase)
-function sanitize(entry) {
-
-	var pattern_accent = new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö");
-	var pattern_replace_accent = new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o");
-
-	entry = entry.toLowerCase().trim();
-
-	return entry;
-
-	//return preg_replace(pattern_accent, pattern_replace_accent, entry);
 }
 
 function preg_replace (array_pattern, array_pattern_replace, my_string)  {
@@ -235,25 +245,12 @@ function preg_replace (array_pattern, array_pattern_replace, my_string)  {
 	return new_string;
 }
 
-
-// Return length of an object
-Object.size = function (obj) {
-    var size = 0;
-    for (var key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
-
 // Search for a variable in an array
 function in_array(needle, haystack) {
-
 	var newArray = [];
-
 	for (var i = 0; i < haystack.length; i++) newArray.push(haystack[i].toLowerCase().trim());
 
 	if(haystack.indexOf(needle.toLowerCase().trim()) != -1) return true;
-
 	return false;
 }
 
@@ -267,3 +264,21 @@ function urldecode(str) {
     })
     .replace(/\+/g, '%20'));
 }
+
+// Return length of an object
+Object.size = function (obj) {
+    var size = 0;
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+/****************/
+/*   LISTENERS  */
+/****************/
+
+// Listening top arrow on keyboard to search previous command said
+$('input').on('keydown', function(e) {
+	if(e.which === 38) $('input').val(previouslySaid[0]);
+});

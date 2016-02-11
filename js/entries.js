@@ -25,6 +25,8 @@ var entries = {
 
 		"dis bonjour à nicolas"				: "sayHelloToNico",
 
+		"je suis fier de toi"				: "imProudOfYou",
+
 	//	Custom
 
 		'tu as bien dormi'					: 'didYouSleepWell',
