@@ -11,63 +11,49 @@ class MiaFunctions extends Mia {
 	public function getHour() {
 
 		$time = date('H:i');
-
 		$time = explode(':', $time);
 
 		if($time[0] < 12) {
-
-			if($time[0] === '00') {
-				$hour = 'Minuit et';
-			} else {
-				$hour = substr($time[0], 1). ' heures';
-			}
-
+			$hour = ($time[0] === '00') ? 'Minuit et' : substr($time[0], 1). ' heures';
 		} elseif($time[0] === '12') {
 			$hour = 'Midi et';
 		} else {
 			$hour = $time[0].' heures';
 		}
-		
-		if($time[1] < 10) {
-			$minutes = substr($time[1], 1). ' minutes';
-		} else {
-			$minutes = $time[1].' minutes';
-		}
 
-		
+		$minutes = ($time[1] < 10) ? substr($time[1], 1). ' minutes' : $time[1].' minutes';		
 
 		return $this->echoGoogle($hour.' et '.$minutes);
 	}
 
 	public function getFete() {
 
-		$jour=date("d");
-		$mois=date("m");
+		$day = date("d");
+		$month = date("m");
 
-		$fp=fopen(getcwd()."/files/fete.txt","r");
+		$fp = fopen(getcwd()."/files/fete.txt", "r");
 
 		if($fp) {
 
 			while (!feof($fp)) {
 
-				$ligne=fgets($fp,255);
+				$line = fgets($fp, 255);
 
-				$pos=strpos($ligne,';');
+				$pos = strpos($line,';');
 
-				$prenom=substr($ligne,0,$pos);
+				$firstname = substr($line,0,$pos);
 
-				$ligne=substr($ligne,$pos+1,strlen($ligne)-$pos);
+				$line = substr($line, $pos+1, strlen($line)-$pos);
 
-				$pos=strpos($ligne,';');
+				$pos = strpos($line, ';');
 
-				$jourtrouve=substr($ligne,0,$pos);
+				$dayFound = substr($line, 0, $pos);
 
-				$moistrouve=substr($ligne,$pos+1,strlen($ligne)-$pos-2);
+				$monthFound = substr($line, $pos+1, strlen($line)-$pos-2);
 
-				if(($jour == $jourtrouve) && ($mois == $moistrouve)) {
-
+				if(($day == $jourFound) && ($month == $moisFound)) {
 					fclose($fp);
-					return " Et c'est la Saint ".$prenom;
+					return " Et c'est la Saint ".$firstname;
 				}
 			}
 		}
@@ -83,8 +69,7 @@ class MiaFunctions extends Mia {
 
 	public function getTodayDate() {
 
-		$date = date('Y-m-d');
-		$date = explode('-', $date);
+		$date = explode('-', date('Y-m-d')); ;
 
 		$year = $date[0];
 		$month = $this->transformMonthToString($date[1]);
@@ -99,7 +84,6 @@ class MiaFunctions extends Mia {
 
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$sxe = simplexml_load_string(curl_exec($cl));
-
 
 		$ns = $sxe->getDocNamespaces();
 		$sxe->registerXPathNamespace('yweather',$ns['yweather']);
@@ -138,10 +122,8 @@ class MiaFunctions extends Mia {
 	function searchForOp($opOut) {
 
 		if(is_bool($opOut)) {
-
 			$answer = " Le chapitre de One Pice ";
 			$answer .= ($opOut) ? "est sorti. " : "n'est pas sorti. ";
-
 		} else {
 			$answer = '';
 		}
@@ -191,10 +173,6 @@ class MiaFunctions extends Mia {
 		$answer .= $this->searchForOp($opOut);
 
 		return $answer;
-	}
-
-	function shortenGoogle($string) {
-		return urldecode(substr($string, 63));
 	}
 
 	public function colisStatus() {
@@ -282,10 +260,9 @@ class MiaFunctions extends Mia {
 	}
 
 	public function isOpOut() {
-		// if page has element with class .episode-table, return true
 
-		$fp=fopen(getcwd()."/files/opChapter.txt","r");
-		$opChapter=fgets($fp,255);
+		$fp = fopen(getcwd()."/files/opChapter.txt", "r");
+		$opChapter = fgets($fp, 255);
 		fclose($fp);
 
 		$cl = curl_init("http://www.mangapanda.com/one-piece/".$opChapter);
@@ -300,12 +277,12 @@ class MiaFunctions extends Mia {
 		return $boolean;
 	}
 
-	public function updateOP() {
-		$fp=fopen(getcwd()."/files/opChapter.txt","r");
-		$opChapter=fgets($fp,255);
+	function updateOP() {
+		$fp = fopen(getcwd()."/files/opChapter.txt", "r");
+		$opChapter = fgets($fp, 255);
 		fclose($fp);
 
-		$newChapter = intval($opChapter)+1;
+		$newChapter = intval($opChapter) + 1;
 
 		file_put_contents("file:///C:/wamp/www/mia/files/opChapter.txt",$newChapter);
 	}
@@ -345,11 +322,7 @@ class MiaFunctions extends Mia {
 
 	    $pingresult = exec("ping $ip_server", $outcome, $status);
 
-	    if (0 == $status) {
-	        $status = "vivant";
-	    } else {
-	        $status = "mort";
-	    }
+	    $status = ($status === 0) ? 'vivant' : 'mort';
 
 	    return $this->echoGoogle('Votre serveur est '.$status);
 	}
@@ -392,5 +365,4 @@ class MiaFunctions extends Mia {
 	public function getBronze() {
 		return $this->echoGoogle("Vous avez ".$this->getTrophies()->bronze." trophées de bronze");
 	}
-
 }

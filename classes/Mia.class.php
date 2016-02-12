@@ -8,8 +8,12 @@ class Mia {
 
 	public function __construct() {}
 
-	public function echoGoogle($content) {
+	function echoGoogle($content) {
 		return GOOGLE2.urlencode($content);
+	}
+
+	function shortenGoogle($string) {
+		return urldecode(substr($string, 63));
 	}
 
 	/*
@@ -156,8 +160,6 @@ class Mia {
 		return $this->echoGoogle("Merci beaucoup ! Je suis aussi fière de vous =)");
 	}
 
-	
-
 
 	/*
 	*	Personnality
@@ -196,5 +198,4 @@ class Mia {
 
 		return $this->echoGoogle($this->randomAnswer($answers));
 	}
-
 }

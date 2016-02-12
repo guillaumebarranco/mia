@@ -38,9 +38,6 @@ class MiaHumour extends Mia {
 			// 18 => "",
 			// 19 => "",
 		);
-		
-		// 7084 + 5284 + 1400
-		// 4580
 
 		$test_answer = array(
 			0 => 'nothing'
@@ -54,5 +51,4 @@ class MiaHumour extends Mia {
 	public function comePlayWithUs() {
 		return $this->echoGoogle("J'ai pas le temps, il y en a qui bossent.");
 	}
-
 }

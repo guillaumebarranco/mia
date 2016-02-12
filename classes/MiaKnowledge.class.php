@@ -43,13 +43,4 @@ class MiaKnowledge extends Mia {
 
 		return $this->echoGoogle($this->randomAnswer($answers));
 	}
-
-	/*
-	/
-	*/
-
-	public function ownerFavoriteManga() {
-		
-	}
-
 }
