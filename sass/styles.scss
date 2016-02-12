@@ -1,7 +1,9 @@
+$main_color: teal;
+
 body {
     font-family: 'Lato', sans-serif;
     color: white;
-    background-color: teal;
+    background-color: $main_color;
 }
 h1 {
     font-size: 60px;
@@ -12,6 +14,8 @@ h3 {
     margin: 0px;
     padding: 0px;
     color: #999;
+    color: #fff;
+    font-weight: lighter;
 }
 
 div.wrap {
@@ -21,11 +25,11 @@ div.wrap {
     left: 50%;
     transform: translate(-50%, -50%);
     vertical-align: middle;
-}
 
-div.wrap div {
-    position: relative;
-    margin: 50px 0;
+    div {
+        position: relative;
+        margin: 50px 0;
+    }
 }
 
 label {
@@ -34,22 +38,9 @@ label {
     font-size: 30px;
     margin: 10px;
     padding: 0 10px;
-    // background-color: black;
-    background-color: teal;
-    -webkit-transition: top .2s ease-in-out, 
-    font-size .2s ease-in-out;
-    transition: top .2s ease-in-out, 
-    font-size .2s ease-in-out;
-}
-
-h3 {
-    color: #fff;
-    font-weight: lighter;
-}
-
-.active {
-    top: -25px;
-    font-size: 20px;
+    background-color: $main_color;
+    font-size: .2s ease-in-out;
+    transition: top .2s ease-in-out;
 }
 
 input[type=text] {
@@ -57,15 +48,15 @@ input[type=text] {
     padding: 20px;
     border: 1px solid white;
     font-size: 20px;
-    background-color: teal;
-    // background-color: black;
+    background-color: $main_color;
     color: white;
-} 
 
-input[type=text]:focus {
-    outline: none;
+    &:focus {outline: none;}
 }
 
-#main {
-    height: 100px;
+.active {
+    top: -25px;
+    font-size: 20px;
 }
+
+#main {height: 100px;}
