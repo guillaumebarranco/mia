@@ -1,68 +1,88 @@
-var previouslySaid = [],
-	previouslySaidPosition = -1,
-	commandsFunctions = new echoCommand(),
-	cleanFunctions = new functionsForClean(),
-	morphingFunctions = new functionsForMorphing(),
-	myLoader = new Loader(),
-	launchLoader = true
+var previouslySaid 				= [],
+	previouslySaidPosition 		= -1,
+	commandsFunctions 			= new echoCommand(),
+	cleanFunctions 				= new functionsForClean(),
+	morphingFunctions 			= new functionsForMorphing(),
+	myLoader 					= new Loader(),
+	launchLoader 				= true
 ;
 
 function echoCommand() {
 
 	var _this = this;
 
-	// Main function
-	this.searchCommand = function(newArray, source) {
+	// First called function
+	this.searchCommand = function(userSaid, source) {
 
-		if(in_array('stop', newArray)) canReact = false;
-		if(in_array('recharge', newArray)) location.reload();
-
-		if(in_array('répète', newArray)) {
-			if(previouslySaid[0] !== '') _this.checkArray(previouslySaid, entries, privateEntries, source);
-		}
+		if(in_array('stop', userSaid)) canReact = false;
+		if(in_array('recharge', userSaid)) location.reload();
 
 		if(canReact) {
 
-			if(in_array('combien de commandes possèdes-tu', newArray)) {
-				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+			if(in_array('répète', userSaid)) {
+				if(previouslySaid[0] !== '') _this.checkArray(previouslySaid, entries, privateEntries, source);
 			}
 
-			_this.checkArray(newArray, entries, privateEntries, source);
+			if(in_array('combien de commandes possèdes-tu', userSaid)) {
+				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+				return;
+			}
+
+			_this.checkArray(userSaid, entries, privateEntries, source);
 
 		} else {
-			if(in_array('démarre', newArray)) canReact = true;
+			if(in_array('démarre', userSaid)) canReact = true;
 		}
 	};
 
 	// Search for entries in userSaid
 	this.checkArray = function(userSaid, entries, privateEntries, source) {
-		var entryFound = false;
 
 		for (var i = 0; i < userSaid.length; i++) {
-			if(!entryFound) {
-
-				if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
-					entryFound = true;
-					commandsFunctions.pushToPreviouslySaid(userSaid[i]);
-					_this.makeAction(entries[cleanFunctions.sanitize(userSaid[i])], source);
-				}
+			if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
+				entryFound = true;
+				commandsFunctions.pushToPreviouslySaid(userSaid[i]);
+				_this.makeAction(entries[cleanFunctions.sanitize(userSaid[i])], source);
+				return;
 			}
 		}
 
-		if(!entryFound) {
-			for (var j = 0; j < userSaid.length; j++) {
-				if(!entryFound) {
+		for (var j = 0; j < userSaid.length; j++) {
 
-					if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
-						entryFound = true;
-						commandsFunctions.pushToPreviouslySaid(userSaid[i]);
-						_this.makeAction(privateEntries[cleanFunctions.sanitize(userSaid[j])], source);
-					}
-				}
+			if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
+				entryFound = true;
+				commandsFunctions.pushToPreviouslySaid(userSaid[i]);
+				_this.makeAction(privateEntries[cleanFunctions.sanitize(userSaid[j])], source);
+				return;
 			}
 		}
 
-		if(!entryFound) morphingFunctions.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+		morphingFunctions.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+	};
+
+	// From eventually GET Parameters, we check if the answer is made by audio or not
+	this.getResponseUrl = function(text, source) {
+		url = '';
+
+		if(typeof getSearchParameters().overwrite !== 'undefined' || source !== 'writing') url += JS_URL;
+
+		url += 'functions.php?text='+text+'&source=js';
+		return url;
+	};
+
+	// After the AJAX response, make Mia answer to what you said
+	this.getMiaAnswer = function(responseText, source) {
+
+		var google_translate_length = 63,
+			subtext = responseText.substr(google_translate_length),
+			time = getTimeTalkByText(subtext);
+
+		var responseHtml = (source === 'audio') ? '<iframe style="opacity:0;" src="'+responseText+'"></iframe>' : '<h3>'+urldecode(subtext)+'</h3>';
+
+		$('#main').append(responseHtml);
+
+		$('#mouth').addClass('anim');
+		setTimeout(function() { $('#mouth').removeClass('anim'); }, time * 1000);
 	};
 
 	// Action sending params to mia core
@@ -71,57 +91,19 @@ function echoCommand() {
 		$('#main').empty();
 		console.log(text);
 
-		var google_translate_length = 63,
-			url;
-
-		if(typeof getSearchParameters().overwrite !== 'undefined') {
-
-			url = JS_URL+'functions.php?text='+text+'&source=js';
-
-		} else if(typeof getSearchParameters().local !== 'undefined') {
-			url = 'functions.php?text='+text+'&source=js';
-		} else {
-
-			if(source === 'writing') {
-				url = 'functions.php?text='+text+'&source=js';
-			} else {
-				url = JS_URL+'functions.php?text='+text+'&source=js';
-			}
-		}
-
-		if(typeof getSearchParameters().audio !== 'undefined' && getSearchParameters().audio == 'true') {
-			source = "audio";
-		}
-
+		var url = _this.getResponseUrl(text, source);
 		
-		setTimeout(function() {
-			if(launchLoader) myLoader.show();
-		}, 300);
+		setTimeout(function() { if(launchLoader) myLoader.show(); }, 300);
 
 		$.ajax({
 			url: url,
 			type: 'GET',
-
 			success: function(response) {
 				response = JSON.parse(response);
 				console.log(response);
 
 				myLoader.hide();
-
-				var subtext = response.text.substr(google_translate_length),
-					time = getTimeTalkByText(subtext);
-
-				if(source === 'audio') {
-					$('#main').append('<iframe style="opacity:0;" src="'+response.text+'"></iframe>');
-				} else if(source === "writing") {
-					$('#main').append('<h3>'+urldecode(subtext)+'</h3>');
-				}
-
-				$('#mouth').addClass('anim');
-
-				setTimeout(function() {
-					$('#mouth').removeClass('anim');
-				}, time * 1000);
+				_this.getMiaAnswer(response.text, source);
 
 			}, error: function() {
 				myLoader.hide();
@@ -137,6 +119,7 @@ function echoCommand() {
 		);
 	};
 
+	// Push the last said word in the previouslySaid tab to find it again with bottom/top arrows
 	this.pushToPreviouslySaid = function(word) {
 		previouslySaid.push(word);
 		previouslySaidPosition++;
@@ -147,6 +130,7 @@ function functionsForClean() {
 
 	var _this = this;
 
+	// Converting and return the Object "entries" in Array (without modification to original "entries" var)
 	this.formateEntries = function() {
 		var formatedEntries = [];
 		for (var entry in entries) formatedEntries.push(entry);
@@ -156,8 +140,8 @@ function functionsForClean() {
 	// Function for sanitize all entries (accents, trim, toLowerCase)
 	this.sanitize = function(entry) {
 		
-		var pattern_accent 				= new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö", "-");
-		var pattern_replace_accent 		= new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o", " ");
+		var pattern_accent 				= new Array("é", "è", "ê", "ë", "ç", "à", "â", "ä", "î", "ï", "ù", "ô", "ó", "ö", "-"),
+			pattern_replace_accent 		= new Array("e", "e", "e", "e", "c", "a", "a", "a", "i", "i", "u", "o", "o", "o", " ");
 
 		entry = entry.toLowerCase().trim();
 
@@ -177,7 +161,6 @@ function functionsForMorphing() {
 	var _this = this;
 
 	this.checkForSimilateAnswer = function(userSaid, formatedEntries, step, source) {
-		// console.log('the entry was not found, we try ressemblance');
 
 		var entryFound = false,
 			matches = [];
@@ -189,10 +172,8 @@ function functionsForMorphing() {
 			}
 		}
 
-		// console.log(matches);
-
 		if(matches.length > 1) {
-			step = step + 1;
+			step++;
 			_this.checkForSimilateAnswer(userSaid, matches, step, source);
 
 		} else if(matches.length === 1) {
@@ -206,10 +187,7 @@ function functionsForMorphing() {
 	};
 
 	this.wordRessemble = function(word1, word2, step) {
-		if(word1.substr(0,step) == word2.substr(0,step)) {
-			// console.log(word1.substr(0,step) +" == "+ word2.substr(0,step));
-			return true;
-		}
+		if(word1.substr(0,step) == word2.substr(0,step)) return true;
 		return false;
 	};
 }
@@ -225,9 +203,7 @@ function Loader() {
 		launchLoader = false;
 		$('.loader').hide();
 
-		setTimeout(function() {
-			launchLoader = true;
-		}, 300);
+		setTimeout(function() { launchLoader = true; }, 300);
 	};
 }
 
@@ -249,6 +225,8 @@ function getTimeTalkByText(text) {
 		time = 3;
 	} else if(text.length >= 60 && text.length < 85) {
 		time = 4;
+	} else {
+		time = 5;
 	}
 
 	return time;
@@ -260,22 +238,26 @@ function getSearchParameters() {
 	return prmstr !== null && prmstr !== "" ? transformToAssocArray(prmstr) : {};
 }
 function transformToAssocArray(prmstr) {
-    var params = {};
-    var prmarr = prmstr.split("&");
+    var params = {},
+    	prmarr = prmstr.split("&");
+
     for ( var i = 0; i < prmarr.length; i++) {
         var tmparr = prmarr[i].split("=");
         params[tmparr[0]] = tmparr[1];
     }
+
     return params;
 }
 
 function preg_replace (array_pattern, array_pattern_replace, my_string)  {
 	var new_string = String (my_string);
-		for (i=0; i<array_pattern.length; i++) {
-			var reg_exp= RegExp(array_pattern[i], "gi");
-			var val_to_replace = array_pattern_replace[i];
-			new_string = new_string.replace (reg_exp, val_to_replace);
-		}
+
+	for (i=0; i<array_pattern.length; i++) {
+		var reg_exp= RegExp(array_pattern[i], "gi");
+		var val_to_replace = array_pattern_replace[i];
+		new_string = new_string.replace (reg_exp, val_to_replace);
+	}
+
 	return new_string;
 }
 
@@ -293,7 +275,6 @@ function urldecode(str) {
 
   return decodeURIComponent((str + '')
     .replace(/%(?![\da-f]{2})/gi, function() {
-      // PHP tolerates poorly formed escape sequences
       return '%25';
     })
     .replace(/\+/g, '%20'));
@@ -302,9 +283,7 @@ function urldecode(str) {
 // Return length of an object
 Object.size = function (obj) {
     var size = 0;
-    for (var key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
+    for (var key in obj) if (obj.hasOwnProperty(key)) size++;
     return size;
 };
 
@@ -317,16 +296,10 @@ $('input').on('keydown', function(e) {
 	// console.log(e.which);
 
 	if(e.which === 38) {
-		// console.log(previouslySaid[previouslySaidPosition]);
-		// console.log(previouslySaidPosition);
-
 		$('input').val(previouslySaid[previouslySaidPosition]);
 		if(previouslySaidPosition > 0) previouslySaidPosition--;
 
 	} else if(e.which === 40) {
-		// console.log(previouslySaid[previouslySaidPosition]);
-		// console.log(previouslySaidPosition);
-
 		$('input').val(previouslySaid[previouslySaidPosition]);
 		if(previouslySaidPosition <= previouslySaid.length) previouslySaidPosition++;
 	}

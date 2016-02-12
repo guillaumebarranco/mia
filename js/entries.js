@@ -36,6 +36,9 @@ var entries = {
 		'je sais pas quoi faire'			: 'whatDoIDo',
 		"ça m'enerve"						: 'itAngersMe',
 
+		"un manga à me conseiller"			: 'counselMeAManga',
+		"quel manga pourrais je lire"		: 'counselMeAManga',
+
 	//	Informations
 
 		'quel jour on est'					: 'date',
@@ -52,11 +55,11 @@ var entries = {
 		'op out'							: 'isOpOut',
 		'chapitre sorti'					: 'isOpOut',
 
-		'où suis je'						: 'whereAmI',
+		'ou suis je'						: 'whereAmI',
 
 		'quoi de neuf'						: 'whatsUp',
 
-		'où est mon colis'					: 'colisStatus',
+		'ou est mon colis'					: 'colisStatus',
 		'activite developpement'			: 'commits',
 		'etat serveur'						: 'myServerState',
 
@@ -82,7 +85,7 @@ var entries = {
 		'je vais aller me coucher'			: 'goToSleep',
 
 		'es tu vivante'						: 'areYouAlive',
-		'je suis drôle'						: 'amIFunny',
+		'je suis drole'						: 'amIFunny',
 		'tu fais quoi'						: 'whatAreYouDoing',
 		'ça marche pas'						: 'doesntWork',
 		"j'ai faim"							: 'iAmHungry',
