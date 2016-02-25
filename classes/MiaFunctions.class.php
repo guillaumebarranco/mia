@@ -1,8 +1,11 @@
 <?php
 
 require_once(getcwd().'/libs/simple_html_dom.php');
+require_once(getcwd().'/google-api-php-client/src/Google/autoload.php');
 
 class MiaFunctions extends Mia {
+
+	protected $nodePath = 'C:/Users/Guillaume/AppData/Roaming/npm/';
 
 	public function getRule() {
 		return $this->echoGoogle("Je suis régie par les trois lois.");
@@ -331,7 +334,7 @@ class MiaFunctions extends Mia {
 	*	Trophies API PSN
 	*/
 
-	public function getTrophies($entry) {
+	function getTrophies($entry) {
 		$cl = curl_init("http://webarranco.fr:3000/PSN/".$entry);
 
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
@@ -364,5 +367,95 @@ class MiaFunctions extends Mia {
 
 	public function getBronze() {
 		return $this->echoGoogle("Vous avez ".$this->getTrophies()->bronze." trophées de bronze");
+	}
+
+	/*
+	*	Artificial Intelligence
+	*/
+
+	public function searchGoogle($question) {
+
+		// $search_website = file_get_html('http://google.fr/#q='.$question);
+		$search_website = file_get_html('https://www.google.fr/?q=combien+y%27a+t-il+de+lunes+m');
+
+		foreach ($search_website->find('div') as $koko) {
+			// var_dump($koko->find('div')[0]->find('div')[0]->find('div')[0]->find('div')[0]->plaintext);
+			var_dump($koko->plaintext);
+		}
+			die;
+
+		$first_website = $search_website->find('.g')[0];
+
+		// $html = file_get_html($first_website);
+
+		var_dump($first_website);
+		die;
+
+		return $this->echoGoogle("Voici la réponse");
+	}
+
+	public function how2() {
+
+		$pingresult = exec("C:/Users/Guillaume/AppData/Roaming/npm/how2 make object -l javascript", $output, $status);
+
+		var_dump($output);
+		var_dump($status);
+		die;
+	}
+
+	public function caniuse($command) {
+
+		$command = substr($command, 8);
+
+		$pingresult = exec($this->nodePath."/caniuse ".$command, $output, $status);
+
+		$tab_response = array();
+		$tab_engines = array(
+			" IE",
+			" Edge",
+			" Firefox",
+			" Chrome",
+			" Safari"
+		);
+
+		foreach ($output as $response) {
+			foreach ($tab_engines as $engine) {
+				if(strstr($response, $engine, true)) {
+					$tab_response[trim($engine)] = trim($response);
+				}
+			}
+		}
+
+		$tab_response2 = array();
+
+		foreach ($tab_response as $key => $response) {
+			$regex = '/[Ã]/';
+
+			$matches = array();
+
+			if (preg_match($regex, $tab_response[$key], $matches)) {
+			    $tab_response2[$key] = $response;
+			}
+		}
+
+		$return = '';
+
+		foreach ($tab_response2 as $key => $response) {
+
+			$regex = '/√ (\d.+)/';
+
+			$matches = array();
+
+			$version = '';
+
+			if (preg_match($regex, $tab_response2[$key], $matches)) {
+				$version = array_pop($matches);
+				$return .= $key.' : supporté à partir de la version '.$version.'. ';
+			}
+		}
+
+		if($return === '') $return = 'Oui !';
+
+		return $this->echoGoogle($return);
 	}
 }

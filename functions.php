@@ -4,18 +4,26 @@
 
 	require_once('classes/autoloader.class.php');
 	require_once('config.php');
-	// require_once(getcwd().'/libs/simple_html_dom.php');
+
+	$mia 			= new Mia();
+	$miaHumour 		= new MiaHumour();
+	$miaKnowledge 	= new MiaKnowledge();
+	$miaFunctions 	= new MiaFunctions();
+	$miaPrivate 	= new MiaPrivate();
+	$miaRealWorld 	= new MiaRealWorld();
 	
 	$text = '';
 
 	function switchText($textEntry) {
 
-		$mia 			= new Mia();
-		$miaHumour 		= new MiaHumour();
-		$miaKnowledge 	= new MiaKnowledge();
-		$miaFunctions 	= new MiaFunctions();
-		$miaPrivate 	= new MiaPrivate();
-		$miaRealWorld 	= new MiaRealWorld();
+		$text = '';
+
+		global $mia;
+		global $miaHumour;
+		global $miaKnowledge;
+		global $miaFunctions;
+		global $miaPrivate;
+		global $miaRealWorld;
 
 		switch($textEntry) {
 
@@ -143,9 +151,9 @@
 				case "turnOnLight": 			$text = $miaRealWorld->turnOnLight(); 				break;
 				case "turnOffLight": 			$text = $miaRealWorld->turnOffLight(); 				break;
 
-			default:
-				$text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
-			break;
+			//	Code
+
+				case "how2": 					$text = $miaFunctions->how2(); 						break;
 		}
 
 		return $text;
@@ -176,5 +184,22 @@
 	}
 
 	if(isset($_GET['text']) && $_GET['text'] !== '') $text = switchText($_GET['text']);
+
+	if(isset($_GET['text']) && $_GET['text'] !== '' && $text === '') {
+
+		if(substr($_GET['text'],0,7) === 'caniuse') {
+			$text = $miaFunctions->caniuse($_GET['text']);
+		}
+	}
+
+	if($text === '') $text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
+
+	if(isset($_GET['action']) && $_GET['action'] === 'searchGoogle') {
+
+		$response = $miaFunctions->searchGoogle($_GET['question']);
+
+		var_dump($response);
+		die;
+	}
 
 	answerText($text);

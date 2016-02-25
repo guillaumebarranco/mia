@@ -26,7 +26,7 @@
 				</div>
 
 				<button style="opacity:0;" class="sendCommand">Send Command</button>
-				
+
 			</form>
 
 			<article class="loader">

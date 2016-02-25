@@ -105,4 +105,8 @@ var entries = {
 
 		'allume la lumiere' 				: 'turnOnLight',
 		'eteins la lumiere' 				: 'turnOffLight',
+
+	//	Code
+
+		'how2'								: 'how2',
 };

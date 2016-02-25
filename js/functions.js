@@ -4,6 +4,7 @@ var previouslySaid 				= [],
 	cleanFunctions 				= new functionsForClean(),
 	morphingFunctions 			= new functionsForMorphing(),
 	myLoader 					= new Loader(),
+	aiFunctions					= new artificalIntelligence(),
 	launchLoader 				= true
 ;
 
@@ -16,11 +17,18 @@ function echoCommand() {
 
 		if(in_array('stop', userSaid)) canReact = false;
 		if(in_array('recharge', userSaid)) location.reload();
+		console.log(userSaid[0].substr(0,7));
+
+		if(userSaid[0].substr(0,7) === 'caniuse') {
+
+			_this.makeAction(userSaid[0], source);
+			return false;
+		}
 
 		if(canReact) {
 
 			if(in_array('répète', userSaid)) {
-				if(previouslySaid[0] !== '') _this.checkArray(previouslySaid, entries, privateEntries, source);
+				if(previouslySaid[0] !== '') _this.searchForMatchingAnswers(previouslySaid, entries, privateEntries, source);
 			}
 
 			if(in_array('combien de commandes possèdes-tu', userSaid)) {
@@ -28,7 +36,7 @@ function echoCommand() {
 				return;
 			}
 
-			_this.checkArray(userSaid, entries, privateEntries, source);
+			_this.searchForMatchingAnswers(userSaid, entries, privateEntries, source);
 
 		} else {
 			if(in_array('démarre', userSaid)) canReact = true;
@@ -36,7 +44,7 @@ function echoCommand() {
 	};
 
 	// Search for entries in userSaid
-	this.checkArray = function(userSaid, entries, privateEntries, source) {
+	this.searchForMatchingAnswers = function(userSaid, entries, privateEntries, source) {
 
 		for (var i = 0; i < userSaid.length; i++) {
 			if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
@@ -126,6 +134,47 @@ function echoCommand() {
 	};
 }
 
+function artificalIntelligence() {
+
+	var _this = this;
+
+	var questions = [
+		"combien",
+		"pourquoi",
+		"comment",
+		"qui",
+		"quand"
+	];
+
+	// Launched when no corresponding entry was found
+	this.decomposeEntry = function(entry) {
+		console.log(entry);
+		var first_word = entry[0]; // Regex
+
+		console.log(questions[first_word]);
+
+		if(questions.indexOf(first_word) !== -1) {
+			_this.beginResearch(entry);
+		}
+	};
+
+	this.beginResearch = function(question) {
+		console.log('beginResearch');
+
+		$.ajax({
+			url: 'functions.php?action=searchGoogle?question='+question,
+			type: 'GET',
+
+			success: function(response) {
+				response = JSON.parse(response);
+				console.log(response);
+
+			}, error: function() {
+			}
+		});
+	};
+}
+
 function functionsForClean() {
 
 	var _this = this;
@@ -183,6 +232,8 @@ function functionsForMorphing() {
 		} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
 			userSaid.shift();
 			_this.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+		} else {
+			aiFunctions.decomposeEntry(userSaid);
 		}
 	};
 
@@ -286,6 +337,10 @@ Object.size = function (obj) {
     for (var key in obj) if (obj.hasOwnProperty(key)) size++;
     return size;
 };
+
+function isNotUndefined(wth) {
+    if (wth !== undefined && typeof wth !== 'undefined') return true;
+}
 
 /****************/
 /*   LISTENERS  */
