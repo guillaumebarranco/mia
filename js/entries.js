@@ -24,7 +24,7 @@ var entries = {
 		"qu'est ce que tu deteste"			: 'whatYouHate',
 		"qu'est ce que tu aime"				: 'whatYouLike',
 
-		"dis bonjour a nicolas"				: "sayHelloToNico",
+		// "dis bonjour a nicolas"				: "sayHelloToNico",
 
 		"je suis fier de toi"				: "imProudOfYou",
 

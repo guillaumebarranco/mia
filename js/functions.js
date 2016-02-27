@@ -5,6 +5,7 @@ var previouslySaid 				= [],
 	morphingFunctions 			= new functionsForMorphing(),
 	myLoader 					= new Loader(),
 	aiFunctions					= new artificalIntelligence(),
+	jsFunctions					= new functionsForJavascript(),
 	launchLoader 				= true,
 	canReact 					= true
 ;
@@ -16,23 +17,28 @@ function echoCommand() {
 	// First called function
 	this.searchCommand = function(userSaid, source) {
 
-		_this.searchCustomCommand(userSaid);
+		console.log(userSaid);
 
-		if(canReact) {
+		if(_this.searchCustomCommand(userSaid)) {
 
-			if(in_array('répète', userSaid)) {
-				if(previouslySaid[0] !== '') _this.searchForMatchingAnswers(previouslySaid, entries, privateEntries, source);
+			if(canReact) {
+
+				if(in_array('répète', userSaid)) {
+					if(typeof previouslySaid[0] !== 'undefined') _this.searchForMatchingAnswers(previouslySaid, entries, privateEntries, source);
+				}
+
+				if(in_array('combien de commandes possèdes tu', userSaid)) {
+					_this.getMiaAnswer(
+						'Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.'
+					, 'write', false);
+					return;
+				}
+
+				_this.searchForMatchingAnswers(userSaid, entries, privateEntries, source);
+
+			} else {
+				if(in_array('démarre', userSaid)) canReact = true;
 			}
-
-			if(in_array('combien de commandes possèdes-tu', userSaid)) {
-				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.', 'audio');
-				return;
-			}
-
-			_this.searchForMatchingAnswers(userSaid, entries, privateEntries, source);
-
-		} else {
-			if(in_array('démarre', userSaid)) canReact = true;
 		}
 	};
 
@@ -46,49 +52,7 @@ function echoCommand() {
 			return false;
 		}
 
-		_this.searchCalcul(userSaid[0]);
-	};
-
-	this.searchCalcul = function(entry) {
-		var foundMatch = false;
-
-		if( /^[0-9]*-[0-9]*$/ .test(entry)) {
-
-			var nbs = entry.split("-"),
-				result = parseInt(nbs[0]) - parseInt(nbs[1]);
-
-			_this.getMiaAnswer(result, 'write', false);
-			foundMatch = true;
-		}
-
-		if( /^[0-9]*\+[0-9]*$/ .test(entry)) {
-
-			var nbs = entry.split("+"),
-				result = parseInt(nbs[0]) + parseInt(nbs[1]);
-
-			_this.getMiaAnswer(result, 'write', false);
-			foundMatch = true;
-		}
-
-		if( /^[0-9]*\*[0-9]*$/ .test(entry)) {
-
-			var nbs = entry.split("*"),
-				result = parseInt(nbs[0]) * parseInt(nbs[1]);
-
-			_this.getMiaAnswer(result, 'write', false);
-			foundMatch = true;
-		}
-
-		if( /^[0-9]*\/[0-9]*$/ .test(entry)) {
-
-			var nbs = entry.split("/"),
-				result = parseInt(nbs[0]) / parseInt(nbs[1]);
-
-			_this.getMiaAnswer(result, 'write', false);
-			foundMatch = true;
-		}
-
-		return !foundMatch;
+		return jsFunctions.searchCalcul(userSaid[0]);
 	};
 
 	// Search for entries in userSaid
@@ -120,7 +84,7 @@ function echoCommand() {
 	this.getResponseUrl = function(text, source) {
 		url = '';
 
-		if(typeof getSearchParameters().overwrite !== 'undefined' || source !== 'writing') url += JS_URL;
+		if(typeof getSearchParameters().overwrite !== 'undefined' /*|| source !== 'writing'*/) url += JS_URL;
 
 		url += 'functions.php?text='+text+'&source=js';
 		return url;
@@ -131,17 +95,15 @@ function echoCommand() {
 
 		if(typeof cutText === 'undefined') var cutText = true;
 
-		var google_translate_length = 63,
-			subtext = responseText;
+		var google_translate_length = 63;
 
 		$('iframe').remove();
 		$('h3').empty();
 
-		if(cutText) subtext = responseText.substr(google_translate_length);
+		var subtext = (cutText) ? responseText.substr(google_translate_length) : responseText;
 
-		var time = getTimeTalkByText(subtext);
-
-		var responseHtml = (source === 'audio') ? '<iframe style="opacity:0;" src="'+responseText+'"></iframe>' : '<h3>'+urldecode(subtext)+'</h3>';
+		var time = getTimeTalkByText(subtext),
+			responseHtml = (source === 'audio') ? '<iframe style="opacity:0;" src="'+responseText+'"></iframe>' : '<h3>'+urldecode(subtext)+'</h3>';
 
 		$('#main').append(responseHtml);
 
@@ -175,18 +137,60 @@ function echoCommand() {
 		});
 	};
 
-	// If action is made purely in Javascript
-	this.speakFromJavascript = function(text) {
-		$('iframe').remove();
-		$('#main').append(
-			'<iframe style="opacity:0;" src="http://translate.google.com/translate_tts?tl=fr&client=tw-ob&q='+text+'"></iframe>'
-		);
-	};
-
 	// Push the last said word in the previouslySaid tab to find it again with bottom/top arrows
 	this.pushToPreviouslySaid = function(word) {
 		previouslySaid.push(word);
 		previouslySaidPosition++;
+	};
+}
+
+function functionsForJavascript() {
+	var _this = this;
+
+	this.searchCalcul = function(entry) {
+		var foundMatch = false;
+
+		// Soustraction
+		if( /^[0-9]*-[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("-"),
+				result = parseInt(nbs[0]) - parseInt(nbs[1]);
+
+			commandsFunctions.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		// Addition
+		if( /^[0-9]*\+[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("+"),
+				result = parseInt(nbs[0]) + parseInt(nbs[1]);
+
+			commandsFunctions.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		// Multiplication
+		if( /^[0-9]*\*[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("*"),
+				result = parseInt(nbs[0]) * parseInt(nbs[1]);
+
+			commandsFunctions.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		// Division
+		if( /^[0-9]*\/[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("/"),
+				result = parseInt(nbs[0]) / parseInt(nbs[1]);
+
+			commandsFunctions.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		return !foundMatch;
 	};
 }
 
@@ -204,7 +208,6 @@ function artificalIntelligence() {
 
 	// Launched when no corresponding entry was found
 	this.decomposeEntry = function(entry) {
-		console.log(entry);
 		var first_word = entry[0]; // Regex
 
 		console.log(questions[first_word]);
