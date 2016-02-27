@@ -1,5 +1,3 @@
-var canReact = true;
-
 var startListeningAudio = function() {
 
 	if (annyang) {

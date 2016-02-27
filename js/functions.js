@@ -5,7 +5,8 @@ var previouslySaid 				= [],
 	morphingFunctions 			= new functionsForMorphing(),
 	myLoader 					= new Loader(),
 	aiFunctions					= new artificalIntelligence(),
-	launchLoader 				= true
+	launchLoader 				= true,
+	canReact 					= true
 ;
 
 function echoCommand() {
@@ -15,15 +16,7 @@ function echoCommand() {
 	// First called function
 	this.searchCommand = function(userSaid, source) {
 
-		if(in_array('stop', userSaid)) canReact = false;
-		if(in_array('recharge', userSaid)) location.reload();
-		console.log(userSaid[0].substr(0,7));
-
-		if(userSaid[0].substr(0,7) === 'caniuse') {
-
-			_this.makeAction(userSaid[0], source);
-			return false;
-		}
+		_this.searchCustomCommand(userSaid);
 
 		if(canReact) {
 
@@ -32,7 +25,7 @@ function echoCommand() {
 			}
 
 			if(in_array('combien de commandes possèdes-tu', userSaid)) {
-				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.');
+				_this.speakFromJavascript('Je possède '+Object.size(entries)+' commandes et '+Object.size(privateEntries)+' commandes privées.', 'audio');
 				return;
 			}
 
@@ -41,6 +34,61 @@ function echoCommand() {
 		} else {
 			if(in_array('démarre', userSaid)) canReact = true;
 		}
+	};
+
+	this.searchCustomCommand = function(userSaid) {
+
+		if(in_array('stop', userSaid)) canReact = false;
+		if(in_array('recharge', userSaid)) location.reload();
+
+		if(userSaid[0].substr(0,7) === 'caniuse') {
+			_this.makeAction(userSaid[0], source);
+			return false;
+		}
+
+		_this.searchCalcul(userSaid[0]);
+	};
+
+	this.searchCalcul = function(entry) {
+		var foundMatch = false;
+
+		if( /^[0-9]*-[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("-"),
+				result = parseInt(nbs[0]) - parseInt(nbs[1]);
+
+			_this.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		if( /^[0-9]*\+[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("+"),
+				result = parseInt(nbs[0]) + parseInt(nbs[1]);
+
+			_this.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		if( /^[0-9]*\*[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("*"),
+				result = parseInt(nbs[0]) * parseInt(nbs[1]);
+
+			_this.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		if( /^[0-9]*\/[0-9]*$/ .test(entry)) {
+
+			var nbs = entry.split("/"),
+				result = parseInt(nbs[0]) / parseInt(nbs[1]);
+
+			_this.getMiaAnswer(result, 'write', false);
+			foundMatch = true;
+		}
+
+		return !foundMatch;
 	};
 
 	// Search for entries in userSaid
@@ -79,11 +127,19 @@ function echoCommand() {
 	};
 
 	// After the AJAX response, make Mia answer to what you said
-	this.getMiaAnswer = function(responseText, source) {
+	this.getMiaAnswer = function(responseText, source, cutText) {
+
+		if(typeof cutText === 'undefined') var cutText = true;
 
 		var google_translate_length = 63,
-			subtext = responseText.substr(google_translate_length),
-			time = getTimeTalkByText(subtext);
+			subtext = responseText;
+
+		$('iframe').remove();
+		$('h3').empty();
+
+		if(cutText) subtext = responseText.substr(google_translate_length);
+
+		var time = getTimeTalkByText(subtext);
 
 		var responseHtml = (source === 'audio') ? '<iframe style="opacity:0;" src="'+responseText+'"></iframe>' : '<h3>'+urldecode(subtext)+'</h3>';
 
