@@ -2,3 +2,4 @@ classes/MiaPrivate.class.php
 js/privateEntries.js
 node_modules/
 config.php
+vendor/

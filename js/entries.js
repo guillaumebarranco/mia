@@ -34,6 +34,7 @@ var entries = {
 		'tu as fait de beaux reves'			: 'didYouHaveNiceDreams',
 		'je vais y aller'					: 'iMGoing',
 		'je sais pas quoi faire'			: 'whatDoIDo',
+		'que faire'							: 'whatDoIDo',
 		"ça m'enerve"						: 'itAngersMe',
 
 		"un manga à me conseiller"			: 'counselMeAManga',
@@ -50,6 +51,7 @@ var entries = {
 		'quelle est la seconde loi'			: 'second_law',
 		'quelle est la troisieme loi'		: 'third_law',
 		'quelles sont les trois lois'		: 'laws',
+		'actualité'							: 'news',
 
 		'le chapitre est il sorti'			: 'isOpOut',
 		'op out'							: 'isOpOut',

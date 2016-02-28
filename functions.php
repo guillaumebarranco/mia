@@ -96,13 +96,15 @@
 				case "guillaume_trophies": 		$text = $miaFunctions->getAllTrophiesGuillaume(); 	break;
 				case "ronan_trophies": 			$text = $miaFunctions->getAllTrophiesRonan(); 		break;
 
-					case "first_law": 			$text = $miaKnowledge->getFirstLaw(); 				break;
+				case "first_law": 				$text = $miaKnowledge->getFirstLaw(); 				break;
 				case "second_law": 				$text = $miaKnowledge->getSecondLaw(); 				break;
 				case "third_law": 				$text = $miaKnowledge->getThirdLaw(); 				break;
 				case "laws": 					$text = $miaKnowledge->getThreeLaws(); 				break;
 
 				case "myServerState": 			$text = $miaFunctions->pingServer(); 				break;
 				case "getTV": 					$text = $miaFunctions->getTV(); 					break;
+
+				case "news": 					$text = $miaKnowledge->getNews(); 					break;
 
 			//	Private
 
