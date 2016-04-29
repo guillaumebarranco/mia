@@ -11,6 +11,7 @@
 	$miaFunctions 	= new MiaFunctions();
 	$miaPrivate 	= new MiaPrivate();
 	$miaRealWorld 	= new MiaRealWorld();
+	$miaDatabase 	= new MiaDatabase();
 	
 	$text = '';
 
@@ -24,6 +25,7 @@
 		global $miaFunctions;
 		global $miaPrivate;
 		global $miaRealWorld;
+		global $miaDatabase;
 
 		switch($textEntry) {
 
@@ -156,6 +158,9 @@
 			//	Code
 
 				case "how2": 					$text = $miaFunctions->how2(); 						break;
+
+			//	Database
+				case "getCommands": 			$text = $miaDatabase->getCommands(); 				break;
 		}
 
 		return $text;
