@@ -13,6 +13,16 @@ class MiaPrivate extends Mia {
 
 	// 			case "beLikeC": $text = $miaPrivate->beLikeC(); break;
 
+	public function whatCWant() {
+		$answers = array(
+			0 => "Je pense qu'elle veut un massage sensuel",
+			1 => "Elle souhaite regarder les reines du shopping avec vous",
+			2 => "Je ne peux pas le dire, c'est trop vulgaire pour mon programme."
+		);
+		
+		return $this->echoGoogle($this->randomAnswer($answers));
+	}
+
 	public function codeMoney() {
 		return $this->echoGoogle("Votre code a été copié dans la console. 3080350098298");
 	}
@@ -23,7 +33,8 @@ class MiaPrivate extends Mia {
 			'07-02' => 'Nathan',
 			'30-07' => 'Aelys',
 			'10-10' => 'Maman',
-			'22-10' => 'Papa'
+			'22-10' => 'Papa',
+			'20-05' => 'Dylan'
 		);
 
 		$day = date('d');
@@ -52,6 +63,10 @@ class MiaPrivate extends Mia {
 			if(intval($month < 10)) $month = '0'.intval($month);
 		}
 
-		return $this->echoGoogle("L'anniversaire le plus proche est celui de ".$anniv);
+		return $this->echoGoogle("L'anniversaire le plus proche est celui de ".$anniv." le ".$day." ".$this->transformMonthToString($month));
+	}
+
+	public function Impots() {
+		return $this->echoGoogle('mcbguil30458');
 	}
 }

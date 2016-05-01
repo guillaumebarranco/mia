@@ -1,7 +1,7 @@
 <?php
 
 require_once(getcwd().'/libs/simple_html_dom.php');
-require_once(getcwd().'/google-api-php-client/src/Google/autoload.php');
+// require_once(getcwd().'/google-api-php-client/src/Google/autoload.php');
 
 class MiaFunctions extends Mia {
 
@@ -340,13 +340,23 @@ class MiaFunctions extends Mia {
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$response = json_decode(curl_exec($cl));
 
-		$responseTrophies = $response->trophySummary->earnedTrophies;
+		if(!empty($response) && isset($response->trophySummary)) {
+			$responseTrophies = $response->trophySummary->earnedTrophies;
+			return $responseTrophies;
+		}
 
-		return $responseTrophies;
+		return $this->echoGoogle('Votre A P I P S N ne répond pas.');
 	}
 
 	public function getAllTrophiesGuillaume() {
-		return $this->echoGoogle("Vous avez ".$this->getTrophies('guillaumanga')->platinum." trophées platines, ".$this->getTrophies('guillaumanga')->gold." trophées d'or, ".$this->getTrophies('guillaumanga')->silver." trophées d'argent et ".$this->getTrophies('guillaumanga')->bronze." trophées de bronze");
+		$test = $this->getTrophies('guillaumanga');
+
+		if(is_object($test)) {
+
+			return $this->echoGoogle("Vous avez ".$this->getTrophies('guillaumanga')->platinum." trophées platines, ".$this->getTrophies('guillaumanga')->gold." trophées d'or, ".$this->getTrophies('guillaumanga')->silver." trophées d'argent et ".$this->getTrophies('guillaumanga')->bronze." trophées de bronze");
+		}
+
+		return $test;
 	}
 
 	public function getAllTrophiesRonan() {

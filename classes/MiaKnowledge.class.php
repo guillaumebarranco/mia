@@ -72,7 +72,7 @@ class MiaKnowledge extends Mia {
 
 		$q = urlencode($query).urlencode($language).urlencode($country).urlencode($site);
 
-// &q=language%3A(french)%20thread.country%3AFR%20site%3Afrance24.com%20(site_type%3Anews%20OR%20site_type%3Ablogs)&ts=1456586320763
+		// &q=language%3A(french)%20thread.country%3AFR%20site%3Afrance24.com%20(site_type%3Anews%20OR%20site_type%3Ablogs)&ts=1456586320763
 
 		Unirest\Request::verifyPeer(false);
 		$response = Unirest\Request::get("https://webhose.io/search?token=".$api_key."&format=json&q=".$q."%20(site_type%3Anews%20OR%20site_type%3Ablogs)&ts=".$ts,

@@ -1,5 +1,5 @@
 {
-  "name": "SmartWifi",
+  "name": "Mia",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Weblib/SmartWifi.git"
+    "url": "git+https://github.com/guillaumebarranco/Mia.git"
   },
-  "author": "Weblib",
+  "author": "guillaumebarranco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Weblib/SmartWifi/issues"
+    "url": "https://github.com/guillaumebarranco/Mia/issues"
   },
-  "homepage": "https://github.com/Weblib/SmartWifi#readme",
+  "homepage": "https://github.com/guillaumebarranco/Mia#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
