@@ -1,7 +1,6 @@
 <?php
 
 require_once(getcwd().'/libs/simple_html_dom.php');
-// require_once(getcwd().'/google-api-php-client/src/Google/autoload.php');
 
 class MiaFunctions extends Mia {
 
