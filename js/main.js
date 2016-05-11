@@ -12,4 +12,15 @@ $(document).ready(function() {
 
 		commandsFunctions.searchCommand([command], 'writing');
 	});
+
+	$('nav a').on('click', function(e) {
+		e.preventDefault();
+
+		var link = $(this).data('link');
+
+		if(link === "meteo") {
+			var meteoClass = new Meteo();
+			meteoClass.init();
+		}
+	});
 });

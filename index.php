@@ -14,6 +14,11 @@
 
 	<body>
 
+		<nav>
+			<a href="#" data-link="meteo">Meteo</a>
+			<a href="#" data-link="home">Home</a>
+		</nav>
+
 		<?php require_once('mia_svg.php'); ?>
 
 		<div class="wrap" style="margin-top: 150px;">
@@ -43,19 +48,7 @@
 
 		</div>
 
-		<?php require_once('config.php'); ?>
-
-		<script>
-			var JS_URL = "<?=JS_URL?>";
-		</script>
-
-		<?php 
-			$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "audio", "main"];
-
-			function loadScript($script) { echo '<script src="js/'.$script.'.js"></script>'; }
-			
-			foreach ($scripts as $script) loadScript($script);
-		?>
+		<?php require_once('footer.php'); ?>
 
 	</body>
 </html>
