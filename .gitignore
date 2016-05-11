@@ -1,4 +1,5 @@
 classes/MiaPrivate.class.php
+classes/MiaSecure.class.php
 js/privateEntries.js
 node_modules/
 config.php

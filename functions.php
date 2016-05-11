@@ -9,7 +9,7 @@
 	$miaHumour 		= new MiaHumour();
 	$miaKnowledge 	= new MiaKnowledge();
 	$miaFunctions 	= new MiaFunctions();
-	$miaPrivate 	= new MiaPrivate();
+	$miaSecure 		= new MiaSecure();
 	$miaRealWorld 	= new MiaRealWorld();
 	$miaDatabase 	= new MiaDatabase();
 	
@@ -23,7 +23,7 @@
 		global $miaHumour;
 		global $miaKnowledge;
 		global $miaFunctions;
-		global $miaPrivate;
+		global $miaSecure;
 		global $miaRealWorld;
 		global $miaDatabase;
 
@@ -110,15 +110,15 @@
 
 			//	Private
 
-				case "myFavoriteManga": 		$text = $miaPrivate->myFavoriteManga(); 			break;
-				case "hikenFavoriteManga": 		$text = $miaPrivate->HikenFavoriteManga(); 			break;
-				case "whatCWant": 				$text = $miaPrivate->whatCWant(); 					break;
-				case "codeMoney": 				$text = $miaPrivate->codeMoney(); 					break;
-				case "beLikeC": 				$text = $miaPrivate->beLikeC(); 					break;
+				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 			break;
+				case "hikenFavoriteManga": 		$text = $miaSecure->HikenFavoriteManga(); 			break;
+				case "whatCWant": 				$text = $miaSecure->whatCWant(); 					break;
+				case "codeMoney": 				$text = $miaSecure->codeMoney(); 					break;
+				case "beLikeC": 				$text = $miaSecure->beLikeC(); 					break;
 
-				case "annivNathan": 			$text = $miaPrivate->annivNathan(); 				break;
-				case "annivAelys": 				$text = $miaPrivate->annivAelys(); 					break;
-				case "annivSoon": 				$text = $miaPrivate->annivSoon(); 					break;				
+				case "annivNathan": 			$text = $miaSecure->annivNathan(); 				break;
+				case "annivAelys": 				$text = $miaSecure->annivAelys(); 					break;
+				case "annivSoon": 				$text = $miaSecure->annivSoon(); 					break;				
 
 			//	Hehe
 
