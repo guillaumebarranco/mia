@@ -10,45 +10,22 @@
 		<link rel="stylesheet" href="css/styles.css" />
 		<link rel="stylesheet" href="css/mia.css" />
 		<link rel="stylesheet" href="css/loader.css" />
+
+		<?php require_once 'elements/header.php'; ?>
 	</head>
 
 	<body>
 
-		<nav>
-			<a href="#" data-link="meteo">Meteo</a>
-			<a href="#" data-link="home">Home</a>
-		</nav>
+		<?php
 
-		<?php require_once('mia_svg.php'); ?>
+			$template = 'index';
+			if(isset($_GET['template'])) $template = $_GET['template'];
 
-		<div class="wrap" style="margin-top: 150px;">
-
-			<form action="" autocomplete="off">
-
-				<div>
-					<label class="active" for="fname">Type your command</label>
-					<input id="fname" type="text" class="cool" autofocus/>
-				</div>
-
-				<button style="opacity:0;" class="sendCommand">Send Command</button>
-
-			</form>
-
-			<article class="loader">
-                <div class="rectangle-bounce selected">
-                  <div class="rect1"></div>
-                  <div class="rect2"></div>
-                  <div class="rect3"></div>
-                  <div class="rect4"></div>
-                  <div class="rect5"></div>
-                </div>
-            </article>
-
-			<section id="main"></section>
-
-		</div>
-
-		<?php require_once('footer.php'); ?>
+			require_once 'elements/nav.php';
+		 	// require_once 'elements/mia_svg.php';
+		 	require_once 'views/'.$template.'.template.php';
+		 	
+		 ?>
 
 	</body>
 </html>

@@ -45,6 +45,7 @@ var entries = {
 		'quel jour on est'					: 'date',
 		'quelle heure il est'				: 'hour',
 		'il fait combien'					: 'temperature',
+		'rgregergrgr'						: 'temperature_page',
 		'il fait combien demain'			: 'temperature_tomorrow',
 		"combien j'ai de trophees"			: 'guillaume_trophies',
 		'combien il a de trophees'			: 'ronan_trophies',

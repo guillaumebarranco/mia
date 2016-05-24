@@ -1,27 +1,10 @@
-<!DOCTYPE>
+<h1>Meteo</h1>
 
-<html lang="fr">
-	<head>
-		<title>Mia</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, user-scalable=no">
-		
-		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/styles.css" />
-		<link rel="stylesheet" href="css/mia.css" />
-		<link rel="stylesheet" href="css/loader.css" />
-	</head>
+<h2 class="temp"></h2>
 
-	<body>
+<script>
 
-		<nav>
-			<a href="#" data-link="meteo">Meteo</a>
-			<a href="#" data-link="home">Home</a>
-		</nav>
-	
-		Hello
+	var meteoClass = new Meteo();
+	meteoClass.getTemp();
 
-		<?php require_once('../footer.php'); ?>
-
-	</body>
-</html>
+</script>

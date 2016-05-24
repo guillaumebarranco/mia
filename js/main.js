@@ -23,4 +23,14 @@ $(document).ready(function() {
 			meteoClass.init();
 		}
 	});
+
+	$('.hamburger').on('click', function() {
+		let menu = $(this).parent().find('.menu');
+
+		if(menu.is(':hidden')) {
+			menu.show();
+		} else {
+			menu.hide();
+		}
+	});
 });

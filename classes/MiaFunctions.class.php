@@ -53,7 +53,7 @@ class MiaFunctions extends Mia {
 
 				$monthFound = substr($line, $pos+1, strlen($line)-$pos-2);
 
-				if(($day == $jourFound) && ($month == $moisFound)) {
+				if(($day == $dayFound) && ($month == $monthFound)) {
 					fclose($fp);
 					return " Et c'est la Saint ".$firstname;
 				}
@@ -113,6 +113,24 @@ class MiaFunctions extends Mia {
 		$celsius = round($result->main->temp);
 
 		return $this->echoGoogle('Il fait '.$celsius.' degrés à Paris');
+	}
+
+	public function getTemperaturePage() {
+
+		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
+
+		// 615702 is Paris
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=".$apikey);
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$result = json_decode(curl_exec($cl));
+
+		$celsius = round($result->main->temp);
+
+		$datas = array(
+			"temp" => $celsius
+		);
+
+		return $datas;
 	}
 
 	function searchForOp($opOut) {

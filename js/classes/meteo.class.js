@@ -1,7 +1,16 @@
 function Meteo() {
 
 	this.init = () => {
-		console.log(MIA_URL);
-		window.location.href = MIA_URL+"/views/meteo.template.php";
+	};
+
+	this.getTemp = () => {
+
+		commandsFunctions.makeAction('temperature_page', 'js', function(response) {
+			console.log(response);
+
+			let datas = response.text;
+
+			$('.temp').text(datas.temp);
+		});
 	};
 }

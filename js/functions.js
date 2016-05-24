@@ -7,7 +7,8 @@ var previouslySaid 				= [],
 	aiFunctions					= new artificalIntelligence(),
 	jsFunctions					= new functionsForJavascript(),
 	launchLoader 				= true,
-	canReact 					= true
+	canReact 					= true,
+	google_translate_length = 63
 ;
 
 function echoCommand() {
@@ -82,7 +83,7 @@ function echoCommand() {
 
 	// From eventually GET Parameters, we check if the answer is made by audio or not
 	this.getResponseUrl = function(text, source) {
-		url = '';
+		url = MIA_URL;
 
 		if(typeof getSearchParameters().overwrite !== 'undefined' /*|| source !== 'writing'*/) url += JS_URL;
 
@@ -111,8 +112,13 @@ function echoCommand() {
 		setTimeout(function() { $('#mouth').removeClass('anim'); }, time * 1000);
 	};
 
+	this.transformToText = (audioText) => {
+		var subtext = audioText.substr(google_translate_length);
+		return urldecode(subtext);
+	};
+
 	// Action sending params to mia core
-	this.makeAction = function(text, source) {
+	this.makeAction = function(text, source, callback) {
 
 		$('#main').empty();
 		console.log(text);
@@ -129,7 +135,8 @@ function echoCommand() {
 				console.log(response);
 
 				myLoader.hide();
-				_this.getMiaAnswer(response.text, source);
+				if(!callback) _this.getMiaAnswer(response.text, source);
+				if(callback) callback(response);
 
 			}, error: function() {
 				myLoader.hide();

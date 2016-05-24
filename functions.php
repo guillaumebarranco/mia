@@ -85,6 +85,7 @@
 				case "hour": 					$text = $miaFunctions->getHour(); 					break;
 				case "date": 					$text = $miaFunctions->getTodayDate(); 				break;
 				case "temperature": 			$text = $miaFunctions->getTemperature(); 			break;
+				case "temperature_page": 		$text = $miaFunctions->getTemperaturePage(); 		break;
 				case "temperature_tomorrow": 	$text = $miaFunctions->getTomorrowTemperature(); 	break;
 				case "fete": 					$text = $miaFunctions->getFete(); 					break;
 
@@ -110,13 +111,13 @@
 
 			//	Private
 
-				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 			break;
+				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 				break;
 				case "hikenFavoriteManga": 		$text = $miaSecure->HikenFavoriteManga(); 			break;
 				case "whatCWant": 				$text = $miaSecure->whatCWant(); 					break;
 				case "codeMoney": 				$text = $miaSecure->codeMoney(); 					break;
-				case "beLikeC": 				$text = $miaSecure->beLikeC(); 					break;
+				case "beLikeC": 				$text = $miaSecure->beLikeC(); 						break;
 
-				case "annivNathan": 			$text = $miaSecure->annivNathan(); 				break;
+				case "annivNathan": 			$text = $miaSecure->annivNathan(); 					break;
 				case "annivAelys": 				$text = $miaSecure->annivAelys(); 					break;
 				case "annivSoon": 				$text = $miaSecure->annivSoon(); 					break;				
 
