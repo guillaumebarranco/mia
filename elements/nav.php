@@ -6,7 +6,8 @@
 	</div>
 
 	<div class="menu">
-		<a href="index.php?template=meteo" data-link="meteo">Meteo</a>
 		<a href="index.php" data-link="home">Home</a>
+		<a href="index.php?template=meteo" data-link="meteo">Meteo</a>
+		<a href="index.php?template=tv" data-link="tv">TV</a>
 	</div>
 </nav>

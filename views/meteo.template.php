@@ -4,6 +4,13 @@
 	<img v-bind:src="state" height="200" class="state" />
 	<h2 class="temp">{{temp}}°C</h2>
 
+	<div>
+		Levé du soleil : {{sunrise}}
+	</div>
+	<div>
+		Couché du soleil : {{sunset}}
+	</div>
+
 </div>
 
 <?php

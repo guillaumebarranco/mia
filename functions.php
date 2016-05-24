@@ -9,6 +9,7 @@
 	$miaHumour 		= new MiaHumour();
 	$miaKnowledge 	= new MiaKnowledge();
 	$miaFunctions 	= new MiaFunctions();
+	$miaPage 		= new MiaPage();
 	$miaSecure 		= new MiaSecure();
 	$miaRealWorld 	= new MiaRealWorld();
 	$miaDatabase 	= new MiaDatabase();
@@ -23,6 +24,7 @@
 		global $miaHumour;
 		global $miaKnowledge;
 		global $miaFunctions;
+		global $miaPage;
 		global $miaSecure;
 		global $miaRealWorld;
 		global $miaDatabase;
@@ -85,7 +87,6 @@
 				case "hour": 					$text = $miaFunctions->getHour(); 					break;
 				case "date": 					$text = $miaFunctions->getTodayDate(); 				break;
 				case "temperature": 			$text = $miaFunctions->getTemperature(); 			break;
-				case "temperature_page": 		$text = $miaFunctions->getTemperaturePage(); 		break;
 				case "temperature_tomorrow": 	$text = $miaFunctions->getTomorrowTemperature(); 	break;
 				case "fete": 					$text = $miaFunctions->getFete(); 					break;
 
@@ -150,6 +151,10 @@
 				case "whereAmI": 				$text = $miaFunctions->youAreHere(); 				break;
 				case "weGo": 					$text = $mia->sayWhereYouGo(); 						break;
 				case "iMGoing": 				$text = $mia->sayBeCarefulOnTheRoad(); 				break;
+
+			//	Page
+				case "temperature_page": 		$text = $miaPage->getTemperaturePage(); 			break;
+				case "tv_page":					$text = $miaPage->getTVPage();						break;
 
 			//	Real World
 

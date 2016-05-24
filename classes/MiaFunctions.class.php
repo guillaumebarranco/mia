@@ -115,25 +115,6 @@ class MiaFunctions extends Mia {
 		return $this->echoGoogle('Il fait '.$celsius.' degrés à Paris');
 	}
 
-	public function getTemperaturePage() {
-
-		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
-
-		// 6455259 is Paris
-		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
-		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-		$result = json_decode(curl_exec($cl));
-
-		$celsius = round($result->main->temp);
-
-		$datas = array(
-			"temp" => $celsius,
-			"state" => $result
-		);
-
-		return $datas;
-	}
-
 	function searchForOp($opOut) {
 
 		if(is_bool($opOut)) {

@@ -71,6 +71,10 @@ var entries = {
 
 		'test'								: 'test',
 
+	//	Page
+		'rgregergrgr'						: 'temperature_page',
+		'rgregergr'							: 'tv_page',
+
 	//	All commands
 
 		'quel age as tu'					: 'age',
