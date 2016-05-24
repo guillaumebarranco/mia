@@ -56,6 +56,10 @@ class Mia {
 		return $this->echoGoogle("Je suis votre robot personnel.");
 	}
 
+	public function sayIKnow() {
+		return $this->echoGoogle("Je sais");
+	}
+
 	public function whoIAm() {
 		return $this->echoGoogle("Mon nom est ".$this->name." et je suis votre robot personnel.");
 	}

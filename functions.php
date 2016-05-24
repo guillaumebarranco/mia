@@ -114,6 +114,8 @@
 
 				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 				break;
 				case "hikenFavoriteManga": 		$text = $miaSecure->HikenFavoriteManga(); 			break;
+				case "rikuFavoriteManga": 		$text = $miaSecure->RikuFavoriteManga();			break;
+				case "peroFavoriteManga": 		$text = $miaSecure->PeroFavoriteManga();			break;
 				case "whatCWant": 				$text = $miaSecure->whatCWant(); 					break;
 				case "codeMoney": 				$text = $miaSecure->codeMoney(); 					break;
 				case "beLikeC": 				$text = $miaSecure->beLikeC(); 						break;
@@ -151,6 +153,7 @@
 				case "whereAmI": 				$text = $miaFunctions->youAreHere(); 				break;
 				case "weGo": 					$text = $mia->sayWhereYouGo(); 						break;
 				case "iMGoing": 				$text = $mia->sayBeCarefulOnTheRoad(); 				break;
+				case "iLoveYou": 				$text = $mia->sayIKnow();							break;
 
 			//	Page
 				case "temperature_page": 		$text = $miaPage->getTemperaturePage(); 			break;

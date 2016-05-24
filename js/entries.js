@@ -93,6 +93,7 @@ var entries = {
 
 		'es tu vivante'						: 'areYouAlive',
 		'je suis drole'						: 'amIFunny',
+		'je t\'aime'						: 'iLoveYou',
 		'tu fais quoi'						: 'whatAreYouDoing',
 		'ça marche pas'						: 'doesntWork',
 		"j'ai faim"							: 'iAmHungry',
