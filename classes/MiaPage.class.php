@@ -4,6 +4,18 @@ require_once(getcwd().'/libs/simple_html_dom.php');
 
 class MiaPage extends Mia {
 
+	function getTodayDate() {
+		global $miaFunctions;
+
+		$date = explode('-', date('Y-m-d')); ;
+
+		$year = $date[0];
+		$month = $miaFunctions->transformMonthToString($date[1]);
+		$day = $date[2];
+
+		return 'Nous sommes le '.$day.' '.$month.' '.$year.$miaFunctions->getFete();
+	}
+
 	public function getTemperaturePage() {
 
 		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
@@ -17,7 +29,8 @@ class MiaPage extends Mia {
 
 		$datas = array(
 			"temp" => $celsius,
-			"state" => $result
+			"state" => $result,
+			"day" => $this->getTodayDate()
 		);
 
 		return $datas;

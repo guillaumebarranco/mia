@@ -33,7 +33,7 @@ class MiaFunctions extends Mia {
 		$day = date("d");
 		$month = date("m");
 
-		$fp = fopen(getcwd()."/files/fete.txt", "r");
+		$fp = fopen(__DIR__."/../files/fete.txt", "r");
 
 		if($fp) {
 
@@ -53,7 +53,7 @@ class MiaFunctions extends Mia {
 
 				$monthFound = substr($line, $pos+1, strlen($line)-$pos-2);
 
-				if(($day == $dayFound) && ($month == $monthFound)) {
+				if((intval($day) === intval($dayFound) && (intval($month)) === intval($monthFound))) {
 					fclose($fp);
 					return " Et c'est la Saint ".$firstname;
 				}

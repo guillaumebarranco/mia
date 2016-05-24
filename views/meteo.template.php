@@ -1,14 +1,19 @@
 <div id="meteo">
 
-	<h2 class="city">{{city}}</h2>
-	<img v-bind:src="state" height="200" class="state" />
-	<h2 class="temp">{{temp}}°C</h2>
+	<div class="day">{{day}}</div>
 
-	<div>
-		Levé du soleil : {{sunrise}}
-	</div>
-	<div>
-		Couché du soleil : {{sunset}}
+	<div class="meteo">
+
+		<h2 class="city">{{city}}</h2>
+		<img v-bind:src="state" height="200" class="state" />
+		<h2 class="temp">{{temp}}°C</h2>
+
+		<div>
+			Levé du soleil : {{sunrise}}
+		</div>
+		<div>
+			Couché du soleil : {{sunset}}
+		</div>
 	</div>
 
 </div>

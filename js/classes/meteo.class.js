@@ -36,7 +36,8 @@ new Vue({
 		city: '',
 		state: '',
 		sunrise: '',
-		sunset: ''
+		sunset: '',
+		day: ''
 	},
 
 	ready() {
@@ -67,6 +68,7 @@ new Vue({
 
 				this.$set('sunrise', getHourFromTimestamp(datas.state.sys.sunrise));
 				this.$set('sunset', getHourFromTimestamp(datas.state.sys.sunset));
+				this.$set('day', datas.day);
 			});
 		}
 	}

@@ -97,11 +97,20 @@ nav {
 }
 
 #meteo {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+    .meteo {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .day {
+        font-size: 1.3em;
+        text-align: center;
+        margin: 50px 0;
+    }
 }
 
 #tv {
