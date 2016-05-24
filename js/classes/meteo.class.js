@@ -1,6 +1,7 @@
 var meteoClass = new Meteo();
 
 function Meteo() {
+	this.reloadWeather = 1; // In minutes
 
 	this.init = () => {
 	};
@@ -33,22 +34,31 @@ new Vue({
 	// Anything within the ready function will run when the application loads
 	ready() {
 
-		meteoClass.getTemp((response) => {
+		this.getWeather();
 
-			let datas = response.text;
-
-			let weather = datas.state.weather[0].main.toLowerCase();
-
-			if(weather === "clouds" && datas.state.weather[0].description === "few clouds") {
-				weather = "clear_few_clouds";
-			}
-
-			this.$set('temp', datas.temp);
-			this.$set('city', datas.state.name);
-			this.$set('state', `img/meteo/${weather}.png`);
-		});
+		setInterval(() => {
+			this.getWeather();
+		}, 1000*60*meteoClass.reloadWeather);
 	},
 
 	// Methods we want to use in our application are registered here
-	methods: {}
+	methods: {
+		getWeather() {
+
+			meteoClass.getTemp((response) => {
+
+				let datas = response.text;
+
+				let weather = datas.state.weather[0].main.toLowerCase();
+
+				if(weather === "clouds" && datas.state.weather[0].description === "few clouds") {
+					weather = "clear_few_clouds";
+				}
+
+				this.$set('temp', datas.temp);
+				this.$set('city', datas.state.name);
+				this.$set('state', `img/meteo/${weather}.png`);
+			});
+		}
+	}
 });

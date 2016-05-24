@@ -1,10 +1,8 @@
-<h1>Test</h1>
-
 <div id="meteo">
-	
-	<h2 class="temp">{{temp}}</h2>
+
 	<h2 class="city">{{city}}</h2>
 	<img v-bind:src="state" height="200" class="state" />
+	<h2 class="temp">{{temp}}°C</h2>
 
 </div>
 
