@@ -105,8 +105,8 @@ class MiaFunctions extends Mia {
 
 		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
 
-		// 615702 is Paris
-		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=".$apikey);
+		// 6455259 is Paris
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$result = json_decode(curl_exec($cl));
 
@@ -119,15 +119,16 @@ class MiaFunctions extends Mia {
 
 		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
 
-		// 615702 is Paris
-		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=".$apikey);
+		// 6455259 is Paris
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
 		$result = json_decode(curl_exec($cl));
 
 		$celsius = round($result->main->temp);
 
 		$datas = array(
-			"temp" => $celsius
+			"temp" => $celsius,
+			"state" => $result
 		);
 
 		return $datas;

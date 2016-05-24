@@ -25,7 +25,9 @@ new Vue({
 	// Here we can register any values or collections that hold data
 	// for the application
 	data: {
-		temp: ''
+		temp: '',
+		city: '',
+		state: ''
 	},
 
 	// Anything within the ready function will run when the application loads
@@ -35,8 +37,16 @@ new Vue({
 
 			let datas = response.text;
 
+			let weather = datas.state.weather[0].main.toLowerCase();
+
+			if(weather === "clouds" && datas.state.weather[0].description === "few clouds") {
+				weather = "clear_few_clouds";
+			}
+
 			this.$set('temp', datas.temp);
-		});	
+			this.$set('city', datas.state.name);
+			this.$set('state', `img/meteo/${weather}.png`);
+		});
 	},
 
 	// Methods we want to use in our application are registered here

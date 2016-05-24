@@ -2,7 +2,9 @@
 
 <div id="meteo">
 	
-	<h2 class="temp" v-html="temp"></h2>
+	<h2 class="temp">{{temp}}</h2>
+	<h2 class="city">{{city}}</h2>
+	<img v-bind:src="state" height="200" class="state" />
 
 </div>
 
@@ -12,8 +14,6 @@
 ?>
 
 <script>
-
-	meteoClass.getTemp();
 
 	// commandsFunctions.makeAction('temperature_page', 'js', (response) => {
 		// 	console.log(response);
