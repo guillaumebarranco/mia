@@ -23,7 +23,7 @@ class MiaDatabase extends Mia {
 
 		try {
 			$insert = $this->bdd->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password)");
-			
+
 			$insert->bindParam(':username', $username, \PDO::PARAM_STR);
 			$insert->bindParam(':password', $password, \PDO::PARAM_STR);
 			$insert->execute();

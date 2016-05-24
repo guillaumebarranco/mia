@@ -12,4 +12,14 @@ $(document).ready(function() {
 
 		commandsFunctions.searchCommand([command], 'writing');
 	});
+
+	$('.hamburger').on('click', function() {
+		let menu = $(this).parent().find('.menu');
+
+		if(menu.is(':hidden')) {
+			menu.show();
+		} else {
+			menu.hide();
+		}
+	});
 });

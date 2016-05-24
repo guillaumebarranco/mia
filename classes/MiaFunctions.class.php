@@ -53,7 +53,7 @@ class MiaFunctions extends Mia {
 
 				$monthFound = substr($line, $pos+1, strlen($line)-$pos-2);
 
-				if(($day == $jourFound) && ($month == $moisFound)) {
+				if(($day == $dayFound) && ($month == $monthFound)) {
 					fclose($fp);
 					return " Et c'est la Saint ".$firstname;
 				}
@@ -103,22 +103,35 @@ class MiaFunctions extends Mia {
 
 	public function getTemperature() {
 
-		// 615702 is Paris
-		$cl = curl_init("http://weather.yahooapis.com/forecastrss?w=615702&u=f");
+		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
 
+		// 6455259 is Paris
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-		$sxe = simplexml_load_string(curl_exec($cl));
+		$result = json_decode(curl_exec($cl));
 
-
-		$ns = $sxe->getDocNamespaces();
-		$sxe->registerXPathNamespace('yweather',$ns['yweather']);
-
-		$fareinheit = $sxe->xpath("/rss/channel/item/yweather:condition/@temp");
-		$forecast = $sxe->xpath("/rss/channel/item/yweather:forecast");
-
-		$celsius = ceil(($fareinheit[0]->temp - 32) / 1.8);
+		$celsius = round($result->main->temp);
 
 		return $this->echoGoogle('Il fait '.$celsius.' degrés à Paris');
+	}
+
+	public function getTemperaturePage() {
+
+		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
+
+		// 6455259 is Paris
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$result = json_decode(curl_exec($cl));
+
+		$celsius = round($result->main->temp);
+
+		$datas = array(
+			"temp" => $celsius,
+			"state" => $result
+		);
+
+		return $datas;
 	}
 
 	function searchForOp($opOut) {
