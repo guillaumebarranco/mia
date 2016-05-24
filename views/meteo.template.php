@@ -1,10 +1,27 @@
-<h1>Meteo</h1>
+<h1>Test</h1>
 
-<h2 class="temp"></h2>
+<div id="meteo">
+	
+	<h2 class="temp" v-html="temp"></h2>
+
+</div>
+
+<?php
+	$scripts = ["../node_modules/vue/dist/vue", "../node_modules/vue-resource/dist/vue-resource", "classes/meteo.class"];
+	loadScripts($scripts);
+?>
 
 <script>
 
-	var meteoClass = new Meteo();
 	meteoClass.getTemp();
+
+	// commandsFunctions.makeAction('temperature_page', 'js', (response) => {
+		// 	console.log(response);
+
+		// 	let datas = response.text;
+
+		// 	this.$set('temp', datas.temp);
+		// 	console.log(this.temp);
+		// });
 
 </script>

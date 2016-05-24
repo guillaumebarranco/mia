@@ -11,9 +11,13 @@
 
 
 <?php 
-	$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "database", "audio", "main", "classes/meteo.class"];
+	$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "database", "audio", "main"];
 
 	function loadScript($script) { echo '<script src="'.MIA_URL.'js/'.$script.'.js"></script>'; }
-	
-	foreach ($scripts as $script) loadScript($script);
+
+	function loadScripts($scripts) {
+		foreach ($scripts as $script) loadScript($script);
+	}
+
+	loadScripts($scripts);
 ?>

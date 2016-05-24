@@ -22,9 +22,9 @@
 			if(isset($_GET['template'])) $template = $_GET['template'];
 
 			require_once 'elements/nav.php';
-		 	// require_once 'elements/mia_svg.php';
-		 	require_once 'views/'.$template.'.template.php';
-		 	
+		 	if($template === 'index') require_once 'elements/mia_svg.php';
+
+		 	require_once 'views/'.$template.'.template.php';		 	
 		 ?>
 
 	</body>
