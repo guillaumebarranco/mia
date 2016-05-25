@@ -4,6 +4,7 @@
 
 	<div class="meteo">
 
+		<h2 class="city">{{current.city}}</h2>
 		<div>
 			Levé du soleil : {{current.sunrise}}
 		</div>
@@ -15,20 +16,16 @@
 
 	<div class="meteo">
 
-		<h2 class="hour">{{current.hour}}</h2>
-		<h2 class="city">{{current.city}}</h2>
-		<img v-bind:src="current.state" height="200" class="state" />
+		<h2 class="hour">Actuel</h2>
+		<img v-bind:src="current.state" height="150" class="state" />
 		<h2 class="temp">{{current.temp}}°C</h2>
 
 	</div>
 
-	<hr>
-
 	<div class="meteo" v-for="data in forecast">
 		
 		<h2 class="hour">{{data.hour}}</h2>
-		<h2 class="city">{{data.city}}</h2>
-		<img v-bind:src="data.state" height="200" class="state" />
+		<img v-bind:src="data.state" height="150" class="state" />
 		<h2 class="temp">{{data.temp}}°C</h2>
 	</div>
 

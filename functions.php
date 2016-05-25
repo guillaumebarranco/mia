@@ -24,7 +24,6 @@
 		global $miaHumour;
 		global $miaKnowledge;
 		global $miaFunctions;
-		global $miaPage;
 		global $miaSecure;
 		global $miaRealWorld;
 		global $miaDatabase;
@@ -155,10 +154,6 @@
 				case "iMGoing": 				$text = $mia->sayBeCarefulOnTheRoad(); 				break;
 				case "iLoveYou": 				$text = $mia->sayIKnow();							break;
 
-			//	Page
-				case "temperature_page": 		$text = $miaPage->getTemperaturePage(); 			break;
-				case "tv_page":					$text = $miaPage->getTVPage();						break;
-
 			//	Real World
 
 				case "turnOnLight": 			$text = $miaRealWorld->turnOnLight(); 				break;
@@ -173,6 +168,18 @@
 		}
 
 		return $text;
+	}
+
+	function switchPage($entry) {
+
+		global $miaPage;
+
+		switch ($entry) {
+			case "temperature_page": 		$datas = $miaPage->getTemperaturePage(); 			break;
+			case "tv_page":					$datas = $miaPage->getTVPage();						break;
+		}
+
+		echo json_encode($datas);
 	}
 
 	function answerText($text) {
@@ -199,16 +206,23 @@
 		}
 	}
 
-	if(isset($_GET['text']) && $_GET['text'] !== '') $text = switchText($_GET['text']);
+	if(isset($_GET['page']) && $_GET['page'] !== '') switchPage($_GET['page']);
 
-	if(isset($_GET['text']) && $_GET['text'] !== '' && $text === '') {
+	if(isset($_GET['text']) && $_GET['text'] !== '') {
 
-		if(substr($_GET['text'],0,7) === 'caniuse') {
-			$text = $miaFunctions->caniuse($_GET['text']);
+		$text = switchText($_GET['text']);
+
+		if($text === '') {
+
+			if(substr($_GET['text'],0,7) === 'caniuse') {
+				$text = $miaFunctions->caniuse($_GET['text']);
+			}
 		}
-	}
 
-	if($text === '') $text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
+		if($text === '') $text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
+
+		answerText($text);
+	}	
 
 	if(isset($_GET['action']) && $_GET['action'] === 'searchGoogle') {
 
@@ -217,5 +231,3 @@
 		var_dump($response);
 		die;
 	}
-
-	answerText($text);

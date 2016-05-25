@@ -10,10 +10,10 @@ function Meteo() {
 
 		var source = 'js';
 
-		var url = commandsFunctions.getResponseUrl('temperature_page', 'js');
+		var url = commandsFunctions.getResponsePageUrl();
 		
 		$.ajax({
-			url: url,
+			url: url+'&page=temperature_page',
 			type: 'GET',
 			success: function(response) {
 				response = JSON.parse(response);
@@ -39,7 +39,6 @@ new Vue({
 			sunrise: '',
 			sunset: '',
 			day: '',
-			hour: '',
 			timestamp: ''
 		},
 
@@ -52,7 +51,6 @@ new Vue({
 			},
 			{
 				temp: 0,
-				city: '',
 				state: '',
 				hour: ''
 			}
@@ -73,7 +71,7 @@ new Vue({
 
 			meteoClass.getTemp((response) => {
 
-				let datas = response.text;
+				let datas = response;
 
 				let weather = datas.today.weather[0].main.toLowerCase();
 
@@ -89,7 +87,6 @@ new Vue({
 				this.current.sunset = getHourFromTimestamp(datas.today.sys.sunset);
 				this.current.day = datas.day;
 				this.current.timestamp = datas.hour;
-				this.current.hour = getHourFromTimestamp(datas.hour);
 
 				this.getWeathers(response);
 			});
@@ -100,7 +97,7 @@ new Vue({
 			console.log('getWeathers', response);
 
 			let i = 0,
-				datas = response.text
+				datas = response
 			;
 
 			for(var element in datas.forecast.list) {
@@ -116,7 +113,6 @@ new Vue({
 					}
 
 					this.forecast[i].temp =  Math.round(data.main.temp);
-					this.forecast[i].city =  datas.forecast.city.name;
 					this.forecast[i].state =  `img/meteo/${weather}.png`;
 					this.forecast[i].hour = getHourFromTimestamp(data.dt);
 

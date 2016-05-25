@@ -91,6 +91,15 @@ function echoCommand() {
 		return url;
 	};
 
+	this.getResponsePageUrl = function() {
+		url = MIA_URL;
+
+		if(typeof getSearchParameters().overwrite !== 'undefined' /*|| source !== 'writing'*/) url += JS_URL;
+
+		url += 'functions.php?&source=js';
+		return url;
+	};
+
 	// After the AJAX response, make Mia answer to what you said
 	this.getMiaAnswer = function(responseText, source, cutText) {
 
