@@ -1,7 +1,5 @@
 <?php
 
-require_once(getcwd().'/libs/simple_html_dom.php');
-
 class MiaFunctions extends Mia {
 
 	protected $nodePath = 'C:/Users/Guillaume/AppData/Roaming/npm/';
@@ -33,7 +31,7 @@ class MiaFunctions extends Mia {
 		$day = date("d");
 		$month = date("m");
 
-		$fp = fopen(__DIR__."/../files/fete.txt", "r");
+		$fp = fopen(__DIR__."/../../media/files/fete.txt", "r");
 
 		if($fp) {
 

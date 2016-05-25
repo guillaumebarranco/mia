@@ -7,9 +7,9 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/styles.css" />
-		<link rel="stylesheet" href="css/mia.css" />
-		<link rel="stylesheet" href="css/loader.css" />
+		<link rel="stylesheet" href="media/css/styles.css" />
+		<link rel="stylesheet" href="media/css/mia.css" />
+		<link rel="stylesheet" href="media/css/loader.css" />
 
 		<?php require_once 'elements/header.php'; ?>
 	</head>
@@ -24,7 +24,7 @@
 			require_once 'elements/nav.php';
 		 	if($template === 'index') require_once 'elements/mia_svg.php';
 
-		 	require_once 'views/'.$template.'.template.php';		 	
+		 	require_once 'elements/template/'.$template.'.template.php';		 	
 		 ?>
 
 	</body>

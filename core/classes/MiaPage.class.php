@@ -1,7 +1,5 @@
 <?php
 
-require_once(getcwd().'/libs/simple_html_dom.php');
-
 class MiaPage extends Mia {
 
 	function getTodayDate() {

@@ -13,7 +13,7 @@ class Autoloader {
 	}
 
 	public function autoload($class) {
-		if(isset($class)) include 'classes/'.$class . '.class.php';
+		if(isset($class)) require_once 'classes/'.$class . '.class.php';
 	}
 }
 

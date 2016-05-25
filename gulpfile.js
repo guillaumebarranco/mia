@@ -28,7 +28,7 @@ require('es6-promise').polyfill();
 *   Tâches pour compilation SASS du PortalBundle
 */
 
-var input = 'sass/*.scss';
+var input = 'media/sass/*.scss';
 
 gulp.task('style', function () {
     gulp

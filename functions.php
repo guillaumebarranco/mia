@@ -2,8 +2,10 @@
 
 	header("Access-Control-Allow-Origin: *");
 
-	require_once('classes/autoloader.class.php');
-	require_once('config.php');
+	require_once 'core/autoloader.class.php';
+	require_once 'config.php';
+
+	require_once __DIR__.'/core/libs/simple_html_dom.php';
 
 	$mia 			= new Mia();
 	$miaHumour 		= new MiaHumour();
