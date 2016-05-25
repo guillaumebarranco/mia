@@ -23,14 +23,17 @@ class MiaPage extends Mia {
 		// 6455259 is Paris
 		$cl = curl_init("http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=".$apikey);
 		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-		$result = json_decode(curl_exec($cl));
+		$today = json_decode(curl_exec($cl));
 
-		$celsius = round($result->main->temp);
+		$cl = curl_init("http://api.openweathermap.org/data/2.5/forecast?id=6455259&units=metric&appid=".$apikey);
+		curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
+		$forecast = json_decode(curl_exec($cl));
 
 		$datas = array(
-			"temp" => $celsius,
-			"state" => $result,
-			"day" => $this->getTodayDate()
+			"today" => $today,
+			"forecast" => $forecast,
+			"day" => $this->getTodayDate(),
+			"hour" => time()
 		);
 
 		return $datas;

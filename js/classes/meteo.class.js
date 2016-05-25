@@ -32,21 +32,40 @@ new Vue({
 	el: '#meteo',
 
 	data: {
-		temp: '',
-		city: '',
-		state: '',
-		sunrise: '',
-		sunset: '',
-		day: ''
+		current: {
+			temp: '',
+			city: '',
+			state: '',
+			sunrise: '',
+			sunset: '',
+			day: '',
+			hour: '',
+			timestamp: ''
+		},
+
+		forecast: [
+			{
+				temp: 0,
+				city: '',
+				state: '',
+				hour: ''
+			},
+			{
+				temp: 0,
+				city: '',
+				state: '',
+				hour: ''
+			}
+		]
 	},
 
 	ready() {
 
 		this.getWeather();
 
-		setInterval(() => {
-			this.getWeather();
-		}, 1000*60*meteoClass.reloadWeather);
+		// setInterval(() => {
+		// 	this.getWeather();
+		// }, 1000*60*meteoClass.reloadWeather);
 	},
 
 	methods: {
@@ -56,29 +75,66 @@ new Vue({
 
 				let datas = response.text;
 
-				let weather = datas.state.weather[0].main.toLowerCase();
+				let weather = datas.today.weather[0].main.toLowerCase();
 
-				if(weather === "clouds" && datas.state.weather[0].description === "few clouds") {
+				if(weather === "clouds" && datas.today.weather[0].description === "few clouds") {
 					weather = "clear_few_clouds";
 				}
 
-				this.$set('temp', datas.temp);
-				this.$set('city', datas.state.name);
-				this.$set('state', `img/meteo/${weather}.png`);
+				this.current.temp = Math.round(datas.today.main.temp);
+				this.current.city = datas.today.name;
+				this.current.state = `img/meteo/${weather}.png`;
 
-				this.$set('sunrise', getHourFromTimestamp(datas.state.sys.sunrise));
-				this.$set('sunset', getHourFromTimestamp(datas.state.sys.sunset));
-				this.$set('day', datas.day);
+				this.current.sunrise = getHourFromTimestamp(datas.today.sys.sunrise);
+				this.current.sunset = getHourFromTimestamp(datas.today.sys.sunset);
+				this.current.day = datas.day;
+				this.current.timestamp = datas.hour;
+				this.current.hour = getHourFromTimestamp(datas.hour);
+
+				this.getWeathers(response);
 			});
+		},
+
+		getWeathers(response) {
+
+			console.log('getWeathers', response);
+
+			let i = 0,
+				datas = response.text
+			;
+
+			for(var element in datas.forecast.list) {
+
+				let data = datas.forecast.list[element],
+					weather = data.weather[0].main.toLowerCase()
+				;
+
+				if(data.dt > this.current.timestamp) {
+
+					if(weather === "clouds" && data.weather[0].description === "few clouds") {
+						weather = "clear_few_clouds";
+					}
+
+					this.forecast[i].temp =  Math.round(data.main.temp);
+					this.forecast[i].city =  datas.forecast.city.name;
+					this.forecast[i].state =  `img/meteo/${weather}.png`;
+					this.forecast[i].hour = getHourFromTimestamp(data.dt);
+
+					i++;
+
+					if(i === 2) break;
+				}
+			}
 		}
 	}
 });
 
 function getHourFromTimestamp(unix_timestamp) {
 
-	var date = new Date(unix_timestamp*1000);
-	var hours = getRealHour(date.getHours());
-	var minutes = getRealHour(date.getMinutes());
+	var date = new Date(unix_timestamp*1000),
+		hours = getRealHour(date.getHours()),
+		minutes = getRealHour(date.getMinutes())
+	;
 
 	// Will display time in 10:30 format
 	return hours + ':' + minutes;
