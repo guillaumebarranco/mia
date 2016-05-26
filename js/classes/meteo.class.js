@@ -81,7 +81,7 @@ new Vue({
 
 				this.current.temp = Math.round(datas.today.main.temp);
 				this.current.city = datas.today.name;
-				this.current.state = `img/meteo/${weather}.png`;
+				this.current.state = `media/img/meteo/${weather}.png`;
 
 				this.current.sunrise = getHourFromTimestamp(datas.today.sys.sunrise);
 				this.current.sunset = getHourFromTimestamp(datas.today.sys.sunset);
@@ -113,7 +113,7 @@ new Vue({
 					}
 
 					this.forecast[i].temp =  Math.round(data.main.temp);
-					this.forecast[i].state =  `img/meteo/${weather}.png`;
+					this.forecast[i].state =  `media/img/meteo/${weather}.png`;
 					this.forecast[i].hour = getHourFromTimestamp(data.dt);
 
 					i++;

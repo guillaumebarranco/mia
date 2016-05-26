@@ -7,12 +7,10 @@ function TV() {
 
 	this.getTV = (callback) => {
 
-		const source = 'js',
-			url = commandsFunctions.getResponseUrl('tv_page', 'js')
-		;
+		const url = commandsFunctions.getResponsePageUrl();
 		
 		$.ajax({
-			url: url,
+			url: url+'&page=tv',
 			type: 'GET',
 			success: function(response) {
 				response = JSON.parse(response);
@@ -42,7 +40,7 @@ new Vue({
 		getTV() {
 
 			tvClass.getTV((response) => {
-				this.$set('movies', response.text);
+				this.$set('movies', response);
 			});
 		}
 	}

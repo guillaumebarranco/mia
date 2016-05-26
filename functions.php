@@ -177,8 +177,8 @@
 		global $miaPage;
 
 		switch ($entry) {
-			case "temperature_page": 		$datas = $miaPage->getTemperaturePage(); 			break;
-			case "tv_page":					$datas = $miaPage->getTVPage();						break;
+			case "meteo": 				$datas = $miaPage->getTemperaturePage(); 			break;
+			case "tv":					$datas = $miaPage->getTVPage();						break;
 		}
 
 		echo json_encode($datas);
@@ -208,7 +208,7 @@
 		}
 	}
 
-	if(isset($_GET['page']) && $_GET['page'] !== '') switchPage($_GET['page']);
+	if(isset($_GET['page']) && $_GET['page'] !== '') return switchPage($_GET['page']);
 
 	if(isset($_GET['text']) && $_GET['text'] !== '') {
 
@@ -224,7 +224,7 @@
 		if($text === '') $text = $mia->echoGoogle("Cette commande n'existe pas dans mon programme.");
 
 		answerText($text);
-	}	
+	}
 
 	if(isset($_GET['action']) && $_GET['action'] === 'searchGoogle') {
 
