@@ -13,7 +13,7 @@ function Meteo() {
 		var url = commandsFunctions.getResponsePageUrl();
 		
 		$.ajax({
-			url: url+'&page=temperature_page',
+			url: url+'&page=meteo',
 			type: 'GET',
 			success: function(response) {
 				response = JSON.parse(response);

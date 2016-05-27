@@ -18,7 +18,7 @@ class MiaPage extends Mia {
 		return 'Nous sommes le '.$day.' '.$month.' '.$year.$miaFunctions->getFete();
 	}
 
-	public function getTemperaturePage() {
+	public function getMeteo() {
 
 		$apikey = "aa870edae9ce0abe6b9751aa67743a71";
 

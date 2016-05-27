@@ -177,7 +177,7 @@
 		global $miaPage;
 
 		switch ($entry) {
-			case "meteo": 				$datas = $miaPage->getTemperaturePage(); 			break;
+			case "meteo": 				$datas = $miaPage->getMeteo(); 						break;
 			case "tv":					$datas = $miaPage->getTVPage();						break;
 			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
 		}
