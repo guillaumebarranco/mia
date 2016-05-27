@@ -1,17 +1,20 @@
-var meteoClass = new Meteo();
+"use strict";
 
-function Meteo() {
-	this.reloadWeather = 1; // In minutes
+let meteoClass;
 
-	this.init = () => {
+class Meteo {
+
+	constructor() {
+		this.reloadWeather = 1; // In minutes
+	}
+
+	init() {
 	};
 
-	this.getTemp = (callback) => {
+	getTemp(callback) {
 
-		var source = 'js';
+		const url = commandsFunctions.getResponsePageUrl();
 
-		var url = commandsFunctions.getResponsePageUrl();
-		
 		$.ajax({
 			url: url+'&page=meteo',
 			type: 'GET',
@@ -27,6 +30,8 @@ function Meteo() {
 		});	
 	};
 }
+
+meteoClass = new Meteo();
 
 new Vue({
 	el: '#meteo',
@@ -61,9 +66,9 @@ new Vue({
 
 		this.getWeather();
 
-		// setInterval(() => {
-		// 	this.getWeather();
-		// }, 1000*60*meteoClass.reloadWeather);
+		setInterval(() => {
+			this.getWeather();
+		}, 1000*60*meteoClass.reloadWeather);
 	},
 
 	methods: {
@@ -71,7 +76,7 @@ new Vue({
 
 			meteoClass.getTemp((response) => {
 
-				let datas = response;
+				const datas = response;
 
 				let weather = datas.today.weather[0].main.toLowerCase();
 
