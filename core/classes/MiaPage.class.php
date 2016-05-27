@@ -1,5 +1,9 @@
 <?php
 
+require_once __DIR__.'/../libs/simple_html_dom.php';
+require_once __DIR__.'/../libs/TwitterAPIExchange.php';
+use Twitter\twitter\TwitterAPIExchange;
+
 class MiaPage extends Mia {
 
 	function getTodayDate() {
@@ -75,7 +79,7 @@ class MiaPage extends Mia {
 		return $stations;
 	}
 
-	public function getTwitterDatas($twitter_name, $link_saved = array()) {
+	public function getTwitterFeed($type = 'username', $search = 'Webarranco', $link_saved = array()) {
 		// APPEL A L'API
 
 		$settings = array(
@@ -87,7 +91,7 @@ class MiaPage extends Mia {
 
 		$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 
-		$getfield = '?screen_name='.$twitter_name;
+		$getfield = '?screen_name='.$search;
 		$requestMethod = 'GET';
 		$twitter = new TwitterAPIExchange($settings);
 
@@ -107,12 +111,12 @@ class MiaPage extends Mia {
 
 				if(empty($status['retweeted_status']) && $status['in_reply_to_status_id'] === null) {
 
-					if(!in_array('https://twitter.com/'.$twitter_name.'/status/'.$status['id_str'], $link_saved)) { 
+					if(!in_array('https://twitter.com/'.$search.'/status/'.$status['id_str'], $link_saved)) { 
 						// Filter by posts saved
 
 						$datas['twitter'][$t] = array();
 						$datas['twitter'][$t]['text'] = $status['text'];
-						$datas['twitter'][$t]['link'] = 'https://twitter.com/'.$twitter_name.'/status/'.$status['id_str'];
+						$datas['twitter'][$t]['link'] = 'https://twitter.com/'.$search.'/status/'.$status['id_str'];
 						// Pour être sur, une fois le lien sauvegardé pour un tweet, on le met dans le tableau pour qu'il ne puisse pas réapparaitre
 						$link_saved[] = $datas['twitter'][$t]['link'];
 						$t++;

@@ -179,6 +179,7 @@
 		switch ($entry) {
 			case "meteo": 				$datas = $miaPage->getTemperaturePage(); 			break;
 			case "tv":					$datas = $miaPage->getTVPage();						break;
+			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
 		}
 
 		echo json_encode($datas);
