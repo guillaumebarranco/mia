@@ -135,7 +135,9 @@ class MiaPage extends Mia {
 
 		$response = $html->find('.classement');
 
-		for ($i=0; $i < 20; $i++) {
+		$number = isset($_GET['number']) ? $_GET['number'] : 5;
+
+		for ($i=0; $i < $number; $i++) {
 
 			$ranking = $response[0]->children[1]->children[$i]->children[0]->plaintext;
 			$country = $response[0]->children[1]->children[$i]->children[2]->plaintext;
@@ -143,17 +145,25 @@ class MiaPage extends Mia {
 
 			$player = $response[0]->children[1]->children[$i]->children[1];
 
+			$link = $name = $player->children[1]->attr['href'];
+
 			$name = $player->children[1]->children[0]->plaintext;
+
+			$html2 = file_get_html("http://www.lequipe.fr".$link);
+			$infos = $html2->find('.sportif-image');
+
+			$picture = $infos[0]->children[0]->attr['src'];
+			// die;
 
 			$classement[$i] = array(
 				'ranking' => trim($ranking),
 				'country' => trim($country),
 				'points' => trim($points),
 				'name' => trim($name),
+				'picture' => trim($picture),
 			);
 		}
 
 		return $classement;
 	}
-
 }

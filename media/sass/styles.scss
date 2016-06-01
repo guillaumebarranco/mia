@@ -133,3 +133,30 @@ nav {
         margin-top: 10px;
     }
 }
+
+#tennis {
+    .tennis {
+        display: inline-block;
+        vertical-align: top;
+        margin: 40px 0 0 40px;
+
+        h3 {
+            display: inline-block;
+            margin: 0;
+            vertical-align: top;
+        }
+
+        .name {
+            margin-left: 10px;
+        }
+
+        .picture {
+            margin: 10px 0;
+        }
+
+        &>div {
+            display: block;
+            text-align: center;
+        }
+    }
+}

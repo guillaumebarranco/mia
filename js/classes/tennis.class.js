@@ -1,6 +1,6 @@
-var twitterClass = new Twitter();
+var tennisClass = new tennis();
 
-function Twitter() {
+function tennis() {
 
 	this.init = () => {
 	};
@@ -10,7 +10,7 @@ function Twitter() {
 		const url = commandsFunctions.getResponsePageUrl();
 		
 		$.ajax({
-			url: url+'&page=twitter&type=username&search=Webarranco',
+			url: url+'&page=tennis&number=6',
 			type: 'GET',
 			success: function(response) {
 				console.log(JSON.parse(response));
@@ -27,10 +27,9 @@ function Twitter() {
 
 new Vue({
 
-	el: '#twitter',
+	el: '#tennis',
 	data: {
-		datas: {},
-		name: ''
+		datas: {}
 	},
 
 	ready() {
@@ -40,9 +39,8 @@ new Vue({
 	methods: {
 		getFeed() {
 
-			twitterClass.getFeed((response) => {
-				this.$set('name', response.twitter.shift())
-				this.$set('datas', response.twitter);
+			tennisClass.getFeed((response) => {
+				this.$set('datas', response);
 			});
 		}
 	}

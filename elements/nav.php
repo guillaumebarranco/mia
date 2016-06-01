@@ -10,5 +10,6 @@
 		<a href="index.php?template=meteo" data-link="meteo">Meteo</a>
 		<a href="index.php?template=tv" data-link="tv">TV</a>
 		<a href="index.php?template=twitter" data-link="twitter">Twitter</a>
+		<a href="index.php?template=tennis" data-link="tennis">Classement ATP</a>
 	</div>
 </nav>
