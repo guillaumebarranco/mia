@@ -180,6 +180,7 @@
 			case "meteo": 				$datas = $miaPage->getMeteo(); 						break;
 			case "tv":					$datas = $miaPage->getTVPage();						break;
 			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
+			case "tennis":				$datas = $miaPage->getATPClassement();				break;
 		}
 
 		echo json_encode($datas);

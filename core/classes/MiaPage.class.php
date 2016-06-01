@@ -127,4 +127,33 @@ class MiaPage extends Mia {
 		return $datas;
 	}
 
+	public function getATPClassement() {
+
+		$classement = array();
+
+		$html = file_get_html('http://www.lequipe.fr/Tennis/atp-classement.html');
+
+		$response = $html->find('.classement');
+
+		for ($i=0; $i < 20; $i++) {
+
+			$ranking = $response[0]->children[1]->children[$i]->children[0]->plaintext;
+			$country = $response[0]->children[1]->children[$i]->children[2]->plaintext;
+			$points = $response[0]->children[1]->children[$i]->children[3]->plaintext;
+
+			$player = $response[0]->children[1]->children[$i]->children[1];
+
+			$name = $player->children[1]->children[0]->plaintext;
+
+			$classement[$i] = array(
+				'ranking' => trim($ranking),
+				'country' => trim($country),
+				'points' => trim($points),
+				'name' => trim($name),
+			);
+		}
+
+		return $classement;
+	}
+
 }
