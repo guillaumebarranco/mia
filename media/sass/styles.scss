@@ -135,6 +135,31 @@ nav {
 }
 
 #tennis {
+
+    .form {
+        margin-top: 20px;
+
+        input {
+            width: 100px;
+        }
+
+        button {
+            cursor: pointer;
+            transition: 0.4s;
+            border: solid 1px #fff;
+            background: #fff;
+            color: $main_color;
+            font-size: 1.3em;
+            padding: 10px;
+            margin-left: 15px;
+
+            &:hover {
+                color: #fff;
+                background-color: $main_color;
+            }
+        }
+    }
+
     .tennis {
         display: inline-block;
         vertical-align: top;

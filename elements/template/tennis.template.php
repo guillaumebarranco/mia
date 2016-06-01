@@ -1,5 +1,10 @@
 <div id="tennis">
 
+	<div class="form">
+		<input type="text" name="number" type="number" value="2">
+		<button class="update">Update</button>
+	</div>
+
 	<div v-for="data in datas" class="tennis">
 
 		<h3><strong>{{data.ranking}}</strong></h3>

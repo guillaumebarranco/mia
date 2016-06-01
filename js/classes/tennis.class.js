@@ -3,6 +3,7 @@ var tennisClass = new tennis();
 function tennis() {
 
 	this.init = () => {
+		this.initFunctions();
 	};
 
 	this.getFeed = (callback) => {
@@ -10,7 +11,7 @@ function tennis() {
 		const url = commandsFunctions.getResponsePageUrl();
 		
 		$.ajax({
-			url: url+'&page=tennis&number=6',
+			url: url+'&page=tennis&number='+$('input[name=number]').val(),
 			type: 'GET',
 			success: function(response) {
 				console.log(JSON.parse(response));
@@ -23,6 +24,9 @@ function tennis() {
 			}
 		});	
 	};
+
+	this.initFunctions = () => {
+	};
 }
 
 new Vue({
@@ -33,6 +37,13 @@ new Vue({
 	},
 
 	ready() {
+
+		var that = this;
+
+		$('.update').on('click', function() {
+			that.getFeed();
+		});
+
 		this.getFeed();
 	},
 
