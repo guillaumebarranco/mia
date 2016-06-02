@@ -161,27 +161,86 @@ nav {
     }
 
     .tennis {
+        position: relative;
         display: inline-block;
         vertical-align: top;
         margin: 40px 0 0 40px;
 
-        h3 {
-            display: inline-block;
-            margin: 0;
-            vertical-align: top;
+        .fiche {
+            cursor: pointer;
+
+            h3 {
+                display: inline-block;
+                margin: 0;
+                vertical-align: top;
+            }
+
+            .name {
+                margin-left: 10px;
+            }
+
+            .picture {
+                margin: 10px 0;
+            }
+
+            &>div {
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+
+    $width: 800px;
+    $height: 600px;
+
+    .popup {
+        position: fixed;
+        font-family: 'Verdana';
+        background-color: #fff;
+        top: 50%;
+        left: 50%;
+        border: solid #000 1px;
+        color: #000;
+        margin-left: -$width/2;
+        margin-top: -$height/2;
+        width: $width;
+        height: $height;
+        padding: 10px;
+        box-sizing: border-box;
+
+        &.hidden {
+            display: none;
         }
 
-        .name {
-            margin-left: 10px;
-        }
-
-        .picture {
-            margin: 10px 0;
-        }
-
-        &>div {
-            display: block;
+        .head {
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: $main_color;
+            font-size: 1.25em;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .lastSaison, .currentSaison {
+            display: inline-block;
+            vertical-align: top;
+            width: 48%;
+        }
+
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.25em;
+            cursor: pointer;
         }
     }
 }

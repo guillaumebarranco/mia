@@ -149,18 +149,62 @@ class MiaPage extends Mia {
 
 			$name = $player->children[1]->children[0]->plaintext;
 
+			// Second request
 			$html2 = file_get_html("http://www.lequipe.fr".$link);
-			$infos = $html2->find('.sportif-image');
 
-			$picture = $infos[0]->children[0]->attr['src'];
-			// die;
+			$infos_image = $html2->find('.sportif-image');
+			$picture = $infos_image[0]->children[0]->attr['src'];
 
-			$classement[$i] = array(
+			// current saison
+
+			$currentSaison = $html2->find('#sportif-saison')[0]->children[0];
+
+			$victories = $currentSaison->children[0];
+			$number_titles = $victories->children[0]->plaintext;
+
+			$all_victories = array();
+
+			for ($j=0; $j < intval($number_titles); $j++) { 
+				$all_victories[] = $victories->children[1]->children[0]->children[$j]->plaintext;
+			}
+
+			$ratio = $currentSaison->children[2]->children[1]->plaintext;
+
+			// last saison
+
+			$last_currentSaison = $html2->find('#sportif-saison')[1]->children[0];
+
+			$last_victories = $last_currentSaison->children[0];
+			$last_number_titles = $last_victories->children[0]->plaintext;
+
+			$last_all_victories = array();
+
+			for ($last_i=0; $last_i < intval($last_number_titles); $last_i++) { 
+				$last_all_victories[] = $last_victories->children[1]->children[0]->children[$last_i]->plaintext;
+			}
+
+			$last_ratio = $last_currentSaison->children[2]->children[1]->plaintext;
+
+
+			$classement[] = array(
 				'ranking' => trim($ranking),
 				'country' => trim($country),
 				'points' => trim($points),
 				'name' => trim($name),
 				'picture' => trim($picture),
+
+				'popup' => array(
+					'currentSaison' => array(
+						'nbVictories' => $number_titles,
+						'victories' => $all_victories,
+						'ratio' => $ratio
+					),
+					'lastSaison' => array(
+						'nbVictories' => $last_number_titles,
+						'victories' => $last_all_victories,
+						'ratio' => $last_ratio
+					)
+				)
 			);
 		}
 

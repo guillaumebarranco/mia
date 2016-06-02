@@ -26,8 +26,17 @@ function tennis() {
 	};
 
 	this.initFunctions = () => {
+
 	};
 }
+
+$(document).on('click', '.fiche', function() {
+	$(this).parent().find('.popup').removeClass('hidden');
+});
+
+$(document).on('click', '.close', function() {
+	$('.popup').addClass('hidden');
+});
 
 new Vue({
 
@@ -51,6 +60,7 @@ new Vue({
 		getFeed() {
 
 			tennisClass.getFeed((response) => {
+				$('.popup').hide();
 				this.$set('datas', response);
 			});
 		}
