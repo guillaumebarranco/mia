@@ -207,6 +207,7 @@ nav {
         height: $height;
         padding: 10px;
         box-sizing: border-box;
+        z-index: 2;
 
         &.hidden {
             display: none;

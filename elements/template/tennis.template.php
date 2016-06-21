@@ -1,7 +1,7 @@
 <div id="tennis">
 
 	<div class="form">
-		<input type="text" name="number" type="number" value="2">
+		<input type="text" name="number" type="number" value="5">
 		<button class="update">Update</button>
 	</div>
 

@@ -9,6 +9,8 @@ function tennis() {
 	this.getFeed = (callback) => {
 
 		const url = commandsFunctions.getResponsePageUrl();
+
+		console.log(url);
 		
 		$.ajax({
 			url: url+'&page=tennis&number='+$('input[name=number]').val(),

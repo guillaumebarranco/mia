@@ -159,16 +159,25 @@ class MiaPage extends Mia {
 
 			$currentSaison = $html2->find('#sportif-saison')[0]->children[0];
 
+
 			$victories = $currentSaison->children[0];
 			$number_titles = $victories->children[0]->plaintext;
 
 			$all_victories = array();
 
 			for ($j=0; $j < intval($number_titles); $j++) { 
-				$all_victories[] = $victories->children[1]->children[0]->children[$j]->plaintext;
+				$all_victories[] = utf8_encode($victories->children[1]->children[0]->children[$j]->plaintext);
 			}
 
-			$ratio = $currentSaison->children[2]->children[1]->plaintext;
+			$ratio = "Inconnu";
+
+			if(count($currentSaison->children) === 3) {
+				$ratio = $currentSaison->children[1]->children[1]->plaintext;
+			} else if(count($currentSaison->children) === 4) {
+				$ratio = $currentSaison->children[2]->children[1]->plaintext;
+			} else if(count($currentSaison->children) === 2) {
+				$ratio = $currentSaison->children[0]->children[1]->plaintext;
+			}
 
 			// last saison
 
@@ -183,8 +192,15 @@ class MiaPage extends Mia {
 				$last_all_victories[] = $last_victories->children[1]->children[0]->children[$last_i]->plaintext;
 			}
 
-			$last_ratio = $last_currentSaison->children[2]->children[1]->plaintext;
+			$last_ratio = "Inconnu";
 
+			if(count($last_currentSaison->children) === 3) {
+				$last_ratio = $last_currentSaison->children[1]->children[1]->plaintext;
+			} else if(count($last_currentSaison->children) === 4) {
+				$last_ratio = $last_currentSaison->children[2]->children[1]->plaintext;
+			} else if(count($last_currentSaison->children) === 2) {
+				$last_ratio = $last_currentSaison->children[0]->children[1]->plaintext;
+			}
 
 			$classement[] = array(
 				'ranking' => trim($ranking),

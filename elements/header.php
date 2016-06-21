@@ -11,7 +11,7 @@
 
 
 <?php 
-	$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "database", "audio", "main"];
+	$scripts = ["jquery", "annyang", "functions", "entries", "privateEntries", "database", "audio", "main", "streams"];
 
 	function loadScript($script) { echo '<script src="'.MIA_URL.'js/'.$script.'.js"></script>'; }
 
