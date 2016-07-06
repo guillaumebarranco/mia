@@ -111,6 +111,8 @@
 
 				case "news": 					$text = $miaKnowledge->getNews(); 					break;
 
+				case "ping": 					$text = $miaFunctions->ping(); 						break;
+
 			//	Private
 
 				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 				break;
