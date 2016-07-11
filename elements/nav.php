@@ -14,5 +14,6 @@
 		<a href="index.php?template=agenda" data-link="tennis">Agenda</a>
 		<a href="index.php?template=agendacassandre" data-link="tennis">Agenda Cassandre</a>
 		<a href="index.php?template=configuration" data-link="configuration">Configuration</a>
+		<a href="index.php?template=news" data-link="news">News</a>
 	</div>
 </nav>
