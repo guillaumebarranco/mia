@@ -44,8 +44,11 @@
 		<br>
 		
 		<div v-for="data in agenda" track-by="$index" class="elem">
-			<div>{{data.number}}</div>
-			<div><span class="hour_section">{{data.section}}</span></div>
+
+			<div class="{{data.active}}">
+				<div>{{data.number}}</div>
+				<div><span class="hour_section">{{data.section}}</span></div>
+			</div>
 		</div>
 	</div>
 

@@ -243,6 +243,7 @@ input[type=text] {
     $elem: 60px;
 
     .elem {
+        font-weight: bold;
         display: inline-block;
         vertical-align: top;
         margin-left: 10px;
@@ -257,6 +258,16 @@ input[type=text] {
         .hour_section {
             position: relative;
             top: 10px;
+        }
+
+        .active {
+            background-color: #fff;
+            color: $main_color;
+        }
+
+        &>div {
+            height: 100%;
+            width: 100%;
         }
     }
 

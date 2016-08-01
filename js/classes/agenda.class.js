@@ -29,13 +29,23 @@ new Vue({
 	methods: {
 		getAgenda() {
 
+			var date = new Date();
+			date = date.getDate();
+
+			console.log(date);
+
 			for (var i = 0; i < newsClass.agenda.length; i++) {
 
-				var section = newsClass.agenda[i];
+				var section = newsClass.agenda[i],
+					active = 'none'
+				;
+
+				if(i+1 === date) active = 'active';
 
 				newsClass.agenda[i] = {
 					section: section,
-					number: i+1
+					number: i+1,
+					active: active
 				};
 			}
 
