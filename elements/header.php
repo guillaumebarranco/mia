@@ -4,7 +4,8 @@
 
 <script>
 	var JS_URL = "<?=JS_URL?>",
-		MIA_URL = "<?=MIA_URL?>"
+		MIA_URL = "<?=MIA_URL?>",
+		AUDIO_ACTIVE = "<?=AUDIO_ACTIVE?>"
 	;
 </script>
 
