@@ -18,6 +18,23 @@ h3 {
     font-weight: lighter;
 }
 
+.btn {
+    background-color: #ff4081;
+    padding: 20px 15px;
+    border: solid 1px #ff4081;
+    transition: 0.4s;
+
+    &.active {
+        background-color: transparent;
+    }
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 div.wrap {
     width: 500px;
     position: absolute;
@@ -32,7 +49,7 @@ div.wrap {
     }
 }
 
-label {
+form label {
     position: absolute;
     top: 0;
     font-size: 30px;
@@ -41,6 +58,11 @@ label {
     background-color: $main_color;
     font-size: .2s ease-in-out;
     transition: top .2s ease-in-out;
+
+    &.active {
+        top: -25px;
+        font-size: 20px;
+    }
 }
 
 input[type=text] {
@@ -54,50 +76,9 @@ input[type=text] {
     &:focus {outline: none;}
 }
 
-.active {
-    top: -25px;
-    font-size: 20px;
-}
+
 
 #main {height: 100px;}
-
-nav {
-    position: relative;
-
-    .hamburger {
-        cursor: pointer;
-        width: 45px;
-    }
-
-    span {
-        display: block;
-        width: 40px;
-        height: 3px;
-        margin-top: 10px;
-        background-color: #fff;
-    }
-
-    .menu {
-        display: none;
-        position: absolute;
-        top: 40px;
-        left: 0;
-    }
-
-    a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 1.25em;
-        background-color: darken($main_color, 5%);
-        display: block;
-        width: 100px;
-        padding: 5px;
-
-        &:hover {
-            background-color: lighten($main_color, 15%)
-        }
-    }
-}
 
 #meteo {
 
@@ -244,4 +225,11 @@ nav {
             cursor: pointer;
         }
     }
+}
+
+.btn-config {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
 }

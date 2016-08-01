@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="media/css/styles.css" />
 		<link rel="stylesheet" href="media/css/mia.css" />
 		<link rel="stylesheet" href="media/css/loader.css" />
+		<link rel="stylesheet" href="media/css/nav.css" />
+		<link rel="stylesheet" href="media/css/font-awesome.css" />
 
 		<!-- <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
