@@ -25,8 +25,8 @@
 			<li>
 				Prévenir si la batterie est inférieure à 20%
 				<div>
-					<button>Oui</button>
-					<button>Non</button>
+					<button class="btn active">Oui</button>
+					<button class="btn">Non</button>
 				</div>
 			</li>
 		</ul>

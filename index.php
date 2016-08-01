@@ -42,6 +42,7 @@
 			if(isset($_GET['template'])) $template = $_GET['template'];
 
 			require_once 'elements/nav.php';
+
 		 	if($template === 'index') require_once 'elements/mia_svg.php';
 
 		 	require_once 'elements/template/'.$template.'.template.php';		 	
