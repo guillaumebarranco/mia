@@ -85,9 +85,10 @@ function echoCommand() {
 	this.getResponseUrl = function(text, source) {
 		url = MIA_URL;
 
-		if(typeof getSearchParameters().overwrite !== 'undefined' /*|| source !== 'writing'*/) url += JS_URL;
+		if(typeof getSearchParameters().overwrite !== 'undefined' /*|| source !== 'writing'*/) url = JS_URL;
 
 		url += 'functions.php?text='+text+'&source=js';
+		console.log(url);
 		return url;
 	};
 

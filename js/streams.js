@@ -6,7 +6,7 @@ class Stream {
 		this.everySecond = 1000;
 
 		this.battery = 100;
-		this.batteryLimit = 80;
+		this.batteryLimit = 30;
 	}
 
 	getCurrentBattery() {
@@ -28,4 +28,4 @@ class Stream {
 
 const streams = new Stream();
 
-streams.getCurrentBattery();
+// streams.getCurrentBattery();
