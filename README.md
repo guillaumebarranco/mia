@@ -6,3 +6,4 @@ My personnal robot
 	npm install
 	cp js/privateEntries_example.js js/privateEntries.js
 	cp core/classes/MiaSecure_example.class.php core/classes/MiaSecure.class.php
+	cp config_example.php config.php
