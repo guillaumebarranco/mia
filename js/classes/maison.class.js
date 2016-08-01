@@ -34,7 +34,6 @@ function Maison() {
 
 	this.initFunctions = () => {
 
-		$('.btn-config')
 		$('.config').hide();
 
 		$('.btn-config').on('click', function() {

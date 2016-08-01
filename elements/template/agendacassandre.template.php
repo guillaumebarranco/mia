@@ -1,14 +1,57 @@
-<div style="font-size: 20px;text-align:center;">
-	<div>Du 20 au 24 Juin : Matin-Matin-Matin-Matin-Soir</div>
-	<div>Mercredi 22 Juin : oral</div>
-	<br>
-	<div>La semaine prochaine</div>
-	<div>Du 27 au 29 Juin : Soir-Soir-Soir</div>
-	<div>Jeudi et vendredi 30 Juin et 1er Juillet rien du tout</div>
-	<div>Weekend du 2 Juillet : bal de promo</div>
-	<br>
-	<div>Après si tout va bien travail du lundi 4 au jeudi 7 Juillet</div>
-	<div>Puis je viens chez toi</div>
-	<div>Puis je travaille du 11 au 15 juillet</div>
-	<div>Puis je pars en canceva</div>
+<style>
+	#agenda section {
+		margin-top: 10px;
+	}
+	#agenda section div {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 5px;
+	}
+</style>
+
+<div id="agenda" class="wrapper">
+
+	<!-- <section>
+		<div>L</div> <div>M</div> <div>M</div> <div>J</div> <div>V</div> <div>S</div> <div>D</div>
+	</section>
+
+	<section>
+		<div>C</div> <div>C</div> <div>R</div> <div>R</div> <div>S</div> <div>S</div> <div>S</div>
+	</section>
+
+	<section>
+		<div>S</div> <div>R</div> <div>C</div> <div>M</div> <div>M</div> <div>M</div> <div>R</div>
+	</section>
+
+	<section>
+		<div>R</div> <div>S</div> <div>S</div> <div>S</div> <div>C</div> <div>C</div> <div>R</div>
+	</section>
+
+	<section>
+		<div>R</div> <div>S</div> <div>S</div> <div>C</div> <div>S</div> <div>R</div> <div>R</div>
+	</section>
+
+	<section>
+		<div>R</div> <div>M</div> <div>M</div>
+	</section> -->
+
+	<div class="agenda">
+
+		<div class="elem_day" v-for="day in days">
+			{{day}}
+		</div>
+
+		<br>
+		
+		<div v-for="data in agenda" track-by="$index" class="elem">
+			<div>{{data.number}}</div>
+			<div><span class="hour_section">{{data.section}}</span></div>
+		</div>
+	</div>
+
 </div>
+
+<?php
+	$scripts = ["../node_modules/vue/dist/vue", "../node_modules/vue-resource/dist/vue-resource", "classes/agenda.class"];
+	loadScripts($scripts);
+?>
