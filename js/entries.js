@@ -99,7 +99,7 @@ var entries = {
 		'tu fais quoi'						: 'whatAreYouDoing',
 		'ça marche pas'						: 'doesntWork',
 		"j'ai faim"							: 'iAmHungry',
-		'on y va'							: 'weGo',
+		// 'on y va'							: 'weGo',
 		'viens jouer avec nous'				: 'comePlayWithUs',
 
 	//	So Cool

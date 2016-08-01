@@ -1,6 +1,6 @@
 <?php
 
-class MiaRealWorld extends Mia {
+/*class MiaRealWorld extends Mia {
 
 	private $led_path = "/sys/class/leds/led1";
 
@@ -29,9 +29,9 @@ class MiaRealWorld extends Mia {
 
 		return $this->echoGoogle('La lumière a été éteinte');
 	}
-}
+}*/
 
-/*
+
 //echo "17" > /sys/class/gpio/export
 //echo "out" > /sys/class/gpio/gpio17/direction
 //cat /sys/class/gpio/gpio17/value
@@ -39,34 +39,33 @@ class MiaRealWorld extends Mia {
 //chown www-data /sys/class/gpio/gpio17/value
 class MiaRealWorld extends Mia {
 
-        private $led_path = "/sys/class/leds/led1";
+    private $led_path = "/sys/class/leds/led1";
 
-        public function turnOnLight() {
+    public function turnOnLight() {
 
-                /*$koko = exec("cat ".$this->led_path."/brightness");
+            $koko = exec("cat ".$this->led_path."/brightness");
 
-                if($koko === "255") {
-                        return $this->echoGoogle('La lumière est déjà allumée.');
-                }
+            if($koko === "255") {
+                return $this->echoGoogle('La lumière est déjà allumée.');
+            }
 
-                $koko = exec("echo 255 > ".$this->led_path."/brightness");
-                */
+            $koko = exec("echo 255 > ".$this->led_path."/brightness");
 
-               /* exec("echo 0 > /sys/class/gpio/gpio17/value");
-                return $this->echoGoogle('La lumière a été allumée');
-        }
+            exec("echo 0 > /sys/class/gpio/gpio17/value");
+            return $this->echoGoogle('La lumière a été allumée');
+    }
 
-        public function turnOffLight() {
-/*
-                $koko = exec("cat ".$this->led_path."/brightness");
+    public function turnOffLight() {
 
-                if($koko === "0") {
-                        return $this->echoGoogle('La lumière est déjà éteinte.');
-                }
+            $koko = exec("cat ".$this->led_path."/brightness");
 
-                $koko = exec("echo 0 > ".$this->led_path."/brightness");
-*/
-                /*exec("echo 1 > /sys/class/gpio/gpio17/value");
-                return $this->echoGoogle('La lumière a été éteinte');
-        }
-}*/
+            if($koko === "0") {
+                    return $this->echoGoogle('La lumière est déjà éteinte.');
+            }
+
+            $koko = exec("echo 0 > ".$this->led_path."/brightness");
+
+            exec("echo 1 > /sys/class/gpio/gpio17/value");
+            return $this->echoGoogle('La lumière a été éteinte');
+    }
+}

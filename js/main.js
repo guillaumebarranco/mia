@@ -6,9 +6,9 @@ $(document).ready(function() {
 
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		
-		var command = $('input').val().toLowerCase();
-		$('input').val('');
+
+		var command = $('input[type=text]').val().toLowerCase();
+		$('input[type=text]').val('');
 
 		commandsFunctions.searchCommand([command], 'writing');
 	});
