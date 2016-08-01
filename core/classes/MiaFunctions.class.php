@@ -459,4 +459,15 @@ class MiaFunctions extends Mia {
 
 		return $this->echoGoogle($return);
 	}
+
+	public function ping() {
+		$pingresult = exec('ping google.fr', $output, $status);
+		return $this->echoGoogle(trim($output[10]));
+	}
+
+	public function speedTest() {
+
+
+		return echoGoogle('Speed test');
+	}
 }

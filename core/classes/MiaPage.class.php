@@ -226,4 +226,11 @@ class MiaPage extends Mia {
 
 		return $classement;
 	}
+
+	public function getNews() {
+
+		$news = ['test'];
+
+		return $news;
+	}
 }

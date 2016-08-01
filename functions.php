@@ -111,6 +111,8 @@
 
 				case "news": 					$text = $miaKnowledge->getNews(); 					break;
 
+				case "ping": 					$text = $miaFunctions->ping(); 						break;
+
 			//	Private
 
 				case "myFavoriteManga": 		$text = $miaSecure->myFavoriteManga(); 				break;
@@ -181,6 +183,7 @@
 			case "tv":					$datas = $miaPage->getTVPage();						break;
 			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
 			case "tennis":				$datas = $miaPage->getATPClassement();				break;
+			case "news":				$datas = $miaPage->getNews();						break;
 		}
 
 		echo json_encode($datas);

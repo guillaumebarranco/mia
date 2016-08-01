@@ -71,6 +71,8 @@ var entries = {
 
 		'test'								: 'test',
 
+		'ping'								: 'ping',
+
 	//	Page
 		'rgregergrgr'						: 'temperature_page',
 		'rgregergr'							: 'tv_page',
