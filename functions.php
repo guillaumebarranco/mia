@@ -14,7 +14,7 @@
 	$miaPage 		= new MiaPage();
 	$miaSecure 		= new MiaSecure();
 	$miaRealWorld 	= new MiaRealWorld();
-	$miaDatabase 	= new MiaDatabase();
+	// $miaDatabase 	= new MiaDatabase();
 	
 	$text = '';
 
@@ -28,7 +28,7 @@
 		global $miaFunctions;
 		global $miaSecure;
 		global $miaRealWorld;
-		global $miaDatabase;
+		// global $miaDatabase;
 
 		switch($textEntry) {
 
@@ -169,7 +169,7 @@
 				case "how2": 					$text = $miaFunctions->how2(); 						break;
 
 			//	Database
-				case "getCommands": 			$text = $miaDatabase->getCommands(); 				break;
+				// case "getCommands": 			$text = $miaDatabase->getCommands(); 				break;
 		}
 
 		return $text;
