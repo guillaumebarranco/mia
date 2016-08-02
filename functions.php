@@ -162,6 +162,7 @@
 
 				case "turnOnLight": 			$text = $miaRealWorld->turnOnLight(); 				break;
 				case "turnOffLight": 			$text = $miaRealWorld->turnOffLight(); 				break;
+				case "changeLight": 			$text = $miaRealWorld->changeLight(); 				break;
 
 			//	Code
 

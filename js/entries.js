@@ -117,6 +117,7 @@ var entries = {
 		'eteins la lumiere' 				: 'turnOffLight',
 		'allume' 							: 'turnOnLight',
 		'eteins' 							: 'turnOffLight',
+		'lumiere' 							: 'changeLight',
 
 	//	Code
 
