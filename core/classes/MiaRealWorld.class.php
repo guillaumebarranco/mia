@@ -55,7 +55,7 @@ class MiaRealWorld extends Mia {
 
     public function changeLight() {
 
-        if($this->getLightStatus() === 0) {
+        if($this->getLightStatus() === "0") {
 
             return $this->setLightStatus(1);
         }
