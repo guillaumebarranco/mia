@@ -6,12 +6,16 @@ function News() {
 		['C', 'C', 'R', 'R', 'S', 'S', 'S', 'S', 'R', 'C', 'M', 'M', 'M', 'R', 'R', 'S', 'S', 'S', 'C', 'C', 'R', 'R', 'S', 'S', 'C', 'S', 'R', 'R', 'R', 'M', 'M']
 	;
 
+	this.agendaSeptember = 
+		['M', 'M', 'R', 'R', 'S', 'S', 'R', 'R', 'R', 'M', 'M', 'M', 'R', 'R', 'S', 'S', 'S', 'S', 'R', 'R', 'C', 'M', 'M', 'S', 'S', 'R', 'M', 'S', 'S', 'C']
+	;
+	this.firstDaySeptember = "Jeudi";
+
 	this.firstDay = "Lundi";
 	this.days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
 	this.init = () => {
 	};
-
 }
 
 new Vue({
