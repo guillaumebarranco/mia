@@ -7,29 +7,23 @@ function Maison() {
 		this.initFunctions();
 	};
 
-	this.getLight = (callback) => {
+	this.getConfiguration = (callback) => {
 
 		const url = commandsFunctions.getResponsePageUrl();
-
-		callback({
-			lum: {
-				state: 1
-			}
-		});
 		
-		// $.ajax({
-		// 	url: url+'&page=maison',
-		// 	type: 'GET',
-		// 	success: function(response) {
-		// 		console.log(JSON.parse(response));
-		// 		response = JSON.parse(response);
+		$.ajax({
+			url: url+'&page=config',
+			type: 'GET',
+			success: function(response) {
+				console.log(JSON.parse(response));
+				response = JSON.parse(response);
 
-		// 		if(callback) callback(response);
+				if(callback) callback(response);
 
-		// 	}, error: function() {
-		// 		myLoader.hide();
-		// 	}
-		// });	
+			}, error: function() {
+				myLoader.hide();
+			}
+		});	
 	};
 
 	this.initFunctions = () => {
@@ -60,19 +54,23 @@ new Vue({
 	data: {
 		lum: {
 			state: 0
+		},
+		raspberry: {
+			status: 0
 		}
 	},
 
 	ready() {
-		this.getLight();
+		this.getConfiguration();
 	},
 
 	methods: {
-		getLight() {
+		getConfiguration() {
 
-			maisonClass.getLight((response) => {
+			maisonClass.getConfiguration((response) => {
 				// this.$set('name', response.news.shift())
 				this.$set('lum', response.lum);
+				this.$set('raspberry', response.raspberry);
 			});
 		}
 	}

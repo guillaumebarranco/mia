@@ -187,6 +187,7 @@
 			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
 			case "tennis":				$datas = $miaPage->getATPClassement();				break;
 			case "news":				$datas = $miaPage->getNews();						break;
+			case "config":				$datas = $miaPage->getConfiguration();				break;
 		}
 
 		echo json_encode($datas);

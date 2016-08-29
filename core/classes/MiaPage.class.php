@@ -233,4 +233,18 @@ class MiaPage extends Mia {
 
 		return $news;
 	}
+
+	public function getConfiguration() {
+
+		$config = [
+			"raspberry" => array(
+				"status" => 1
+			),
+			"lum" => array(
+				"state" => 1
+			)
+		];
+
+		return $config;
+	}
 }

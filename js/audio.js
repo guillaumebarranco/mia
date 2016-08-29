@@ -1,6 +1,6 @@
 var startListeningAudio = function() {
 
-	if (annyang && AUDIO_ACTIVE) {
+	if (annyang && AUDIO_ACTIVE && $('#fname').length !== 0) {
 
 		annyang.setLanguage('fr-FR');
 

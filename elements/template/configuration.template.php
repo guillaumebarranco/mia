@@ -1,4 +1,11 @@
-<div class="wrapper">
+<div class="wrapper section_maison">
+	
+	<div class="global">
+		
+		<div v-if="raspberry.status === 1">Le raspberry à l'adresse est joignable</div>
+		<div v-if="raspberry.status === 0">Le raspberry à l'adresse n'est pas joignable</div>
+	</div>
+
 
 	<ul>
 		<li class="btn btn-config active" data-show="maison">
@@ -10,7 +17,7 @@
 		</li>	
 	</ul>
 
-	<div class="section_tab section_maison">
+	<div class="section_tab">
 
 		<div>Maison</div>
 
@@ -33,7 +40,7 @@
 	</div>
 
 	<?php
-		$scripts = ["../node_modules/vue/dist/vue", "../node_modules/vue-resource/dist/vue-resource", "classes/maison.class"];
+		$scripts = ["../node_modules/vue/dist/vue", "../node_modules/vue-resource/dist/vue-resource", "classes/config.class"];
 		loadScripts($scripts);
 	?>
 
