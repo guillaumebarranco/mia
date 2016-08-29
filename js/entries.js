@@ -89,6 +89,8 @@ var entries = {
 		'bien et toi'						: 'wellAndYou',
 		'bemol'								: 'bemol',
 		'bonne nuit'						: 'goodNight',
+		'desactive'							: 'desactivate',
+		'active'							: 'activate',
 		
 		'je vais dormir'					: 'goToSleep',
 		'je vais aller me coucher'			: 'goToSleep',

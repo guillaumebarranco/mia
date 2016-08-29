@@ -157,6 +157,8 @@
 				case "weGo": 					$text = $mia->sayWhereYouGo(); 						break;
 				case "iMGoing": 				$text = $mia->sayBeCarefulOnTheRoad(); 				break;
 				case "iLoveYou": 				$text = $mia->sayIKnow();							break;
+				case "activate": 				$text = $miaFunctions->activate();					break;
+				case "desactivate": 			$text = $miaFunctions->desactivate();				break;
 
 			//	Real World
 

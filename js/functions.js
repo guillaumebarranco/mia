@@ -60,7 +60,8 @@ function echoCommand() {
 	this.searchForMatchingAnswers = function(userSaid, entries, privateEntries, source) {
 
 		for (var i = 0; i < userSaid.length; i++) {
-			if(typeof entries[cleanFunctions.sanitize(userSaid[i])] != 'undefined') {
+
+			if(typeof entries[cleanFunctions.sanitize(userSaid[i])] !== 'undefined') {
 				entryFound = true;
 				commandsFunctions.pushToPreviouslySaid(userSaid[i]);
 				_this.makeAction(entries[cleanFunctions.sanitize(userSaid[i])], source);
@@ -70,7 +71,7 @@ function echoCommand() {
 
 		for (var j = 0; j < userSaid.length; j++) {
 
-			if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] != 'undefined') {
+			if(typeof privateEntries[cleanFunctions.sanitize(userSaid[j])] !== 'undefined') {
 				entryFound = true;
 				commandsFunctions.pushToPreviouslySaid(userSaid[i]);
 				_this.makeAction(privateEntries[cleanFunctions.sanitize(userSaid[j])], source);

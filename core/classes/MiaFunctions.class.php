@@ -468,6 +468,42 @@ class MiaFunctions extends Mia {
 	public function speedTest() {
 
 
-		return echoGoogle('Speed test');
+		return $this->echoGoogle('Speed test');
+	}
+
+	public function desactivate() {
+
+		$path = __DIR__.'/../../config.php';
+
+		$check =  exec('grep '.escapeshellarg('"AUDIO_ACTIVE, false"').' '.$path);
+
+		if($check) {
+			return $this->echoGoogle("L'audio est déjà désactivée.");
+		}
+
+		$str = file_get_contents($path);
+
+		$str = str_replace('"AUDIO_ACTIVE", true', '"AUDIO_ACTIVE", false', $str);
+		file_put_contents($path, $str);
+
+		return $this->echoGoogle("L'audio a été désactivée.");
+	}
+
+	public function activate() {
+
+		$path = __DIR__.'/../../config.php';
+
+		$check =  exec('grep '.escapeshellarg('"AUDIO_ACTIVE, true"').' '.$path);
+
+		if($check) {
+			return $this->echoGoogle("L'audio est déjà activée.");
+		}
+
+		$str = file_get_contents($path);
+
+		$str = str_replace('"AUDIO_ACTIVE", false', '"AUDIO_ACTIVE", true', $str);
+		file_put_contents($path, $str);
+
+		return $this->echoGoogle("L'audio a été activée.");
 	}
 }
