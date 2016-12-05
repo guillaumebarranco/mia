@@ -1,11 +1,11 @@
 <div id="tennis">
 
-	<div class="form">
+	<div v-show="!loader" class="form">
 		<input type="text" name="number" type="number" value="5">
 		<button class="update">Update</button>
 	</div>
 
-	<div v-for="data in datas" class="tennis">
+	<div v-show="!loader" v-for="data in datas" class="tennis">
 
 		<div class="fiche">
 			
@@ -70,6 +70,7 @@
 		</div>
 	</div>
 
+	<i v-show="loader" style="font-size: 100px; text-align:center;" class="fa fa-spinner fa-spin"></i>
 </div>
 
 <?php

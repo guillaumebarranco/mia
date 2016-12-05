@@ -9,3 +9,5 @@
 <a href="index.php?template=configuration" class="menu-item"> <i class="fa fa-cog"></i> </a>
 <a href="index.php?template=todo" class="menu-item"> <i class="fa fa-list"></i> </a>
 <a href="index.php?template=recipes" class="menu-item"> <i class="fa fa-cutlery"></i> </a>
+<a href="index.php?template=meteo" class="menu-item"> <i class="fa fa-sun-o"></i> </a>
+<a href="index.php?template=cocktails" class="menu-item"> <i class="fa fa-glass"></i> </a>

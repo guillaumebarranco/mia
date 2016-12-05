@@ -1,6 +1,6 @@
 <div id="tv">
 
-	<div v-for="movie in movies">
+	<div v-show="!loader" v-for="movie in movies">
 
 		<div class="station"><strong>{{movie.title}}</strong></div>
 
@@ -12,6 +12,7 @@
 		<div class="hour">{{movie.hour}}</div>
 	</div>
 
+	<i v-show="loader" style="font-size: 100px; text-align:center;" class="fa fa-spinner fa-spin"></i>
 </div>
 
 <?php

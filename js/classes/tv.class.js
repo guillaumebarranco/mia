@@ -29,6 +29,7 @@ new Vue({
 
 	el: '#tv',
 	data: {
+		loader: true,
 		movies: {}
 	},
 
@@ -40,6 +41,7 @@ new Vue({
 		getTV() {
 
 			tvClass.getTV((response) => {
+				this.$set('loader', false);
 				this.$set('movies', response);
 			});
 		}

@@ -116,6 +116,8 @@ input[type=text] {
 }
 
 #tennis {
+    display: flex;
+    justify-content: space-around;
 
     .form {
         margin-top: 20px;
@@ -143,8 +145,6 @@ input[type=text] {
 
     .tennis {
         position: relative;
-        display: inline-block;
-        vertical-align: top;
         margin: 40px 0 0 40px;
 
         .fiche {

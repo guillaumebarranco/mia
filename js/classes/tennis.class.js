@@ -11,6 +11,8 @@ function tennis() {
 		const url = commandsFunctions.getResponsePageUrl();
 
 		console.log(url);
+
+		console.log($('input[name=number]').val());
 		
 		$.ajax({
 			url: url+'&page=tennis&number='+$('input[name=number]').val(),
@@ -44,6 +46,7 @@ new Vue({
 
 	el: '#tennis',
 	data: {
+		loader: true,
 		datas: {}
 	},
 
@@ -52,6 +55,7 @@ new Vue({
 		var that = this;
 
 		$('.update').on('click', function() {
+			that.$set('loader', true);
 			that.getFeed();
 		});
 
@@ -62,6 +66,7 @@ new Vue({
 		getFeed() {
 
 			tennisClass.getFeed((response) => {
+				this.$set('loader', false);
 				$('.popup').hide();
 				this.$set('datas', response);
 			});
