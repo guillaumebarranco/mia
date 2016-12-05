@@ -18,6 +18,24 @@ class MiaPage extends Mia {
 		return 'Nous sommes le '.$day.' '.$month.' '.$year.$miaFunctions->getFete();
 	}
 
+	public function getAllBirthdays() {
+		global $miaSecure;
+
+		$birthdays = $miaSecure->getAllAnnivs();
+
+		$allBirthdays = array();
+
+		foreach($birthdays as $key => $b) {
+
+			$allBirthdays[] = array(
+				'date' => $key,
+				'name' => $b
+			);
+		}
+
+		return $allBirthdays;
+	}
+
 	public function getMeteo() {
 
 		$apikey = "aa870edae9ce0abe6b9751aa67743a71";

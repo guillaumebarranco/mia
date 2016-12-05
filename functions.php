@@ -180,6 +180,7 @@
 	function switchPage($entry) {
 
 		global $miaPage;
+		global $miaSecure;
 
 		switch ($entry) {
 			case "meteo": 				$datas = $miaPage->getMeteo(); 						break;
@@ -188,6 +189,7 @@
 			case "tennis":				$datas = $miaPage->getATPClassement();				break;
 			case "news":				$datas = $miaPage->getNews();						break;
 			case "config":				$datas = $miaPage->getConfiguration();				break;
+			case "birthdays":			$datas = $miaPage->getAllBirthdays();				break;
 		}
 
 		echo json_encode($datas);

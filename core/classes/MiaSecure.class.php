@@ -31,7 +31,7 @@ class MiaSecure extends Mia {
 		return $this->echoGoogle("Votre code a été copié dans la console. 3080350098298");
 	}
 
-	function getAllAnnivs() {
+	public function getAllAnnivs() {
 
 		return array(
 			'07-02' => 'Nathan',

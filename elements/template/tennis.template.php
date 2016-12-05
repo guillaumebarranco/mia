@@ -5,7 +5,7 @@
 		<button class="update">Update</button>
 	</div>
 
-	<div v-show="!loader" v-for="data in datas" class="tennis">
+	<div v-show="!loader" v-for="data in birthdays" class="tennis">
 
 		<div class="fiche">
 			
