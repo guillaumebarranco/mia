@@ -34,12 +34,12 @@ class MiaSecure extends Mia {
 	public function getAllAnnivs() {
 
 		return array(
-			'07-02' => 'Nathan',
-			'17-05' => 'Aurelien',
-			'30-07' => 'Aelys',
-			'31-08' => 'Angeline',
+			'02-07' => 'Nathan',
+			'05-17' => 'Aurelien',
+			'07-30' => 'Aelys',
+			'08-31' => 'Angeline',
 			'10-10' => 'Maman',
-			'22-10' => 'Papa'
+			'10-22' => 'Papa'
 		);
 	}
 
