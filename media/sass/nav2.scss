@@ -22,19 +22,6 @@
   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
 }
 
-.menu-item {
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	margin-left: 30px;
-	padding: 24px;
-	box-sizing: border-box;
-
-	i {
-		font-size: 30px;
-	}
-}
-
 .menu-open {
   display: none;
 }

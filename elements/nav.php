@@ -1,21 +1,11 @@
 <nav class="menu">
-  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
-  <label class="menu-open-button" for="menu-open">
-    <span class="hamburger hamburger-1"></span>
-    <span class="hamburger hamburger-2"></span>
-    <span class="hamburger hamburger-3"></span>
-  </label>
-  
-  <a href="index.php?template=tv" class="menu-item"> <i class="fa fa-television"></i> </a>
-  <a href="index.php?template=tennis" class="menu-item"> <i class="fa fa-dot-circle-o"></i> </a>
-  <a href="index.php?template=agendacassandre" class="menu-item"> <i class="fa fa-calendar"></i> </a>
-  <a href="index.php?template=configuration" class="menu-item"> <i class="fa fa-cog"></i> </a>
-  <a href="index.php?template=todo" class="menu-item"> <i class="fa fa-list"></i> </a>
-  <a href="index.php" class="menu-item"> <i class="fa fa-home"></i> </a>
-  <a href="index.php" class="menu-item"> <i class="fa fa-home"></i> </a>
 
+    <a href="index.php?template=nav_elements" class="menu-open-button" for="menu-open">
+        <span class="hamburger hamburger-1"></span>
+        <span class="hamburger hamburger-2"></span>
+        <span class="hamburger hamburger-3"></span>
+    </a>
 </nav>
-
 
 <!-- filters -->
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
