@@ -3,15 +3,17 @@
 class MiaTraduction extends Mia {
 
 	protected $trads = array(
-		'happy' => "Contente",
-		'angry' => "Enervée",
-		'sleepy' => "Fatiguée"
+		'fr' => array(
+			'happy' => "Contente",
+			'angry' => "Enervée",
+			'sleepy' => "Fatiguée"
+		)
 	);
 
-	public function trad($entry) {
+	public function trad($entry, $lang) {
 
-		if(isset($this->trads[strtolower($entry)])) {
-			return $this->trads[strtolower($entry)];
+		if(isset($this->trads[$lang][strtolower($entry)])) {
+			return $this->trads[$lang][strtolower($entry)];
 		}
 
 		return $entry;

@@ -5,7 +5,8 @@ class MiaEmotion extends Mia {
 	protected $states = array(
 		'happy',
 		'angry',
-		'sleepy'
+		'sleepy',
+		'hungry'
 	);
 
 	public function initEmotions() {

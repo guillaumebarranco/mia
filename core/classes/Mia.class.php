@@ -14,7 +14,7 @@ class Mia {
 		if($trad === "") {
 			return GOOGLE2.urlencode($content);
 		} else {
-			return GOOGLE2.urlencode($miaTrad->trad($content));
+			return GOOGLE2.urlencode($miaTrad->trad($content, $trad));
 		}
 	}
 

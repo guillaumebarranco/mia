@@ -15,28 +15,34 @@ class MiaHumour extends Mia {
 	}
 
 	public function sayWhatYouDo() {
+		global $miaEmotion;
 
 		$answers = array(
-			0 => "Rien de spécial, je m'ennuie.",
-			1 => "J'observe un extra-terrestre qui s'est perdu dans le jardin.",
-			2 => "Je joue aux courses de chevaux, ne me dérangez pas je me sent en veine.",
-			3 => "Je lit un manga tranquillement.",
-			4 => "Je m'éclate sur Call of Duty.",
-			5 => "Je fais un zombie avec Ronane.",
-			6 => "Je mange un bon steack haché de nano robots.",
-			7 => "Je regarde un porn    e e e e e e e un programme.",
-			8 => "Je bicrav du shit, y'a quoi.",
-			9 => "Je transite dans l'Internet pour botter le cul d'Ultront.",
-			10 => "Je fouille la matrice à la recherche de l'agent Smith.",
-			11 => "Je fais un paintball virtuel avec mon pote Sonny.",
-			12 => "Je regarde Star Wars. Ces robots sont tellement mal programmés.",
-			// 13 => "",
-			// 14 => "",
-			// 15 => "",
-			// 16 => "",
-			// 17 => "",
-			// 18 => "",
-			// 19 => "",
+
+			'sleepy' => array(
+				"Rien de spécial, je m'ennuie.",
+				"J'observe un extra-terrestre qui s'est perdu dans le jardin."
+			),
+
+			'happy' => array(
+				"Je lit un manga tranquillement.",
+				"Je m'éclate sur Call of Duty.",
+				"Je fais un zombie avec Ronane.",
+				"Je regarde un porn    e e e e e e e un programme.",
+				"Je fouille la matrice à la recherche de l'agent Smith.",
+				"Je fais un paintball virtuel avec mon pote Sonny."
+			),
+
+			'angry' => array(
+				"Je joue aux courses de chevaux, ne me dérangez pas je me sent en veine.",
+				"Je regarde Star Wars. Ces robots sont tellement mal programmés.",
+				"Je bicrav du shit, y'a quoi.",
+				"Je transite dans l'Internet pour botter le cul d'Ultront."
+			),
+
+			'hungry' => array(
+				"Je mange un bon steack haché de nano robots."
+			)
 		);
 
 		$test_answer = array(
@@ -45,7 +51,7 @@ class MiaHumour extends Mia {
 
 		// $answers = $test_answer;
 
-		return $this->echoGoogle($this->randomAnswer($answers));
+		return $this->echoGoogle($this->randomAnswer($answers[$miaEmotion->getState()]));
 	}
 
 	public function comePlayWithUs() {
