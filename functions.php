@@ -14,6 +14,8 @@
 	$miaPage 		= new MiaPage();
 	$miaSecure 		= new MiaSecure();
 	$miaRealWorld 	= new MiaRealWorld();
+	$miaEmotions 	= new MiaEmotion();
+	$miaTrad		= new MiaTraduction();
 	// $miaDatabase 	= new MiaDatabase();
 	
 	$text = '';
@@ -28,6 +30,7 @@
 		global $miaFunctions;
 		global $miaSecure;
 		global $miaRealWorld;
+		global $miaEmotions;
 		// global $miaDatabase;
 
 		switch($textEntry) {
@@ -52,6 +55,8 @@
 
 				case "howAreYou": $text = $miaHumour->sayGreat(); break;
 				case "didYouSleepWell": $text = $mia->sayItsOk(); break;
+
+				case "howDoYouFeel": $text = $miaEmotions->sayHowIFeel(); break;
 
 				case "didYouHaveNiceDreams": $text = $mia->sayGreatAndYou(); break;
 				case "favoriteFood": $text = $mia->favoriteFood(); break;

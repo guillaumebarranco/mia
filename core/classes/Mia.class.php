@@ -8,8 +8,14 @@ class Mia {
 
 	public function __construct() {}
 
-	function echoGoogle($content) {
-		return GOOGLE2.urlencode($content);
+	function echoGoogle($content, $trad = "") {
+		global $miaTrad;
+
+		if($trad === "") {
+			return GOOGLE2.urlencode($content);
+		} else {
+			return GOOGLE2.urlencode($miaTrad->trad($content));
+		}
 	}
 
 	function shortenGoogle($string) {

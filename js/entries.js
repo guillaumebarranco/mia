@@ -27,6 +27,7 @@ var entries = {
 		// "dis bonjour a nicolas"				: "sayHelloToNico",
 
 		"je suis fier de toi"				: "imProudOfYou",
+		"tu te sens comment"				: "howDoYouFeel",
 
 	//	Custom
 
