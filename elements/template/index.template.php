@@ -1,6 +1,6 @@
 <div class="wrap" style="margin-top: 150px;">
 
-	<form action="" autocomplete="off">
+	<form action="" autocomplete="off" id="main">
 
 		<div>
 			<label class="active" for="fname">Type your command</label>

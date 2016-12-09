@@ -51,6 +51,8 @@ class MiaHumour extends Mia {
 
 		// $answers = $test_answer;
 
+		// var_dump($miaEmotion->getState());
+
 		return $this->echoGoogle($this->randomAnswer($answers[$miaEmotion->getState()]));
 	}
 

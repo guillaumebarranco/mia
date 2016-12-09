@@ -1,4 +1,7 @@
 <?php
+	session_start();
+
+	// var_dump($_SESSION); die;
 
 	header("Access-Control-Allow-Origin: *");
 

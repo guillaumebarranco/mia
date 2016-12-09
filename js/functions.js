@@ -174,7 +174,7 @@ function echoCommand() {
 function functionsForJavascript() {
 	var _this = this;
 
-	this.searchCalcul = function(entry) {
+	this.searchCalcul = function(entry, fromTemplate = false) {
 		var foundMatch = false;
 
 		// Soustraction
@@ -215,6 +215,10 @@ function functionsForJavascript() {
 
 			commandsFunctions.getMiaAnswer(result, 'write', false);
 			foundMatch = true;
+		}
+
+		if(fromTemplate) {
+			return result;
 		}
 
 		return !foundMatch;

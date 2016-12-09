@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	if(typeof params.text === 'undefined') startListeningAudio();
 
-	$('form').on('submit', function(e) {
+	$('form#main').on('submit', function(e) {
 		e.preventDefault();
 
 		var command = $('input[type=text]').val().toLowerCase();
