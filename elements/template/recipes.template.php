@@ -12,6 +12,8 @@
 		
 		<h2>{{currentRecipe.name}}</h2>
 
+		<img v-bind:src="currentRecipe.picture" alt="">
+
 		<div v-for="(index, value) in currentRecipe.metadata">
 			<div v-if="index === 'preparation'">Preparation : {{value}}</div>
 			<div v-if="index === 'cuisson'">Cuisson : {{value}}</div>

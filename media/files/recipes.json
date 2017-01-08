@@ -1,6 +1,7 @@
 [
 	{
 		"name": "Omelette aux lardons",
+		"picture": "omelette-aux-lardons.jpeg",
 		"metadata": {
 			"preparation": "10min",
 			"cuisson": "20min",
@@ -22,6 +23,34 @@
 			"Faites fondre le beurre dans une poêle chaude et versez-y le mélange.",
 			"Faites cuire l'omelette de chaque côté.",
 			"Au moment de servir, disposez les lardons aux oignons au centre de l'omelette. Si vous le souhaitez, roulez l'omelette et servez sans attendre."
+		]
+	},
+	{
+		"name": "Quiche lorraine",
+		"picture": "quiche_lorraine.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "45min",
+			"persons": 4
+		},
+		"ingredients": [
+			"200 g de pâte brisée",
+			"200 g de lardons",
+			"30 g de beurre",
+			"3 oeufs",
+			"20 cl de crème fraîche",
+			"20 cl de lait",
+			"muscade",
+			"sel",
+			"poivre"
+		],
+		"recipe": [
+			"Préchauffer le four à 180°C (thermostat 6).",
+			"Etaler la pâte dans un moule, la piquer à la fourchette.",
+			"Faire rissoler les lardons à la poêle puis les répartir sur le fond de pâte.",
+			"Parsemer de copeaux de beurre.",
+			"Battre les oeufs, la crème fraîche et le lait. Assaisonner de sel, de poivre et de muscade. Verser sur la pâte.",
+			"Cuire 45 à 50 min."
 		]
 	}
 ]

@@ -48,9 +48,9 @@ new Vue({
 			});
 		},
 
-		updateCurrentRecipe(datas) {
-			this.$set('currentRecipe', datas);
-			console.log('currentRecipe', datas);
+		updateCurrentRecipe(recipe) {
+			recipe.picture = "media/img/recipes/"+recipe.picture;
+			this.$set('currentRecipe', recipe);
 		}
 	}
 });
