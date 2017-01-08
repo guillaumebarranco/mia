@@ -198,6 +198,7 @@
 			case "news":				$datas = $miaPage->getNews();						break;
 			case "config":				$datas = $miaPage->getConfiguration();				break;
 			case "birthdays":			$datas = $miaPage->getAllBirthdays();				break;
+			case "recipes":				$datas = $miaPage->getRecipes();					break;
 		}
 
 		echo json_encode($datas);

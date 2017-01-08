@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Omelette aux lardons",
+		"metadata": {
+			"preparation": "10min",
+			"cuisson": "20min",
+			"persons": 1
+		},
+		"ingredients": [
+			"6 œufs",
+			"150 g de lardons",
+			"75 g de gruyère râpé",
+			"15 cl de crème liquide",
+			"1 oignon",
+			"20 g de beurre",
+			"sel",
+			"poivre"
+		],
+		"recipe": [
+			"Épluchez les oignons et hachez-les. Faites-les revenir dans une poêle avec les lardons. Comptez une dizaine de min.",
+			"Cassez les oeufs entiers dans un saladier et fouettez-les à la fourchette avec la crème liquide, du sel et du poivre. Ajoutez le gruyère râpé et mélangez.",
+			"Faites fondre le beurre dans une poêle chaude et versez-y le mélange.",
+			"Faites cuire l'omelette de chaque côté.",
+			"Au moment de servir, disposez les lardons aux oignons au centre de l'omelette. Si vous le souhaitez, roulez l'omelette et servez sans attendre."
+		]
+	}
+]

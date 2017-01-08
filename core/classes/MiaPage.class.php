@@ -265,4 +265,13 @@ class MiaPage extends Mia {
 
 		return $config;
 	}
+
+	public function getRecipes() {
+
+		$recipes = file_get_contents(__DIR__.'/../../media/files/recipes.json');
+
+		$recipes = json_decode($recipes);
+
+		return $recipes;
+	}
 }
