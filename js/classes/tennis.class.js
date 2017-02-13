@@ -10,10 +10,6 @@ function tennis() {
 
 		const url = commandsFunctions.getResponsePageUrl();
 
-		console.log(url);
-
-		console.log($('input[name=number]').val());
-		
 		$.ajax({
 			url: url+'&page=tennis&number='+$('input[name=number]').val(),
 			type: 'GET',

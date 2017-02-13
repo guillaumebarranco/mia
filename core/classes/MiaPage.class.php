@@ -274,4 +274,9 @@ class MiaPage extends Mia {
 
 		return $recipes;
 	}
+
+	public function definition($def) {
+		global $miaKnowledge;
+		return $miaKnowledge->definition($def, true);
+	}
 }
