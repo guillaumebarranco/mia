@@ -14,8 +14,6 @@ function Definitions() {
 			type: 'GET',
 			success: function(response) {
 				response = JSON.parse(response);
-				console.log(response);
-
 				if(callback) callback(response);
 
 			}, error: function() {
