@@ -17,6 +17,7 @@ var gulp = require('gulp'),
 
     // Pas utilisé pour le moment jasmine = require('gulp-jasmine-node')
 ;
+
 require('es6-promise').polyfill();
 
 /************************/
