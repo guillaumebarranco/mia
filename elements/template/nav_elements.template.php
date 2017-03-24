@@ -13,4 +13,4 @@
 <a href="index.php?template=cocktails" class="menu-item"> <i class="fa fa-glass"></i> </a>
 <a href="index.php?template=birthdays" class="menu-item"> <i class="fa fa-birthday-cake"></i> </a>
 <a href="index.php?template=calculator" class="menu-item"> <i class="fa fa-calculator"></i> </a>
-
+<a href="index.php?template=definition" class="menu-item"> <i class="fa fa-definition"></i> </a>

@@ -105,4 +105,49 @@ class MiaKnowledge extends Mia {
 
 	    return $this->echoGoogle($this->randomAnswer($titles));
 	}
+
+	public function definition($def = "", $fromPage = false) {
+
+		if($def !== "") {
+
+			$results = [];
+
+			$html = file_get_html("http://dictionnaire.reverso.net/francais-definition/".$def);
+
+			foreach($html->find('#ctl00_cC_translate_box .ldcomIN') as $element) {
+
+				$element = $element->plaintext;
+				$element = trim($element);
+				$element = preg_replace("/&#?[a-z0-9]+;/i", "", $element); 
+				$element = preg_replace("/[0-9]/i", "", $element);
+				$element = ltrim($element);
+				$element = preg_replace('/^\p{Z}+|\p{Z}+$/u', '', $element); // another trim() more effective
+				$element = ucfirst($element);
+
+				if(substr($element, -1) !== ".") {
+					$element .= ".";
+				}
+
+				if(!in_array($element, $results)) {
+					$results[] = $element;
+				}
+			}
+
+			array_shift($results);
+			array_shift($results);
+
+			while(count($results) > 5) {
+				array_pop($results);
+			}
+
+			if(!$fromPage) {
+				return $this->echoGoogle($results);
+			}
+
+			return $results;
+
+		}
+
+		return $this->echoGoogle("404 Not Found");
+	}
 }

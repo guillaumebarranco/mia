@@ -170,13 +170,17 @@
 
 			//	Real World
 
-				case "turnOnLight": 			$text = $miaRealWorld->turnOnLight(); 				break;
-				case "turnOffLight": 			$text = $miaRealWorld->turnOffLight(); 				break;
-				case "changeLight": 			$text = $miaRealWorld->changeLight(); 				break;
+				case "turnOnLight": 			$text = $miaRealWorld->turnOnLight(); 						break;
+				case "turnOffLight": 			$text = $miaRealWorld->turnOffLight(); 						break;
+				case "changeLight": 			$text = $miaRealWorld->changeLight(); 						break;
 
 			//	Code
 
-				case "how2": 					$text = $miaFunctions->how2(); 						break;
+				case "how2": 					$text = $miaFunctions->how2(); 								break;
+
+			// Intelligence
+
+				case "definition":				$text = $miaKnowledge->definition($_GET['definition']);		break;
 
 			//	Database
 				// case "getCommands": 			$text = $miaDatabase->getCommands(); 				break;
@@ -191,14 +195,15 @@
 		global $miaSecure;
 
 		switch ($entry) {
-			case "meteo": 				$datas = $miaPage->getMeteo(); 						break;
-			case "tv":					$datas = $miaPage->getTVPage();						break;
-			case "twitter":				$datas = $miaPage->getTwitterFeed();				break;
-			case "tennis":				$datas = $miaPage->getATPClassement();				break;
-			case "news":				$datas = $miaPage->getNews();						break;
-			case "config":				$datas = $miaPage->getConfiguration();				break;
-			case "birthdays":			$datas = $miaPage->getAllBirthdays();				break;
-			case "recipes":				$datas = $miaPage->getRecipes();					break;
+			case "meteo": 				$datas = $miaPage->getMeteo(); 							break;
+			case "tv":					$datas = $miaPage->getTVPage();							break;
+			case "twitter":				$datas = $miaPage->getTwitterFeed();					break;
+			case "tennis":				$datas = $miaPage->getATPClassement();					break;
+			case "news":				$datas = $miaPage->getNews();							break;
+			case "config":				$datas = $miaPage->getConfiguration();					break;
+			case "birthdays":			$datas = $miaPage->getAllBirthdays();					break;
+			case "recipes":				$datas = $miaPage->getRecipes();						break;
+			case "definition":			$datas = $miaPage->definition($_GET['definition']);		break;
 		}
 
 		echo json_encode($datas);
