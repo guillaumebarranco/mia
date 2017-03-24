@@ -52,5 +52,93 @@
 			"Battre les oeufs, la crème fraîche et le lait. Assaisonner de sel, de poivre et de muscade. Verser sur la pâte.",
 			"Cuire 45 à 50 min."
 		]
+	},
+	{
+		"name": "Cannelés",
+		"picture": "canneles.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "47min"
+		},
+		"ingredients": [
+			"120 g farine",
+			"175 g sucre",
+			"40 g beurre",
+			"1 boite lait concentré non sucré",
+			"1 bâton de vanille",
+			"Cassonade",
+			"2 jaunes d'oeuf",
+			"1 à 2 cuillère à soupe de rhum Negrita"
+		],
+		"recipe": [
+			"Ouvrir la gousse de vanille pour libérer les graines.",
+			"Mettre à chauffer sans bouillir le lait avec la gousse et les graines, ainsi que le beurre.",
+			"Réserver. Puis mélanger le sucre et la farine.",
+			"Y ajouter le lait chaud en enlevant le bâton, puis les 2 jaunes d'oeuf et le rhum.",
+			"Mettre de la cassonade dans les moules à cannelés. Les remplir ensuite avec la préparation.",
+			"Faire cuire 47 min à environ 180 degrés."
+		]
+	},
+	{
+		"name": "Sauce vinaigrete Maggi",
+		"picture": "",
+		"metadata": {
+		},
+		"ingredients": [
+			"1 c.à.s d'huile d'olive",
+			"1 c.à.s de citron",
+			"1 c.à.s de vinaigre",
+			"10 à-coups de Maggi",
+			"sel",
+			"poivre"
+		],
+		"recipe": [
+			"Mélangez le tout !"
+		]
+	},
+	{
+		"name": "Poulet Curry",
+		"picture": "pouletcurry.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "20min"
+		},
+		"ingredients": [
+			"4 blancs de poulet",
+			"2 gros oignons jaunes",
+			"1 pot de crème fraîche allégée",
+			"curry",
+			"cumin",
+			"piment",
+			"sel",
+			"poivre"
+		],
+		"recipe": [
+			"Mettre une grande poêle à chauffer.",
+			"Couper les oignons en petits morceaux, et les faire cuire à feu assez fort. Remuer, en ajoutant du curry et du cumin.",
+			"Couper les blancs de poulet en morceaux, les ajouter dans la poêle et remettre des épices; tourner.",
+			"Baisser le feu, et ajouter 2 cuillères à soupe de crème.",
+			"Après 5 min de cuisson, remettre 2 cuillères à soupe de crème et des épices (si nécessaire).",
+			"Si le plat est fait à l'avance, remettre un peu de crème au moment de réchauffer car la sauce s'évapore."
+		]
+	}, {
+		"name": "Omelette aux pommes de terre",
+		"picture": "omelettepdt.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "20min"
+		},
+		"ingredients": [
+			"6 oeufs",
+			"100g de gruyère râpé",
+			"2 c.à.s de crème fraîche",
+			"herbes de provence",
+			"échalottes en poudre"
+		],
+		"recipe": [
+			"Faire cuire les pommes de terres taillées en dés",
+			"Faire l'omelette",
+			"Mettre l'omelette sur le feu, y ajouter les pommes de terres"
+		]
 	}
 ]
