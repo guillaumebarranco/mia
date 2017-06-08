@@ -61,7 +61,7 @@ class MiaPage extends Mia {
 
 	public function getTVPage() {
 
-		$array_chaines = array('TF1', 'France 2', 'France 3', 'Canal+', 'M6', 'D8', 'W9', 'TMC', 'NT1', 'D17');
+		$array_chaines = array('TF1', 'France 2', 'France 3', 'Canal+', 'M6', 'C8', 'W9', 'TMC', 'NT 1', 'NRJ 12', 'CSTAR');
 		$url = "http://www.programme-tv.net/programme/programme-tnt.html";
 
 		$html = file_get_html($url);
