@@ -4,8 +4,8 @@
 
 		<div class="station"><strong>{{movie.title}}</strong></div>
 
-		<div src class="picture">
-			<img src="{{movie.picture}}" alt="">
+		<div class="picture">
+			<img v-bind:src="movie.picture" alt="">
 		</div>
 
 		<div class="movie">{{movie.movie}}</div>
