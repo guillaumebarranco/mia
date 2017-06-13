@@ -1,6 +1,6 @@
 var startListeningAudio = function() {
 
-	if (annyang && AUDIO_ACTIVE && $('#fname').length !== 0) {
+	if (annyang && $('#fname').length !== 0) {
 
 		annyang.setLanguage('fr-FR');
 
@@ -10,10 +10,13 @@ var startListeningAudio = function() {
 
 		annyang.addCallback('result', function (userSaid) {
 
-			newArray = cleanFunctions.sanitizeUserSaid(userSaid);
-			console.log(newArray);
+			if(AUDIO_ACTIVE) {
 
-			brainFunctions.searchCommand(newArray, 'audio');
+				newArray = cleanFunctions.sanitizeUserSaid(userSaid);
+				console.log(newArray);
+
+				brainFunctions.searchCommand(newArray, 'audio');
+			}
 		});
 	}
 };

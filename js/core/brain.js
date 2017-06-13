@@ -73,6 +73,6 @@ class Brain {
 			}
 		}
 
-		morphingFunctions.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+		aiFunctions.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
 	}
 }

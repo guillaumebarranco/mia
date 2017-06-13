@@ -1,11 +1,3 @@
-/*
- *	The first function called here if searchCommand of class echoCommand
- *
- *
- *
- *
- */
-
 var previouslySaid 				= [],
 	previouslySaidPosition 		= -1,
 	launchLoader 				= true,

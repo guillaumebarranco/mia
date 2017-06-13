@@ -22,4 +22,14 @@ $(document).ready(function() {
 			menu.hide();
 		}
 	});
+
+	if(AUDIO_ACTIVE) {
+		$('.toggleMicro').addClass('active');
+	}
+
+	$('.toggleMicro').on('click', function() {
+		AUDIO_ACTIVE = !AUDIO_ACTIVE;
+
+		$('.toggleMicro').toggleClass('active');
+	})
 });

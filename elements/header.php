@@ -3,9 +3,9 @@
 <!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
 
 <script>
-	var JS_URL = "<?=JS_URL?>",
-		MIA_URL = "<?=MIA_URL?>",
-		AUDIO_ACTIVE = "<?=AUDIO_ACTIVE?>"
+	var JS_URL = "<?= JS_URL ?>",
+		MIA_URL = "<?= MIA_URL ?>",
+		AUDIO_ACTIVE = "<?= AUDIO_ACTIVE ?>"
 	;
 </script>
 

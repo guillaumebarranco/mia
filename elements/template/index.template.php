@@ -11,7 +11,7 @@
 
 	</form>
 
-	<button>Microphone</button>
+	<button class="toggleMicro"><i class="fa fa-microphone"></i></button>
 
 	<article class="loader">
         <div class="rectangle-bounce selected">
