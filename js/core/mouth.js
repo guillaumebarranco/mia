@@ -15,7 +15,7 @@ class Mouth {
 	speak(text, time) {
 		const audioElement = '<iframe style="opacity:0;" src="'+text+'"></iframe>';
 
-		$('#main').append(responseHtml);
+		$('#main').append(audioElement);
 		$('#mouth').addClass('anim');
 
 		setTimeout(function() {

@@ -11,8 +11,6 @@
 
 	</form>
 
-	<button class="toggleMicro"><i class="fa fa-microphone"></i></button>
-
 	<article class="loader">
         <div class="rectangle-bounce selected">
           <div class="rect1"></div>
@@ -24,5 +22,7 @@
     </article>
 
 	<section id="main"></section>
+
+	<button class="toggleMicro"><i class="fa fa-microphone"></i></button>
 
 </div>

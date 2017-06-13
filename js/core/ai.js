@@ -18,14 +18,14 @@ class AI {
 
 		for (var entry in formatedEntries) {
 
-			if(!entryFound && _this.wordRessemble(formatedEntries[entry], userSaid[0], step)) {
+			if(!entryFound && this.wordRessemble(formatedEntries[entry], userSaid[0], step)) {
 				matches.push(formatedEntries[entry]);
 			}
 		}
 
 		if(matches.length > 1) {
 			step++;
-			_this.checkForSimilateAnswer(userSaid, matches, step, source);
+			this.checkForSimilateAnswer(userSaid, matches, step, source);
 
 		} else if(matches.length === 1) {
 			commandsFunctions.pushToPreviouslySaid(matches[0]);
@@ -33,7 +33,7 @@ class AI {
 
 		} else if(matches.length === 0 && typeof userSaid[1] !== 'undefined') {
 			userSaid.shift();
-			_this.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
+			this.checkForSimilateAnswer(userSaid, cleanFunctions.formateEntries(), 1, source);
 		} else {
 			aiFunctions.decomposeEntry(userSaid);
 		}
