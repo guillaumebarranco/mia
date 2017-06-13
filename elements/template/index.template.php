@@ -11,6 +11,8 @@
 
 	</form>
 
+	<button>Microphone</button>
+
 	<article class="loader">
         <div class="rectangle-bounce selected">
           <div class="rect1"></div>

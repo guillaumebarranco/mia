@@ -13,7 +13,7 @@ var startListeningAudio = function() {
 			newArray = cleanFunctions.sanitizeUserSaid(userSaid);
 			console.log(newArray);
 
-			commandsFunctions.searchCommand(newArray, 'audio');
+			brainFunctions.searchCommand(newArray, 'audio');
 		});
 	}
 };

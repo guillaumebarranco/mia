@@ -60,6 +60,7 @@ class MiaPage extends Mia {
 	}
 
 	public function getTVPage() {
+		// die('ok');
 
 		$array_chaines = array('TF1', 'France 2', 'France 3', 'Canal+', 'M6', 'C8', 'W9', 'TMC', 'NT 1', 'NRJ 12', 'CSTAR');
 		$url = "http://www.programme-tv.net/programme/programme-tnt.html";

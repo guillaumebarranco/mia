@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var command = $('input[type=text]').val().toLowerCase();
 		$('input[type=text]').val('');
 
-		commandsFunctions.searchCommand([command], 'writing');
+		brainFunctions.searchCommand([command], 'writing');
 	});
 
 	$('.hamburger').on('click', function() {

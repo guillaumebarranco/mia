@@ -3,6 +3,7 @@ var entries = {
 	//	Basics
 
 		"bonjour mia"						: 'hello',
+		"hello"								: 'hello',
 		"tu fais quoi"						: 'whatAreYouDoing',
 		'merci mia'							: 'thankYou',
 		"tu as raison !"					: "youAreRight",
