@@ -140,5 +140,79 @@
 			"Faire l'omelette",
 			"Mettre l'omelette sur le feu, y ajouter les pommes de terres"
 		]
+	}, {
+		"name": "Oeufs brouillés",
+		"picture": "oeufbrouille.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "20min",
+			"person": 4
+		},
+		"ingredients": [
+			"12 oeufs",
+			"6 c.à.s de lait",
+			"2 c.à.s de crème fraîche",
+			"60g de beurre",
+			"sel, poivre"
+		],
+		"recipe": [
+			"Dans une casserole à fond épais, casser les œufs puis ajouter le lait, 30 g de beurre, le sel et le poivre.",
+			"Laisser cuire à feu très doux sans cesser de fouetter les œufs jusqu’à ce qu’ils prennent la consistance d’une crème.",
+			"Hors du feu, incorporer le reste du beurre en continuant de fouetter.",
+			"Déguster immédiatement."
+		]
+	}, {
+		"name": "Escalopes panées",
+		"picture": "escalopepanee.jpg",
+		"metadata": {
+			"preparation": "5min",
+			"cuisson": "10min",
+			"person": 2
+		},
+		"ingredients": [
+			"2 escalopes de veau bien fines",
+			"1 oeuf",
+			"un peu de lait",
+			"chapelure",
+			"sel, poivre",
+			"beurre"
+		],
+		"recipe": [
+			"Dans une assiette creuse, battez l'oeuf entier avec une larme de lait, du sel et du poivre.",
+			"Dans une seconde assiette plate, étalez la chapelure de sorte à recouvrir complètement le fond de l'assiette.",
+			"Passez successivement les escalopes dans l'oeuf battu, puis dans la chapelure, en prenant soin de les recouvrir entièrement (l'oeuf fait adhérer la chapelure)." 
+			"Rajoutez de la chapelure dans l'assiette en cours de route si besoin.",
+			"Faites dorer les escalopes panées dans une poêle avec du beurre.",
+			"Saisissez-les des deux côtés pour que la chapelure soit bien dorée, puis laissez-les cuire plus doucement quelques minutes selon l'épaisseur."
+		]
+	}, {
+		"name": "Poulet rôti",
+		"picture": "pouletroti.jpg",
+		"metadata": {
+			"preparation": "15min",
+			"cuisson": "60min",
+			"person": 4
+		},
+		"ingredients": [
+			"1 Poulet à rôtir d'environ 1,2 kg",
+			"50 g de beurre",
+			"herbes de Provence",
+			"sel",
+			"poivre",
+			"20 pommes de terre"
+		],
+		"recipe": [
+			"Il vous suffit de mettre le poulet dans un plat à four. ",
+			"Pendant ce temps-là, préchauffer le four à 210-240°C (thermostat 7-8).",
+			"Prenez le beurre et découpez-le en morceaux pour le mettre sur le poulet un peu partout. ",
+			"Salez, poivrez et herbez la bête...",
+			"Ensuite, attaquez-vous au patates... Il faut les éplucher et puis les faire tremper dans l'eau pour les rincer et les essuyer.",
+			"Il faut après les découper.",
+			"Et je mets toutes les pommes de terres dans le plat autour du poulet. Les sale.",
+			"Et puis direction le four après avoir arrosé le tout d'un demi-verre d'eau. ",
+			"Je laisse cuire 1h15... plus ou moins en fonction du poulet et des pommes de terre. ",
+			"Je le tourne régulièrement pendant la cuisson, sur chaque face... Et puis s'il le faut je réarrose d'eau... comme ça, les pommes de terre baignent dans le jus.",
+			"Une fois que c'est prêt et bien il suffit de servir !"
+		]
 	}
 ]

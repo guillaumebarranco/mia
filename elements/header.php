@@ -22,3 +22,5 @@
 
 	loadScripts($scripts);
 ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.js"></script>
