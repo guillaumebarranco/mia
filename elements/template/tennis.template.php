@@ -1,14 +1,14 @@
+<div v-show="!loader" class="form">
+	<input type="text" name="number" type="number" value="10">
+	<button class="update">Update</button>
+</div>
+
 <div id="tennis">
-
-	<div v-show="!loader" class="form">
-		<input type="text" name="number" type="number" value="5">
-		<button class="update">Update</button>
-	</div>
-
+		
 	<div v-show="!loader" v-for="data in datas" class="tennis">
 
 		<div class="fiche">
-			
+
 			<h3><strong>{{data.ranking}}</strong></h3>
 			<h3 class="name">{{data.name}}</h3>
 

@@ -61,35 +61,33 @@ class MiaPage extends Mia {
 
 	public function getTVPage() {
 
-		$html = file_get_html('http://www.programme-tv.net/programme/programme-tnt.html');
+		$array_chaines = array('TF1', 'France 2', 'France 3', 'Canal+', 'M6', 'C8', 'W9', 'TMC', 'NT 1', 'NRJ 12', 'CSTAR');
+		$url = "http://www.programme-tv.net/programme/programme-tnt.html";
 
-		$response = $html->find('.channel');
+		$html = file_get_html($url);
 
-		$answer = '';
+		$main_class = ".collision-main .p-v-md";
+
+		$response = $html->find($main_class);
 
 		$stations = array();
 
 		foreach ($response as $channel) {
-			
-			$title = $channel->children[0]->children[0]->attr['title'];
 
-			$array_chaines = array('TF1', 'France 2', 'France 3', 'Canal+', 'M6', 'D8', 'W9', 'TMC', 'NT1', 'D17');
+			$title = $channel->find('.channel_label')[0]->title;
 
 			if(in_array(substr($title, 13), $array_chaines)) {
 
-				$movie = $channel->children[1]->children[1]->children[2]->plaintext;
+				$movie = $channel->find('.programme a')[0]->title;
+				$picture = $channel->find('.programme .ratio-16-9 img')[0]->attr['data-src'];
 
-				$picture = '';
-
-				if(isset($channel->children[1]->children[0]->children[1])) {
-					$picture = $channel->children[1]->children[0]->children[1]->children[0]->attr['src'];
-				}
+				$hour =  $channel->find('.programme .prog_heure')[0]->plaintext;
 
 				$stations[] = array(
 					'title' => substr($title, 13),
-					'movie' => $movie,
-					'hour' => trim($channel->children[1]->children[1]->children[0]->plaintext),
-					'picture' => $picture
+					'movie' => trim($movie),
+					'hour' => trim($hour),
+					'picture' => trim($picture)
 				);
 			}
 		}
