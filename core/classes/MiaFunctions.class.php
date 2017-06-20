@@ -506,4 +506,30 @@ class MiaFunctions extends Mia {
 
 		return $this->echoGoogle("L'audio a été activée.");
 	}
+
+	public function sanitizeString($string) {
+
+		$string = strtolower($string);
+		$string = trim($string);
+		
+		$pattern_array = array(
+
+			"é" => "e",
+			"è" => "e",
+			"ê" => "e",
+			"ë" => "e",
+			"ç" => "c",
+			"à" => "a",
+			"â" => "a",
+			"ä" => "a",
+			"î" => "i",
+			"ï" => "i",
+			"ù" => "u",
+			"ô" => "o",
+			"ó" => "o",
+			"ö" => "o"
+		);
+
+		return strtr($string, $pattern_array);
+	}
 }

@@ -26,6 +26,22 @@ class Mia {
 	*	Global functions
 	*/
 
+	public function emotionAnswer($answers) {
+		global $miaEmotion;
+
+		$state = $miaEmotion->getState();
+
+		if(isset($answers[$state])) {
+			return $answers[$state];
+		}
+
+		if(isset($answers['default'])) {
+			return $answers['default'];
+		}
+
+		return "Je n'ai pas réponse concernant mon émotion : ".$state;
+	}
+
 	public function randomAnswer($array) {
 		return $array[rand(0, count($array) -1)];
 	}

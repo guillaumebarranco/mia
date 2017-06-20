@@ -36,6 +36,7 @@ class MiaSecure extends Mia {
 		return array(
 			'02-07' => 'Nathan',
 			'05-17' => 'Aurelien',
+			'06-27' => "Julien",
 			'07-30' => 'Aelys',
 			'08-31' => 'Angeline',
 			'10-10' => 'Maman',

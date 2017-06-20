@@ -180,7 +180,8 @@
 
 			// Intelligence
 
-				case "definition":				$text = $miaKnowledge->definition($_GET['definition']);		break;
+				case "definition":				$text = $miaKnowledge->definition($_GET['definition']);				break;
+				case "singleDefinition":		$text = $miaKnowledge->singleDefinition($_GET['definition']);		break;
 
 			//	Database
 				// case "getCommands": 			$text = $miaDatabase->getCommands(); 				break;
@@ -211,7 +212,7 @@
 
 	function answerText($text) {
 
-		if(IS_RASPBERRY === true) {
+		if(IS_RASPBERRY === 'tt') {
 			exec('mpg321 "'.$text.'"');
 
 		} else {

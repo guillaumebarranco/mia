@@ -61,6 +61,34 @@ class echoCommand {
 		return urldecode(subtext);
 	}
 
+	makeActionWithGetParams(text, source, params, callback) {
+
+		$('#main').empty();
+		console.log(text);
+
+		var url = this.getResponseUrl(text, source);
+
+		url += params;
+		
+		setTimeout(function() { if(launchLoader) myLoader.show(); }, 300);
+
+		$.ajax({
+			url: url,
+			type: 'GET',
+			success: (response) => {
+				response = JSON.parse(response);
+				console.log(response);
+
+				myLoader.hide();
+				if(!callback) this.getMiaAnswer(response.text, source);
+				if(callback) callback(response);
+
+			}, error: () => {
+				myLoader.hide();
+			}
+		});
+	}
+
 	// Action sending params to mia core
 	makeAction(text, source, callback) {
 

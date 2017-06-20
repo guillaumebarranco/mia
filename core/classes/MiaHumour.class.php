@@ -3,7 +3,16 @@
 class MiaHumour extends Mia {
 
 	public function getAge() {
-		return $this->echoGoogle("Je suis un robot voyons ! Je n'ai pas d'âge !");
+		global $mia;
+
+		$answers = array(
+
+			'angry' => "Je suis un robot voyons ! Je n'ai pas d'âge !",
+			'sleepy' => "sleeeepy",
+			'default' => "Je suis un robot voyons ! Je n'ai pas d'âge !"
+		);
+
+		return $this->echoGoogle($mia->emotionAnswer($answers));
 	}
 
 	public function areYouAlive() {

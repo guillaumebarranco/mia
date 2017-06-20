@@ -106,9 +106,12 @@ class MiaKnowledge extends Mia {
 	    return $this->echoGoogle($this->randomAnswer($titles));
 	}
 
-	public function definition($def = "", $fromPage = false) {
+	public function definition($def = "", $fromPage = false, $singleResult = false) {
+		global $miaFunctions;
 
 		if($def !== "") {
+
+			$def = $miaFunctions->sanitizeString($def);
 
 			$results = [];
 
@@ -141,13 +144,22 @@ class MiaKnowledge extends Mia {
 			}
 
 			if(!$fromPage) {
-				return $this->echoGoogle($results);
+
+
+				if(!$singleResult) {
+					return $this->echoGoogle($results);
+				} else {
+					return $this->echoGoogle($results[0]);
+				}
 			}
 
 			return $results;
-
 		}
 
 		return $this->echoGoogle("404 Not Found");
+	}
+
+	public function singleDefinition($def = "", $fromPage = false) {
+		return $this->definition($def, $fromPage, true);
 	}
 }

@@ -44,6 +44,11 @@ class Brain {
 			return false;
 		}
 
+		if(userSaid[0].substr(0,4) === "def:") {
+			commandsFunctions.makeActionWithGetParams('singleDefinition', 'js', "&definition="+userSaid[0].substr(4));
+			return false;
+		}
+
 		return calculFunctions.searchCalcul(userSaid[0]);
 	}
 
